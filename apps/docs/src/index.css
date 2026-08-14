@@ -1,3 +1,8 @@
 @import "tailwindcss";
 @import "chrona-ui/css/style.css";
 @import "chrona-ui/css/preset.css";
+
+@theme {
+  --color-brand: #c026d3;
+  --color-brand-secondary: #3b82f6;
+}

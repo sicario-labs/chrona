@@ -13,22 +13,19 @@ function ChronaIcon(props: any) {
 
 export const linkItems: LinkItemType[] = [
   {
-    icon: <AlbumIcon />,
-    text: 'Blog',
-    url: '/blog',
+    text: 'Docs',
+    url: '/docs',
     active: 'nested-url',
   },
   {
-    text: 'Showcase',
-    url: '/showcase',
-    icon: <LayoutTemplate />,
-    active: 'url',
+    text: 'Pricing',
+    url: '/pricing',
+    active: 'nested-url',
   },
   {
-    text: 'Sponsors',
-    url: 'https://fuma-nama.dev/sponsors',
-    external: true,
-    icon: <Heart />,
+    text: 'Dashboard',
+    url: '/dashboard',
+    active: 'nested-url',
   },
   {
     type: 'icon',

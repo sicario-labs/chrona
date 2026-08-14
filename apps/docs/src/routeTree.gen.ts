@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as HomeRouteImport } from './routes/_home'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as HomeIndexRouteImport } from './routes/_home/index'
+import { Route as HomePricingRouteImport } from './routes/_home/pricing'
 import { Route as DocsSplatRouteImport } from './routes/docs/$'
 
 const HomeRoute = HomeRouteImport.update({
@@ -28,6 +29,11 @@ const HomeIndexRoute = HomeIndexRouteImport.update({
   path: '/',
   getParentRoute: () => HomeRoute,
 } as any)
+const HomePricingRoute = HomePricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => HomeRoute,
+} as any)
 const DocsSplatRoute = DocsSplatRouteImport.update({
   id: '/$',
   path: '/$',
@@ -37,10 +43,12 @@ const DocsSplatRoute = DocsSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof HomeIndexRoute
   '/docs': typeof DocsRouteWithChildren
+  '/pricing': typeof HomePricingRoute
   '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRoutesByTo {
   '/docs': typeof DocsRouteWithChildren
+  '/pricing': typeof HomePricingRoute
   '/docs/$': typeof DocsSplatRoute
   '/': typeof HomeIndexRoute
 }
@@ -48,15 +56,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_home': typeof HomeRouteWithChildren
   '/docs': typeof DocsRouteWithChildren
+  '/_home/pricing': typeof HomePricingRoute
   '/docs/$': typeof DocsSplatRoute
   '/_home/': typeof HomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs' | '/docs/$'
+  fullPaths: '/' | '/docs' | '/pricing' | '/docs/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/docs' | '/docs/$' | '/'
-  id: '__root__' | '/_home' | '/docs' | '/docs/$' | '/_home/'
+  to: '/docs' | '/pricing' | '/docs/$' | '/'
+  id: '__root__' | '/_home' | '/docs' | '/_home/pricing' | '/docs/$' | '/_home/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -87,6 +96,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeIndexRouteImport
       parentRoute: typeof HomeRoute
     }
+    '/_home/pricing': {
+      id: '/_home/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof HomePricingRouteImport
+      parentRoute: typeof HomeRoute
+    }
     '/docs/$': {
       id: '/docs/$'
       path: '/$'
@@ -98,10 +114,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface HomeRouteChildren {
+  HomePricingRoute: typeof HomePricingRoute
   HomeIndexRoute: typeof HomeIndexRoute
 }
 
 const HomeRouteChildren: HomeRouteChildren = {
+  HomePricingRoute: HomePricingRoute,
   HomeIndexRoute: HomeIndexRoute,
 }
 

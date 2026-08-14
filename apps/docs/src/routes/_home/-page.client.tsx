@@ -51,8 +51,8 @@ export function Hero() {
           className="absolute inset-0 animate-fd-fade-in duration-800"
           colors={
             resolvedTheme === 'dark'
-              ? ['#39BE1C', '#9c2f05', '#7A2A0000']
-              : ['#fcfc51', '#ffa057', '#7A2A0020']
+              ? ['#c026d3', '#3b82f6', '#14b8a600']
+              : ['#e879f9', '#60a5fa', '#2dd4bf20']
           }
           colorBack="#00000000"
           softness={1}
@@ -69,7 +69,7 @@ export function Hero() {
           width={720}
           height={720}
           colorBack="#00000000"
-          colorFront={resolvedTheme === 'dark' ? '#DF3F00' : '#fa8023'}
+          colorFront={resolvedTheme === 'dark' ? '#e879f9' : '#d946ef'}
           shape="sphere"
           type="4x4"
           scale={0.5}
@@ -96,11 +96,11 @@ export function Hero() {
 }
 
 export function CreateAppAnimation(props: ComponentProps<'div'>) {
-  const installCmd = 'pnpm create chrona-app';
+  const installCmd = 'chrona deploy ./docs';
   const tickTime = 100;
   const timeCommandEnter = installCmd.length;
   const timeCommandRun = timeCommandEnter + 3;
-  const timeCommandEnd = timeCommandRun + 3;
+  const timeCommandEnd = timeCommandRun + 4;
   const timeWindowOpen = timeCommandEnd + 1;
   const timeEnd = timeWindowOpen + 1;
 
@@ -136,22 +136,22 @@ export function CreateAppAnimation(props: ComponentProps<'div'>) {
       <Fragment key="command_response">
         {tick > timeCommandRun + 1 && (
           <>
-            <span className="font-medium">◇ Project name</span>
-            <span>│ my-app</span>
+            <span className="font-medium text-brand">◇ Connected to GitHub</span>
+            <span>│ acme/api-docs</span>
           </>
         )}
         {tick > timeCommandRun + 2 && (
           <>
+            <span>│ Building... <span className="text-fd-muted-foreground">23 pages compiled</span></span>
+            <span>│ Generating search index... <span className="text-fd-success">done</span></span>
             <span>│</span>
-            <span className="font-medium">◆ Choose a framework</span>
           </>
         )}
         {tick > timeCommandRun + 3 && (
           <>
-            <span>│ ● Next.js</span>
-            <span>│ ○ Waku</span>
-            <span>│ ○ Tanstack Start</span>
-            <span>│ ○ React Router</span>
+            <span className="font-medium text-brand-secondary">◆ Deployed to acme.chrona.dev</span>
+            <span>│ ● https://acme.chrona.dev</span>
+            <span>│ ○ Custom domain: docs.acme.com</span>
           </>
         )}
       </Fragment>,
@@ -183,9 +183,9 @@ function LaunchAppWindow(props: HTMLAttributes<HTMLDivElement>) {
       className={cn('overflow-hidden rounded-md border bg-fd-popover shadow-lg', props.className)}
     >
       <p className="text-xs text-fd-muted-foreground text-center px-4 py-2 border-b">
-        localhost:3000
+        docs.acme.com
       </p>
-      <p className="text-sm px-4 py-2">New App launched!</p>
+      <p className="text-sm px-4 py-2">Docs deployed live!</p>
     </div>
   );
 }
@@ -203,15 +203,15 @@ export function PreviewImages(props: ComponentProps<'div'>) {
   const previews = [
     {
       image: MainImg,
-      name: 'Docs',
+      name: 'Live Docs',
     },
     {
       image: NotebookImg,
-      name: 'Notebook',
+      name: 'Dashboard',
     },
     {
       image: OpenAPIImg,
-      name: 'OpenAPI',
+      name: 'Analytics',
     },
   ];
 
@@ -321,7 +321,7 @@ export function AgnosticBackground() {
     >
       <Dithering
         colorBack="#00000000"
-        colorFront="#c6bb58"
+        colorFront="#0ea5e9"
         shape="warp"
         type="4x4"
         speed={visible ? 0.4 : 0}
