@@ -1,8 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { Card } from '@chrona/base-ui/components/card'
 import { Plus, Settings, Github, CheckCircle2, Clock, ExternalLink, PenSquare, Layout, Globe, Activity } from 'lucide-react'
-import { Button } from '@chrona/base-ui/components/ui/button'
-
 export const Route = createFileRoute('/_dashboard/dashboard')({
   component: DashboardPage,
 })

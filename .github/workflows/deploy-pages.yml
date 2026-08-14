@@ -44,7 +44,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build Platform
-        run: pnpm --filter platform run build
+        run: pnpm --filter platform... run build
 
       - name: Deploy Builder Worker
         run: pnpm --filter builder run deploy

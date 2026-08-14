@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { HomeLayout } from '@chrona/base-ui/layouts/home'
-import { NavbarMenu, NavbarMenuTrigger } from '@chrona/base-ui/layouts/home/navbar'
+
 import { Button } from '@chrona/base-ui/components/ui/button'
 
 export const Route = createFileRoute('/')({

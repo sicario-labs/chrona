@@ -8,7 +8,7 @@ export const orgsRouter = new Hono()
 // Get all orgs for the current user
 orgsRouter.get('/', async (c) => {
   // TODO: Add auth middleware to get current user ID
-  const userId = 'placeholder-user-id' 
+  // TODO: Add auth middleware to get current user ID
 
   // In a real app we would join with members table
   const userOrgs = await db.select().from(organizations)

@@ -7,7 +7,7 @@ import crypto from 'crypto'
 export const githubRouter = new Hono()
 
 // Basic webhook signature verification
-const verifySignature = (req: Request, payload: string, signature: string | null) => {
+const verifySignature = (payload: string, signature: string | null) => {
   if (!signature) return false
   const secret = process.env.GITHUB_WEBHOOK_SECRET
   if (!secret) return true // Bypass in dev if not set
@@ -22,7 +22,7 @@ githubRouter.post('/webhook', async (c) => {
   const event = c.req.header('x-github-event')
   
   const payloadStr = await c.req.text()
-  if (!verifySignature(c.req.raw, payloadStr, signature)) {
+  if (!verifySignature(payloadStr, signature)) {
     return c.json({ error: 'Unauthorized' }, 401)
   }
 
