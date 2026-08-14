@@ -62,15 +62,15 @@ function DashboardLayout() {
             </div>
 
             <div className="flex items-center gap-3">
-              {session.user.image && (
+              {session?.user?.image && (
                 <img
-                  src={session.user.image}
-                  alt={session.user.name || 'User'}
+                  src={session.user?.image}
+                  alt={session.user?.name ?? 'User'}
                   className="w-7 h-7 rounded-full border border-fd-border"
                 />
               )}
               <span className="text-xs font-medium text-fd-muted-foreground">
-                {session.user.name || session.user.email}
+                {session?.user?.name || session?.user?.email || 'User'}
               </span>
               <button
                 onClick={async () => {

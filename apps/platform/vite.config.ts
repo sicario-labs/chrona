@@ -6,6 +6,9 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    port: 3000,
+  },
   plugins: [
     TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
     tailwindcss(),
@@ -17,3 +20,4 @@ export default defineConfig({
     },
   },
 })
+

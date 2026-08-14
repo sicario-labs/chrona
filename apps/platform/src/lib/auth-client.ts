@@ -1,7 +1,7 @@
 import { createAuthClient } from 'better-auth/react'
 
 export const authClient = createAuthClient({
-  baseURL: 'http://localhost:5173', // or your actual backend URL
+  baseURL: 'http://localhost:3000', // Platform runs on port 3000
 })
 
 export const {
