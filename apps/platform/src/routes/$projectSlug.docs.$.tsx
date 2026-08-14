@@ -1,0 +1,67 @@
+import { createFileRoute, useParams } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
+import { DocsLayout } from '@chrona/base-ui/layouts/docs'
+
+export const Route = createFileRoute('/$projectSlug/docs/$')({
+  component: DynamicDocViewer,
+  loader: async ({ params }) => {
+    const splat = (params as any)['_splat'] || 'index'
+    const projectId = 'demo-project-id'
+    
+    // In a real app we'd fetch the exact url for the API. Since this runs on the client,
+    // relative URLs work.
+    
+    const [treeRes, pageRes] = await Promise.all([
+      fetch(`/api/builds/${projectId}/tree.json`),
+      fetch(`/api/builds/${projectId}/${splat}.json`)
+    ])
+    
+    if (!treeRes.ok) throw new Error('Failed to fetch sidebar tree')
+    if (!pageRes.ok) throw new Error('Page not found')
+    
+    return {
+      tree: await treeRes.json(),
+      page: await pageRes.json(),
+      projectSlug: params.projectSlug
+    }
+  },
+  pendingComponent: () => <div className="flex h-screen items-center justify-center">Loading Docs...</div>,
+  errorComponent: () => (
+    <div className="flex h-screen flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold">404 - Page Not Found</h1>
+      <p className="text-gray-500">The requested documentation page could not be found.</p>
+    </div>
+  )
+})
+
+import * as _jsx_runtime from 'react/jsx-runtime'
+import * as React from 'react'
+
+function useMDXComponent(code: string) {
+  return React.useMemo(() => {
+    // Inject the necessary React runtimes into the function's scope
+    // The compiled MDX expects `_jsx_runtime` or `react` depending on config.
+    const fn = new Function('React', '_jsx_runtime', `${code}; return MDXContent;`)
+    return fn(React, _jsx_runtime)
+  }, [code])
+}
+
+function DynamicDocViewer() {
+  const { tree, page, projectSlug } = Route.useLoaderData()
+  const MDXContent = useMDXComponent(page.compiled)
+
+  return (
+    <DocsLayout
+      tree={tree}
+      nav={{ title: projectSlug }}
+    >
+      <div className="prose prose-slate dark:prose-invert max-w-none">
+        <h1>{page.frontmatter?.title || 'Untitled'}</h1>
+        
+        <div className="mt-8">
+          <MDXContent />
+        </div>
+      </div>
+    </DocsLayout>
+  )
+}
