@@ -17,9 +17,8 @@ node_modules
 
 # outputs
 .turbo
-.next
 dist
-.contentlayer
+dist-tscontentlayer
 .eslintcache
 .source
 

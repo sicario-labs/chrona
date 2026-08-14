@@ -1,0 +1,1 @@
+[{"id":"temp.ts-$Chrona","name":"$Chrona","description":"","entries":[{"name":"items","description":"Items including information for the next and previous page","tags":[],"type":"{ previous?: Item; next?: Item; } | undefined","simplifiedType":"object","required":false,"deprecated":false}]}]

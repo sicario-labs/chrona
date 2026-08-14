@@ -1,0 +1,1 @@
+[{"id":"props.ts-BreadcrumbItem","name":"BreadcrumbItem","description":"","entries":[{"name":"name","description":"","tags":[],"type":"React.ReactNode","simplifiedType":"ReactNode","required":true,"deprecated":false},{"name":"url","description":"","tags":[],"type":"string | undefined","simplifiedType":"string","required":false,"deprecated":false}]}]

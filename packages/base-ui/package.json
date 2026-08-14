@@ -158,6 +158,7 @@
     "chrona-core": "workspace:*",
     "react-medium-image-zoom": "^5.4.8",
     "tailwindcss": "^4.3.3",
+    "tinyglobby": "^0.2.17",
     "tsconfig": "workspace:*",
     "tsdown": "0.22.14",
     "unified": "^11.0.5"

@@ -1,19 +1,20 @@
 {
-  "extends": "tsconfig/nextjs.json",
+  "extends": "tsconfig/react-library.json",
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
       "collections/*": ["./.source/*"]
     },
     "allowImportingTsExtensions": true
   },
   "include": [
-    "next-env.d.ts",
+    "src/vite-env.d.ts",
     "**/*.ts",
     "**/*.mts",
     "content/**/*.mdx",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
+    "**/*.tsx"
   ],
   "exclude": ["node_modules", "eslint.config.mjs", "components/registry/build-graph.ts"]
 }

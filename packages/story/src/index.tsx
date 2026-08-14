@@ -4,7 +4,7 @@ import { cached, type Cache } from './cache';
 import type { TypeNode } from './type-tree/types';
 import type { ComponentPropsWithoutRef, FC } from 'react';
 import { fileURLToPath } from 'node:url';
-import { createHash } from 'node:crypto';
+// node:crypto removed for browser compatibility
 import { deepmerge } from '@fastify/deepmerge';
 import { createControlsProject, generateControls } from './utils/generate';
 import type { VariantInfo, WithControlProps } from './client/with-control';
@@ -158,5 +158,13 @@ export function defineStoryFactory(factoryOptions: StoryFactoryOptions = {}): St
 }
 
 function getHash(v: string) {
-  return createHash('SHA-256').update(v).digest('hex').slice(0, 32);
+  let h1 = 0xdeadbeef ^ 0, h2 = 0x41c6ce57 ^ 0;
+  for (let i = 0, ch; i < v.length; i++) {
+    ch = v.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
 }

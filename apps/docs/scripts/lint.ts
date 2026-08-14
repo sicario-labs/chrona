@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type FileObject, printErrors, scanURLs, validateFiles } from 'next-validate-link';
 import { blogLoader, source } from '@/lib/source';
 

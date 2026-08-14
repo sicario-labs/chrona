@@ -92,7 +92,7 @@ export function createContentStorageBuilder(loaderConfig: ResolvedLoaderConfig) 
   >();
 
   function scan(type: string | undefined, source: StaticSource) {
-    for (const inputFile of source.files) {
+    for (const inputFile of source.files || []) {
       let file: ContentStorageMetaFile | ContentStoragePageFile;
 
       if (inputFile.type === 'page') {

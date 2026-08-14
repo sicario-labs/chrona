@@ -1,0 +1,8 @@
+name = "chrona-builder"
+main = "src/index.ts"
+compatibility_date = "2024-05-29"
+
+[[queues.consumers]]
+queue = "build-queue"
+max_batch_size = 1
+max_batch_timeout = 5

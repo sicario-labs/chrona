@@ -1,0 +1,1 @@
+[{"id":"props.ts-FileProps","name":"FileProps","description":"","entries":[{"name":"name","description":"","tags":[],"type":"string","simplifiedType":"string","required":true,"deprecated":false},{"name":"icon","description":"","tags":[],"type":"React.ReactNode","simplifiedType":"ReactNode","required":false,"deprecated":false}]}]

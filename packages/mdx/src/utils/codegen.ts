@@ -68,16 +68,26 @@ export function createCodegen({
       patterns: string | string[],
       { base, ...rest }: GlobImportOptions,
     ): string {
-      patterns = (typeof patterns === 'string' ? [patterns] : patterns).map(normalizeViteGlobPath);
+      const relBase = normalizeViteGlobPath(path.relative(outDir, base));
+      patterns = (typeof patterns === 'string' ? [patterns] : patterns).map((p) =>
+        normalizeViteGlobPath(path.join(relBase, p)),
+      );
 
-      return `import.meta.glob(${JSON.stringify(patterns)}, ${JSON.stringify(
-        {
-          base: normalizeViteGlobPath(path.relative(outDir, base)),
-          ...rest,
-        },
-        null,
-        2,
-      )})`;
+      const prefix = slash(path.relative(outDir, base));
+      const prefixStr = prefix ? prefix + '/' : '';
+
+      return `(function(m) {
+  const res = {};
+  for (const k in m) {
+    let key = k;
+    if (key.startsWith("./")) key = key.slice(2);
+    if (${JSON.stringify(prefixStr)} && key.startsWith(${JSON.stringify(prefixStr)})) {
+      key = key.slice(${prefixStr.length});
+    }
+    res[key] = m[k];
+  }
+  return res;
+})(import.meta.glob(${JSON.stringify(patterns)}, ${JSON.stringify(rest)}))`;
     },
     async generateNodeGlobImport(
       patterns: string | string[],

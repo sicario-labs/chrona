@@ -1,6 +1,4 @@
-import env from '@next/env';
-
-env.loadEnvConfig(process.cwd());
+// next/env removed
 
 async function main() {
   const { updateSearchIndexes } = await import('./update-orama-index.ts');
@@ -10,3 +8,5 @@ async function main() {
 await main().catch((e) => {
   console.error('Failed to run post build script', e);
 });
+
+export {};

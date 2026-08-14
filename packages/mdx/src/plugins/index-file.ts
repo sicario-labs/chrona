@@ -4,7 +4,17 @@ import path from 'node:path';
 import { type CodeGen, createCodegen, ident, slash } from '@/utils/codegen';
 import { glob } from 'tinyglobby';
 import { createFSCache } from '@/utils/fs-cache';
-import { createHash } from 'node:crypto';
+function simpleHash(str: string): string {
+  let h1 = 0xdeadbeef ^ 0, h2 = 0x41c6ce57 ^ 0;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+}
 import type { LazyEntry } from '@/runtime/dynamic';
 import type { EmitEntry } from '@/core';
 import { frontmatter } from 'chrona-core/content/md/frontmatter';
@@ -239,7 +249,7 @@ async function generateDynamicIndexFile(ctx: FileGenContext) {
       parsed.data as Record<string, unknown>,
     );
 
-    const hash = createHash('md5').update(content).digest('hex');
+    const hash = simpleHash(content);
     const infoStr: string[] = [
       // make sure it's included in vercel/nft
       `absolutePath: path.resolve(${JSON.stringify(fullPath)})`,

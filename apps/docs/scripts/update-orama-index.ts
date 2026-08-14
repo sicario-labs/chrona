@@ -1,6 +1,6 @@
 import { type OramaDocument, sync } from 'chrona-core/search/orama-cloud';
 import fs from 'node:fs/promises';
-import { DataSourceId, isAdmin, orama } from '../lib/orama/client.ts';
+import { DataSourceId, isAdmin, orama } from '../src/lib/orama/client.ts';
 
 export async function updateSearchIndexes(): Promise<void> {
   if (!isAdmin) {
@@ -8,7 +8,7 @@ export async function updateSearchIndexes(): Promise<void> {
     return;
   }
 
-  const content = await fs.readFile('.next/server/app/static.json.body');
+  const content = await fs.readFile('dist/static-search.json');
   const records = JSON.parse(content.toString()) as OramaDocument[];
 
   await sync(orama, {

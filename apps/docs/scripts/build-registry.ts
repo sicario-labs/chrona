@@ -1,4 +1,4 @@
-import { compileOptions, registry } from '../components/registry/index.ts';
+import { compileOptions, registry } from '../src/components/registry/index.ts';
 import { compile, writeRegistry } from 'fuma-cli/compiler';
 
 export async function buildRegistry() {
