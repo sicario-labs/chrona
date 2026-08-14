@@ -1,0 +1,50 @@
+{
+  "name": "@chrona/intelligence",
+  "version": "0.1.0",
+  "description": "Repository source adapter for Chrona. Turns a repository symbol index + relationship graph into virtual doc pages for the source loader, powering \"Ask Chrona\" evidence.",
+  "keywords": [
+    "Docs",
+    "chrona",
+    "intelligence",
+    "source"
+  ],
+  "homepage": "https://chrona.dev",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "repository": "github:chrona/chrona",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch",
+    "lint": "oxlint .",
+    "test": "vitest run",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@chrona/engine": "workspace:*",
+    "@chrona/graph": "workspace:*"
+  },
+  "peerDependencies": {
+    "chrona-core": "^16.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.2",
+    "chrona-core": "workspace:*",
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}

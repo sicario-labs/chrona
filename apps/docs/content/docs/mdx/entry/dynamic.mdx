@@ -1,0 +1,33 @@
+---
+title: Dynamic Entry
+description: Accessing your collections with on-demand compilation.
+---
+
+## Usage
+
+Enable [dynamic mode](/docs/mdx/async#dynamic-mode) on docs/doc collections, and import it from `dynamic` entry instead of `server`.
+
+It offers the same output as `server` entry, while compiled properties have to be loaded via `load()` method.
+
+```ts tab="Docs (Meta + Doc)"
+// [!code highlight]
+import { docs } from 'collections/dynamic';
+import { loader } from 'chrona-core/source';
+
+export const source = loader({
+  baseUrl: '/docs',
+  source: docs.toChronaSource(),
+});
+```
+
+```ts tab="Doc"
+// [!code highlight]
+import { blogPosts } from 'collections/dynamic';
+import { toChronaSource } from 'chrona-mdx/runtime/server';
+import { loader } from 'chrona-core/source';
+
+export const blog = loader({
+  baseUrl: '/blog',
+  source: toChronaSource(blogPosts, []),
+});
+```

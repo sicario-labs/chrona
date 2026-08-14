@@ -1,0 +1,11 @@
+{
+  "extends": "tsconfig/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["@types/mdx"],
+    "allowImportingTsExtensions": true
+  },
+  "exclude": ["node_modules", "dist"]
+}

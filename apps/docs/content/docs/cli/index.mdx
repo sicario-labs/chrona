@@ -1,0 +1,88 @@
+---
+title: User Guide
+description: The CLI tool that automates setups and installs components.
+---
+
+## Installation
+
+Initialize a config for CLI:
+
+```package-install
+npx @chrona/cli
+```
+
+You can change the output paths of components in the config.
+
+### Components
+
+Select and install components.
+
+```package-install
+npx @chrona/cli add
+```
+
+You can pass component names directly.
+
+```package-install
+npx @chrona/cli add banner files
+```
+
+#### How the magic works?
+
+The CLI fetches the latest version of component from the GitHub repository of Chrona.
+When you install a component, it is guaranteed to be up-to-date.
+
+In addition, it also transforms import paths.
+Make sure to use the latest version of CLI
+
+> This is highly inspired by Shadcn UI.
+
+### Customize
+
+A simple way to customize Chrona layouts.
+
+```package-install
+npx @chrona/cli customize
+```
+
+### Tree
+
+Generate files tree for Chrona UI `Files` component, using the `tree` command from your terminal.
+
+```package-install
+npx @chrona/cli tree ./my-dir ./output.tsx
+```
+
+You can output MDX files too:
+
+```package-install
+npx @chrona/cli tree ./my-dir ./output.mdx
+```
+
+See help for further details:
+
+```package-install
+npx @chrona/cli tree -h
+```
+
+#### Example Output
+
+```tsx title="output.tsx"
+import { File, Folder, Files } from 'chrona-ui/components/files';
+
+export default (
+  <Files>
+    <Folder name="app">
+      <File name="layout.tsx" />
+      <File name="page.tsx" />
+      <File name="global.css" />
+    </Folder>
+    <Folder name="components">
+      <File name="button.tsx" />
+      <File name="tabs.tsx" />
+      <File name="dialog.tsx" />
+    </Folder>
+    <File name="package.json" />
+  </Files>
+);
+```

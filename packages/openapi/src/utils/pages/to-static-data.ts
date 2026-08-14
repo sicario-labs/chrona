@@ -1,0 +1,60 @@
+import type { Document, OperationObject } from '@/types';
+import Slugger from 'github-slugger';
+import type { TOCItemType } from 'chrona-core/toc';
+import type { StructuredData } from 'chrona-core/mdx-plugins';
+import type { GeneratedPageProps } from './builder';
+import { idToTitle } from '@chrona/api-docs/utils/id-to-title';
+import { dereferenceShallow } from '@chrona/api-docs/schema/dereference';
+import { createMagicProxy } from '@scalar/json-magic/magic-proxy';
+
+export function toStaticData(
+  page: GeneratedPageProps,
+  doc: Document,
+): {
+  toc: TOCItemType[];
+  structuredData: StructuredData;
+} {
+  const proxied = createMagicProxy(doc as Record<string, unknown>) as Document;
+  const slugger = new Slugger();
+  const toc: TOCItemType[] = [];
+  const structuredData: StructuredData = { headings: [], contents: [] };
+
+  function pathItem(item: OperationObject, defaultTitle: string) {
+    if (page.showTitle && item.operationId) {
+      const title = item.summary || (item.operationId ? idToTitle(item.operationId) : defaultTitle);
+      const id = slugger.slug(title);
+
+      toc.push({
+        depth: 2,
+        title,
+        url: `#${id}`,
+      });
+      structuredData.headings.push({
+        content: title,
+        id,
+      });
+    }
+
+    if (item.description)
+      structuredData.contents.push({
+        content: item.description,
+        heading: structuredData.headings.at(-1)?.id,
+      });
+  }
+
+  for (const item of page.operations ?? []) {
+    const operation = dereferenceShallow(proxied.paths?.[item.path])?.[item.method];
+    if (!operation) continue;
+
+    pathItem(operation, item.path);
+  }
+
+  for (const item of page.webhooks ?? []) {
+    const webhook = dereferenceShallow(proxied.webhooks?.[item.name])?.[item.method];
+    if (!webhook) continue;
+
+    pathItem(webhook, item.name);
+  }
+
+  return { toc, structuredData };
+}

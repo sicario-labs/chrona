@@ -1,0 +1,91 @@
+---
+title: Remark TS to JS
+description: A remark plugin to transform TypeScript codeblocks into two tabs of codeblock with its JavaScript variant.
+---
+
+## Usage
+
+Install dependencies:
+
+```npm tab="Chrona MDX"
+npm i chrona-docgen
+```
+
+```npm tab="Satteri"
+npm i @chrona/satteri
+```
+
+Add the remark plugin:
+
+```ts title="source.config.ts" tab="Chrona MDX"
+import { remarkTypeScriptToJavaScript } from 'chrona-docgen/remark-ts2js';
+import { defineConfig } from 'chrona-mdx/config';
+
+export default defineConfig({
+  mdxOptions: {
+    remarkPlugins: [remarkTypeScriptToJavaScript],
+  },
+});
+```
+
+```ts title="source.config.ts" tab="Satteri"
+import { remarkTs2js } from '@chrona/satteri/remark-ts2js';
+
+export default defineConfig({
+  docs: {
+    compiler: 'satteri',
+    async satteriOptions() {
+      return {
+        mdastPlugins: [remarkTs2js()],
+      };
+    },
+  },
+});
+```
+
+```ts tab="MDX Compiler"
+import { remarkTypeScriptToJavaScript } from 'chrona-docgen/remark-ts2js';
+import { compile } from '@mdx-js/mdx';
+
+await compile('...', {
+  remarkPlugins: [remarkTypeScriptToJavaScript],
+});
+```
+
+Finally, make sure to define the required MDX components: `Tabs` and `Tab`.
+
+```tsx title="components/mdx.tsx (Chrona UI)"
+import { Tab, Tabs } from 'chrona-ui/components/tabs';
+import defaultComponents from 'chrona-ui/mdx';
+import type { MDXComponents } from 'mdx/types';
+
+export function getMDXComponents(components?: MDXComponents) {
+  return {
+    ...defaultComponents,
+    // [!code ++:2]
+    Tab,
+    Tabs,
+    ...components,
+  } satisfies MDXComponents;
+}
+```
+
+You can now enable it on TypeScript/TSX codeblocks, like:
+
+````md
+```tsx ts2js
+import { ReactNode } from 'react';
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return <div>{children}</div>;
+}
+```
+````
+
+```tsx ts2js
+import { ReactNode } from 'react';
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return <div>{children}</div>;
+}
+```

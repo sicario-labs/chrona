@@ -1,0 +1,37 @@
+{
+  "name": "@chrona/vite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Internal configs for Chrona + Vite",
+  "keywords": [
+    "Docs",
+    "Chrona",
+    "vite"
+  ],
+  "homepage": "https://chrona.dev",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "repository": "github:chrona/chrona",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch --clean false",
+    "lint": "oxlint .",
+    "types:check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.0"
+  }
+}

@@ -1,0 +1,150 @@
+---
+title: Root Provider
+description: The context provider of Chrona UI.
+---
+
+The context provider of all the components, including `next-themes` and [`<FrameworkProvider />`](/docs/headless#installation). It should be located at the root layout.
+
+## Usage
+
+Import it according to your React.js framework:
+
+```jsx tab="Next.js"
+import { RootProvider } from 'chrona-ui/provider/next';
+
+export default function Layout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+```jsx tab="React Router"
+import { RootProvider } from 'chrona-ui/provider/react-router';
+
+export function Layout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+```jsx tab="Tanstack"
+import {
+  HeadContent,
+  Scripts,
+} from '@tanstack/react-router';
+import { RootProvider } from 'chrona-ui/provider/tanstack';
+
+function RootDocument({ children }: { children: React.ReactNode }) {
+  return (
+    <html suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body className="flex flex-col min-h-screen">
+        <RootProvider>{children}</RootProvider>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+```
+
+```jsx tab="Waku"
+import { RootProvider } from 'chrona-ui/provider/waku';
+
+export default function Layout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+```jsx tab="Astro"
+import { navigate } from 'astro:transitions/client';
+import { RootProvider } from 'chrona-ui/provider/astro';
+
+export function DocsIsland({ children, pathname, params }) {
+  return (
+    <RootProvider pathname={pathname} params={params} navigate={navigate}>
+      {children}
+    </RootProvider>
+  );
+}
+```
+
+### Search Dialog
+
+Customize or disable the search dialog with `search` option.
+
+```jsx
+<RootProvider
+  search={{
+    enabled: false,
+  }}
+>
+  {children}
+</RootProvider>
+```
+
+Learn more from [Search](/docs/ui/search).
+
+### Theme Provider
+
+Chrona supports light/dark modes with [`next-themes`](https://github.com/pacocoursey/next-themes).
+Customize or disable it with `theme` option.
+
+```jsx
+<RootProvider
+  theme={{
+    enabled: false,
+  }}
+>
+  {children}
+</RootProvider>
+```
+
+You can also install & reference `next-themes` in your code for managing themes.
+
+#### Hotkey
+
+Pressing <kbd>D</kbd> toggles between light and dark mode.
+It is ignored while you are typing in an editable element (such as `<input />`), or when a dialog like the search dialog is opened.
+
+Pass another key to `theme.hotKey`, or `false` to disable it.
+
+```jsx
+<RootProvider
+  theme={{
+    hotKey: false,
+  }}
+>
+  {children}
+</RootProvider>
+```
+
+A function is also accepted for full control over the matched key combination.
+
+```jsx
+<RootProvider
+  theme={{
+    hotKey: (e) => e.shiftKey && e.key === 'D',
+  }}
+>
+  {children}
+</RootProvider>
+```

@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["@types/node", "chrona-core/mdx-plugins/rehype-code.core"]
+  },
+  "exclude": ["node_modules", "dist"]
+}

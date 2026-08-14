@@ -1,0 +1,79 @@
+{
+  "name": "chrona-twoslash",
+  "version": "3.3.0",
+  "description": "Typescript Twoslash Integration for Chrona",
+  "keywords": [
+    "Docs",
+    "chrona"
+  ],
+  "homepage": "https://chrona.dev",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "repository": "github:chrona/chrona",
+  "files": [
+    "dist",
+    "styles"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./twoslash.css": "./styles/twoslash.css",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js"
+    },
+    "./cache-fs": {
+      "types": "./dist/cache-fs.d.ts",
+      "import": "./dist/cache-fs.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch",
+    "lint": "oxlint .",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "@shikijs/twoslash": "^4.4.1",
+    "cnfast": "^0.1.0",
+    "mdast-util-from-markdown": "^2.0.3",
+    "mdast-util-gfm": "^3.1.0",
+    "mdast-util-to-hast": "^13.2.1",
+    "twoslash": "^0.3.9"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.5",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "26.1.2",
+    "@types/react": "^19.2.18",
+    "chrona-core": "workspace:*",
+    "chrona-ui": "workspace:@chrona/base-ui@*",
+    "shiki": "4.4.1",
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "@types/react": "*",
+    "chrona-core": "^16.7.16",
+    "chrona-ui": "^16.7.16",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "shiki": "4.x.x"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  }
+}

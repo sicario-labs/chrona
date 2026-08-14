@@ -1,0 +1,22 @@
+---
+title: create-chrona-app
+description: The CLI to create new Chrona apps
+---
+
+## Overview
+
+Despite the classical CLI usage, you can also use it in scripts like:
+
+```npm
+npm install create-chrona-app
+```
+
+```ts
+import { create } from 'create-chrona-app';
+
+await create({
+  outputDir: 'my-app',
+  template: '+next+chrona-mdx',
+  packageManager: 'pnpm',
+});
+```

@@ -1,0 +1,62 @@
+{
+  "name": "chrona-epub",
+  "version": "1.2.0",
+  "description": "EPUB export for Chrona documentation",
+  "keywords": [
+    "documentation",
+    "epub",
+    "export",
+    "chrona"
+  ],
+  "homepage": "https://chrona.dev",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "repository": "github:chrona/chrona",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch --clean false",
+    "lint": "oxlint .",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "epub-gen-memory": "^1.1.2",
+    "rehype-stringify": "^10.0.1",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.4",
+    "@types/node": "26.1.2",
+    "chrona-core": "workspace:*",
+    "rimraf": "^6.0.0",
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14",
+    "typescript": "^6.0.3",
+    "vfile": "^6.0.3"
+  },
+  "peerDependencies": {
+    "chrona-core": "^16.8.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

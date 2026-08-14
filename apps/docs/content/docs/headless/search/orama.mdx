@@ -1,0 +1,442 @@
+---
+title: Built-in Search
+description: Built-in document search of Chrona
+---
+
+Chrona supports document search with [ZBSearch](https://www.zbsearch.dev), It is the default but also the recommended option since it can be self-hosted and totally free.
+
+## Setup
+
+Host the server for handling search requests.
+
+### From Source
+
+Create the server from source object.
+
+```ts tab="Next.js" title="app/api/search/route.ts"
+import { source } from '@/lib/source';
+import { createFromSource } from 'chrona-core/search/server';
+
+export const { GET } = createFromSource(source);
+```
+
+```ts tab="React Router" title="app/routes/search.ts"
+import type { Route } from './+types/search';
+import { createFromSource } from 'chrona-core/search/server';
+import { source } from '@/lib/source';
+
+const server = createFromSource(source);
+
+export async function loader({ request }: Route.LoaderArgs) {
+  return server.GET(request);
+}
+```
+
+```ts tab="Tanstack Start" title="src/routes/api/search.ts"
+import { createFileRoute } from '@tanstack/react-router';
+import { source } from '@/lib/source';
+import { createFromSource } from 'chrona-core/search/server';
+
+const server = createFromSource(source);
+
+export const Route = createFileRoute('/api/search')({
+  server: {
+    handlers: {
+      GET: async ({ request }) => server.GET(request),
+    },
+  },
+});
+```
+
+```ts tab="Waku" title="src/pages/_api/api/search.ts"
+import { createFromSource } from 'chrona-core/search/server';
+import { source } from '@/lib/source';
+
+export const { GET } = createFromSource(source);
+```
+
+```ts tab="Astro" title="src/pages/api/search.ts"
+import type { APIRoute } from 'astro';
+import { createFromSource } from 'chrona-core/search/server';
+import { getStructuredData, source } from '@/lib/source';
+
+const server = createFromSource(source, {
+  buildIndex(page) {
+    return {
+      id: page.data._raw.id,
+      title: page.data.title,
+      description: page.data.description,
+      structuredData: getStructuredData(page.data._raw),
+      url: page.url,
+    };
+  },
+});
+
+export const GET: APIRoute = () => {
+  return server.staticGET();
+};
+```
+
+### From Search Indexes
+
+Create the server from search indexes, each index needs a `structuredData` field.
+
+Usually, it is provided by your content source (e.g. Chrona MDX). You can also extract it from Markdown/MDX document using the [Remark Structure](/docs/headless/mdx/structure) plugin.
+
+```ts tab="Next.js" title="app/api/search/route.ts"
+import { source } from '@/lib/source';
+import { createSearchAPI } from 'chrona-core/search/server';
+
+export const { GET } = createSearchAPI('advanced', {
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title,
+    description: page.data.description,
+    url: page.url,
+    id: page.url,
+    structuredData: page.data.structuredData,
+  })),
+});
+```
+
+```ts tab="React Router" title="app/routes/search.ts"
+import type { Route } from './+types/search';
+import { createSearchAPI } from 'chrona-core/search/server';
+import { source } from '@/lib/source';
+
+const server = createSearchAPI('advanced', {
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title,
+    description: page.data.description,
+    url: page.url,
+    id: page.url,
+    structuredData: page.data.structuredData,
+  })),
+});
+
+export async function loader({ request }: Route.LoaderArgs) {
+  return server.GET(request);
+}
+```
+
+```ts tab="Tanstack Start" title="src/routes/api/search.ts"
+import { createFileRoute } from '@tanstack/react-router';
+import { source } from '@/lib/source';
+import { createSearchAPI } from 'chrona-core/search/server';
+
+const server = createSearchAPI('advanced', {
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title,
+    description: page.data.description,
+    url: page.url,
+    id: page.url,
+    structuredData: page.data.structuredData,
+  })),
+});
+
+export const Route = createFileRoute('/api/search')({
+  server: {
+    handlers: {
+      GET: async ({ request }) => server.GET(request),
+    },
+  },
+});
+```
+
+```ts tab="Waku" title="src/pages/_api/api/search.ts"
+import { source } from '@/lib/source';
+import { createSearchAPI } from 'chrona-core/search/server';
+
+export const { GET } = createSearchAPI('advanced', {
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title,
+    description: page.data.description,
+    url: page.url,
+    id: page.url,
+    structuredData: page.data.structuredData,
+  })),
+});
+```
+
+```ts tab="Astro" title="src/pages/api/search.ts"
+import type { APIRoute } from 'astro';
+import { createSearchAPI } from 'chrona-core/search/server';
+import { getStructuredData, source } from '@/lib/source';
+
+const server = createSearchAPI('advanced', {
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title,
+    description: page.data.description,
+    url: page.url,
+    id: page.url,
+    structuredData: getStructuredData(page.data._raw),
+  })),
+});
+
+export const GET: APIRoute = ({ request }) => server.GET(request);
+```
+
+### Searching Documents
+
+You can search documents using:
+
+- **Chrona UI**: Supported out-of-the-box, see [Search UI](/docs/search/orama) for details.
+- **Search Client**:
+
+```ts twoslash
+import { useDocsSearch } from 'chrona-core/search/client';
+import { fetchClient } from 'chrona-core/search/client/fetch';
+
+const client = useDocsSearch({
+  client: fetchClient(),
+});
+```
+
+<auto-type-table type='import("chrona-core/search/client/fetch").FetchOptions' />
+
+## Configurations
+
+### Tag Filter
+
+Support filtering results by tag, it's useful for implementing multi-docs similar to this documentation.
+
+```ts
+import { source } from '@/lib/source';
+import { createFromSource } from 'chrona-core/search/server';
+
+const server = createFromSource(source, {
+  buildIndex(page) {
+    return {
+      title: page.data.title,
+      description: page.data.description,
+      url: page.url,
+      id: page.url,
+      structuredData: page.data.structuredData,
+      // use your desired value, like page.slugs[0] [!code ++]
+      tag: '<value>',
+    };
+  },
+});
+```
+
+and update your search client:
+
+- **Chrona UI**: Configure [Tag Filter](/docs/search/orama#tag-filter) on Search UI.
+- **Search Client**: pass a tag to `fetchClient`.
+
+```ts
+import { useDocsSearch } from 'chrona-core/search/client';
+import { fetchClient } from 'chrona-core/search/client/fetch';
+
+const client = useDocsSearch({
+  client: fetchClient({
+    tag: '<value>', // [!code ++]
+  }),
+});
+```
+
+### Static Mode [#static-export]
+
+To support usage with static site, use `staticGET` from search server and make the route static or pre-rendered.
+
+```ts tab="Next.js" title="app/api/search/route.ts"
+import { source } from '@/lib/source';
+import { createFromSource } from 'chrona-core/search/server';
+
+// statically cached [!code highlight:2]
+export const revalidate = false;
+export const { staticGET: GET } = createFromSource(source);
+```
+
+```ts tab="React Router" title="app/routes/search.ts"
+// make sure this route is pre-rendered in `react-router.config.ts`.
+export async function loader() {
+  // [!code highlight]
+  return server.staticGET();
+}
+```
+
+```ts tab="Tanstack Start" title="src/routes/api/search.ts"
+import { createFileRoute } from '@tanstack/react-router';
+
+export const Route = createFileRoute('/api/search')({
+  server: {
+    handlers: {
+      // [!code highlight]
+      GET: async () => server.staticGET(),
+    },
+  },
+});
+```
+
+```ts tab="Tanstack Start" title="vite.config.ts"
+import { tanstackStart } from '@tanstack/react-start/plugin/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [
+    tanstackStart({
+      prerender: {
+        enabled: true,
+      },
+      // [!code ++] pre-render the index file
+      pages: [{ path: '/api/search' }],
+    }),
+  ],
+});
+```
+
+```ts tab="Waku" title="src/pages/_api/api/search.ts"
+import { source } from '@/lib/source';
+import { createFromSource } from 'chrona-core/search/server';
+
+// [!code highlight]
+export const { staticGET: GET } = createFromSource(source);
+
+// statically cached [!code highlight:3]
+export const getConfig = async () => ({
+  render: 'static',
+});
+```
+
+```ts tab="Astro" title="src/pages/api/search.ts"
+import type { APIRoute } from 'astro';
+
+// [!code highlight]
+export const GET: APIRoute = () => server.staticGET();
+```
+
+> `staticGET` is also available on `createSearchAPI`.
+
+and update your search clients:
+
+- **Chrona UI**: use [static client](/docs/search/orama#static) on Search UI.
+
+- **Search Client**: use `staticClient` instead of `fetchClient`.
+
+  ```ts
+  import { useDocsSearch } from 'chrona-core/search/client';
+  import { staticClient } from 'chrona-core/search/client/orama-static';
+
+  const client = useDocsSearch({
+    client: staticClient(),
+  });
+  ```
+
+  <auto-type-table type='import("chrona-core/search/client/orama-static").StaticOptions' />
+
+<Callout type='warn' title="Be Careful">
+
+    Static Search requires clients to download the exported search indexes.
+    For large docs sites, it can be expensive.
+
+    You should use cloud solutions like Orama Cloud or Algolia for these cases.
+
+</Callout>
+
+## Internationalization
+
+Search works with every language out of the box - the default `multilingual` mode uses Unicode word segmentation, so all locales (including Chinese and Japanese) share a single search database with zero config.
+
+```ts title="app/api/search/route.ts" tab="From Source"
+import { source } from '@/lib/source';
+import { createFromSource } from 'chrona-core/search/server';
+
+// no extra configuration needed for i18n
+const server = createFromSource(source);
+```
+
+```ts tab="From Search Indexes"
+import { source } from '@/lib/source';
+import { createI18nSearchAPI } from 'chrona-core/search/server';
+import { i18n } from '@/lib/i18n';
+
+const server = createI18nSearchAPI('advanced', {
+  i18n, // [!code ++]
+  indexes: source.getLanguages().flatMap(({ language, pages }) =>
+    pages.map((page) => ({
+      title: page.data.title,
+      description: page.data.description,
+      structuredData: page.data.structuredData,
+      id: page.url,
+      url: page.url,
+      locale: language, // [!code ++]
+    })),
+  ),
+});
+```
+
+and update your search clients:
+
+- **Chrona UI**: No changes needed, Chrona UI handles this when you have i18n configured correctly.
+- **Search Client**:
+  Add `locale` to the search client, this will only allow pages with specified locale to be searchable by the user.
+
+```ts
+import { useDocsSearch } from 'chrona-core/search/client';
+import { fetchClient } from 'chrona-core/search/client/fetch';
+
+const { search, setSearch, query } = useDocsSearch({
+  client: fetchClient({
+    locale: 'cn',
+  }),
+});
+```
+
+This also applies to **Static Mode**, pass `locale` to `staticClient` instead.
+
+<Callout title="Language-specific Tokenization">
+
+    The `multilingual` mode doesn't apply language-specific stemming or stop-words.
+    Without stemming, a plural query like `recordings` won't match a page containing `recording`.
+
+    To attach a stemmer while keeping multilingual segmentation and a single database, pass a `tokenizer`:
+
+    ```ts
+    import { source } from '@/lib/source';
+    import { createFromSource } from 'chrona-core/search/server';
+    import { stemmer } from '@zbsearch/stemmers/english';
+
+    const server = createFromSource(source, {
+      tokenizer: { language: 'multilingual', stemming: true, stemmer }, // [!code ++]
+    });
+    ```
+
+    Alternatively, use a language on the [supported languages](https://www.zbsearch.dev/docs/zbsearch/supported-languages) list per locale with `localeMap`:
+
+    ```ts
+    import { source } from '@/lib/source';
+    import { createFromSource } from 'chrona-core/search/server';
+
+    const server = createFromSource(source, {
+      localeMap: {
+        // [locale]: search options [!code ++:2]
+        ru: { language: 'russian' },
+        en: { language: 'english' },
+      },
+    });
+    ```
+
+    Note that a separate search database is created for each locale when `localeMap` is enabled.
+
+    <Callout type="warn" title="Static Mode">
+      A custom `tokenizer` must also be given to the client, since it needs to tokenize the query the same way.
+      Pass it via `initDB` on `staticClient`.
+    </Callout>
+
+</Callout>
+
+## Headless
+
+You can host the search server on other backend such as Express and Elysia.
+
+```ts
+import { initAdvancedSearch } from 'chrona-core/search/server';
+
+const server = initAdvancedSearch({
+  // you still have to pass indexes
+});
+
+server.search('query', {
+  // you can specify `locale` and `tag` here
+});
+```

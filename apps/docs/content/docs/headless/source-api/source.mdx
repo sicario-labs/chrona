@@ -1,0 +1,120 @@
+---
+title: Source
+description: Setup sources for Loader API
+---
+
+## Overview
+
+Content loader accepts different content sources based on a `source` interface.
+
+### Multiple Sources
+
+Pass a record of source objects instead
+
+```ts
+import { loader } from 'chrona-core/source';
+import { blog, docs } from 'collections/server';
+import { lucideIconsPlugin } from 'chrona-core/source/lucide-icons';
+
+export const source = loader(
+  {
+    docs: docs.toChronaSource(),
+    openapi: blog.toChronaSource(),
+  },
+  {
+    baseUrl: '/docs',
+  },
+);
+```
+
+To access properties exclusive to each source:
+
+```ts
+const page = source.getPage(['...']);
+
+if (page.type === 'docs') {
+  console.log(page.data);
+} else {
+  console.log(page.data);
+}
+```
+
+### Static Source
+
+To plug your own content source, create a `StaticSource` object.
+
+Since Loader API doesn't rely on file system, file paths only allow virtual paths like `file.mdx` and `content/file.mdx`, `./file.mdx` and `D://content/file.mdx` are not allowed.
+
+```ts twoslash
+import type { StaticSource } from 'chrona-core/source';
+
+export function createMySource(): StaticSource<{
+  metaData: { title: string; pages: string[] }; // Your custom type
+  pageData: { title: string; description?: string }; // Your custom type
+}> {
+  return {
+    files: [
+      {
+        type: 'page',
+        path: 'folder/index.mdx',
+        data: {
+          title: 'Hello World',
+          // ...
+        },
+      },
+      {
+        type: 'meta',
+        path: 'meta.json',
+        data: {
+          title: 'Docs',
+          pages: ['folder'],
+          // ...
+        },
+      },
+    ],
+  };
+}
+```
+
+### Dynamic Source
+
+For content sources with revalidation, return a `DynamicSource` instead:
+
+```ts
+import type { DynamicSource } from 'chrona-core/source';
+
+export function createMySource(): DynamicSource<{
+  metaData: { title: string; pages: string[] };
+  pageData: { title: string; description?: string };
+}> {
+  return {
+    async files() {
+      return [
+        {
+          type: 'page',
+          path: 'folder/index.mdx',
+          data: {
+            title: 'Hello World',
+          },
+        },
+        {
+          type: 'meta',
+          path: 'meta.json',
+          data: {
+            title: 'Docs',
+            pages: ['folder'],
+          },
+        },
+      ];
+    },
+    configure(loader) {
+      // you can revalidate the loader from source, e.g.
+      onMyEvent(() => {
+        void loader.revalidate();
+      });
+    },
+  };
+}
+```
+
+Dynamic sources can only be consumed by [`dynamicLoader()`](/docs/headless/source-api#dynamic-loader).

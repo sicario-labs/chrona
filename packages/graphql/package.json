@@ -1,0 +1,75 @@
+{
+  "name": "@chrona/graphql",
+  "version": "0.1.2",
+  "description": "Generate docs for your GraphQL schema",
+  "keywords": [
+    "Docs",
+    "Chrona",
+    "GraphQL"
+  ],
+  "homepage": "https://chrona.dev",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "repository": "github:chrona/chrona",
+  "files": [
+    "css",
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./i18n": "./dist/i18n.js",
+    "./server": "./dist/server/index.js",
+    "./ui": "./dist/ui/index.js",
+    "./package.json": "./package.json",
+    "./css/*": "./css/*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch --clean false",
+    "lint": "oxlint .",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fuma-translate/react": "^1.0.2",
+    "@chrona/api-docs": "workspace:*",
+    "@fumari/stf": "workspace:*",
+    "class-variance-authority": "^0.7.1",
+    "cnfast": "^0.1.0",
+    "github-slugger": "^2.0.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "lucide-react": "^1.28.0",
+    "remark": "^15.0.1",
+    "remark-rehype": "^11.1.2",
+    "shiki": "^4.4.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/oxide": "^4.3.3",
+    "@types/node": "26.1.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "chrona-core": "workspace:*",
+    "chrona-ui": "workspace:@chrona/base-ui@*",
+    "graphql": "^17.0.2",
+    "tailwindcss": "^4.3.3",
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14"
+  },
+  "peerDependencies": {
+    "@types/react": "*",
+    "chrona-core": "^16.9.0",
+    "chrona-ui": "^16.9.0",
+    "graphql": "^16.9.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  }
+}

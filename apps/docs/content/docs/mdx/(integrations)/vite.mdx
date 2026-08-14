@@ -1,0 +1,85 @@
+---
+title: Vite
+description: Use Chrona MDX with Vite
+---
+
+## Setup
+
+<div className="fd-steps [&_h3]:fd-step">
+
+### Installation
+
+```npm
+npm i chrona-mdx chrona-core @types/mdx
+```
+
+Add the Vite plugin:
+
+```ts tab="Vite" title="vite.config.ts"
+import { defineConfig } from 'vite';
+import { chronaMdx } from 'chrona-mdx/vite';
+
+export default defineConfig({
+  plugins: [
+    // [!code ++]
+    chronaMdx(),
+    // ...
+  ],
+});
+```
+
+```ts tab="Waku" title="waku.config.ts"
+import { type Config, defineConfig } from 'waku/config';
+import { chronaMdx } from 'chrona-mdx/vite';
+import type { UserConfig } from 'vite';
+
+export default defineConfig({
+  vite: {
+    plugins: [
+      // [!code ++]
+      chronaMdx(),
+    ],
+    resolve: {
+      tsconfigPaths: true,
+    },
+  } satisfies UserConfig as Config['vite'],
+});
+```
+
+### Integrate with Chrona
+
+Create a `lib/source.ts` file:
+
+```ts title="app/lib/source.ts"
+import { defineDocs } from 'chrona-mdx/macro';
+import { loader } from 'chrona-core/source';
+
+const docs = defineDocs({
+  dir: 'content/docs',
+});
+
+export const source = loader({
+  baseUrl: '/docs',
+  source: docs.toChronaSource(),
+});
+```
+
+### Done
+
+You can now write content in `content/docs` folder.
+
+</div>
+
+## What is Next?
+
+<Cards>
+  <Card title="Macro API" href="/docs/mdx/macro">
+    Define collections in your app modules with `chrona-mdx/macro`.
+  </Card>
+  <Card title="Config API" href="/docs/mdx/collections">
+    Define collections in `source.config.ts` with generated entry files.
+  </Card>
+  <Card title="Lazy Loading" href="/docs/mdx/async">
+    Hit performance bottleneck? You can try lazy loading.
+  </Card>
+</Cards>

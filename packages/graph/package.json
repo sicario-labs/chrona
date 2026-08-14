@@ -1,0 +1,45 @@
+{
+  "name": "@chrona/graph",
+  "version": "0.1.0",
+  "description": "Relationship graph builder for the Chrona repository intelligence engine. Forks the type-tree walker into an edge accumulator.",
+  "keywords": [
+    "Docs",
+    "chrona",
+    "graph"
+  ],
+  "homepage": "https://chrona.dev",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "repository": "github:chrona/chrona",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch",
+    "lint": "oxlint .",
+    "test": "vitest run",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@chrona/engine": "workspace:*",
+    "ts-morph": "^28.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.2",
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "title": "AsyncAPI Example",
+  "description": "A demo for Chrona AsyncAPI",
+  "root": true,
+  "icon": "Shapes",
+  "pages": ["index", "...(generated)"]
+}

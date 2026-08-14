@@ -1,0 +1,13 @@
+{
+  "type": "root",
+  "$id": "root",
+  "name": "Docs",
+  "children": [
+    {
+      "$id": "test.mdx",
+      "type": "page",
+      "name": "Hello",
+      "url": "/test"
+    }
+  ]
+}

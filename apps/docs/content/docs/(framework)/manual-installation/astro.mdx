@@ -1,0 +1,415 @@
+---
+title: Astro
+description: Setup Chrona on Astro with React islands.
+---
+
+## Getting Started
+
+Before continuing, make sure to configure:
+
+- Astro with `@astrojs/react`.
+- Tailwind CSS 4.
+
+Chrona UI is a React library. On Astro, render it inside a React island and pass the current route information from your `.astro` page.
+
+### Installation
+
+```npm
+npm i chrona-core chrona-ui @astrojs/react @astrojs/mdx @astrojs/markdown-remark react react-dom takumi-js sharp
+```
+
+### Configuration
+
+Configure Astro, MDX, React, and Tailwind CSS:
+
+```mjs title="astro.config.mjs"
+// @ts-check
+import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
+import tailwindcss from '@tailwindcss/vite';
+import mdx from '@astrojs/mdx';
+import { unified } from '@astrojs/markdown-remark';
+import {
+  rehypeCode,
+  remarkCodeTab,
+  remarkHeading,
+  remarkNpm,
+  remarkStructure,
+} from 'chrona-core/mdx-plugins';
+
+const remarkPlugins = [
+  remarkHeading,
+  remarkCodeTab,
+  remarkNpm,
+  [remarkStructure, { exportAs: 'structuredData' }],
+];
+const rehypePlugins = [rehypeCode];
+
+export default defineConfig({
+  markdown: {
+    processor: unified({
+      syntaxHighlight: false,
+      remarkPlugins,
+      rehypePlugins,
+    }),
+  },
+  integrations: [
+    react(),
+    mdx({
+      extendMarkdownConfig: true,
+      syntaxHighlight: false,
+    }),
+  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+```
+
+Add the following to your Tailwind CSS file:
+
+```css title="src/styles/global.css"
+@import 'tailwindcss';
+/* [!code ++:2] */
+@import 'chrona-ui/css/neutral.css';
+@import 'chrona-ui/css/preset.css';
+```
+
+### Content Collections
+
+Create content collections for docs and meta files:
+
+```ts title="src/content.config.ts"
+import { glob } from 'astro/loaders';
+import { defineCollection, z } from 'astro:content';
+
+const docs = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './content/docs' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    icon: z.string().optional(),
+  }),
+});
+
+const meta = defineCollection({
+  loader: glob({ pattern: '**/*.{json,yaml}', base: './content/docs' }),
+  schema: z.object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+    pages: z.array(z.string()).optional(),
+    icon: z.string().optional(),
+  }),
+});
+
+export const collections = {
+  docs,
+  meta,
+};
+```
+
+Create a Chrona source from Astro content collections:
+
+```ts title="src/lib/source.ts"
+import type { StaticSource } from 'chrona-core/source';
+import { loader } from 'chrona-core/source';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import * as path from 'node:path';
+import { structure, type StructuredData } from 'chrona-core/mdx-plugins';
+
+export const source = loader({
+  source: await createMySource(),
+  baseUrl: '/',
+});
+
+export function getStructuredData(entry: CollectionEntry<'docs'>): StructuredData {
+  return structure(entry.body);
+}
+
+export function getPageImageUrl(page: (typeof source)['$inferPage']) {
+  const segments = [...page.slugs, 'image.webp'];
+
+  return '/' + [page.locale, 'og', 'docs', ...segments].filter(Boolean).join('/');
+}
+
+async function createMySource() {
+  const out: StaticSource<{
+    metaData: CollectionEntry<'meta'>['data'];
+    pageData: CollectionEntry<'docs'>['data'] & {
+      _raw: CollectionEntry<'docs'>;
+    };
+  }> = {
+    files: [],
+  };
+
+  for (const page of await getCollection('docs')) {
+    const virtualPath = path.relative('content/docs', page.filePath!);
+
+    out.files.push({
+      type: 'page',
+      path: virtualPath,
+      data: {
+        ...page.data,
+        _raw: page,
+      },
+    });
+  }
+
+  for (const meta of await getCollection('meta')) {
+    const virtualPath = path.relative('content/docs', meta.filePath!);
+
+    out.files.push({
+      type: 'meta',
+      path: virtualPath,
+      data: meta.data,
+    });
+  }
+
+  return out;
+}
+```
+
+### Create Pages
+
+Create the shared Astro document layout:
+
+```astro tab="src/components/layout.astro"
+---
+import { ClientRouter } from 'astro:transitions';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <ClientRouter />
+  </head>
+  <body
+    class="dark flex flex-col min-h-screen"
+    transition:persist
+    transition:animate="none"
+    transition:name="page-layout"
+  >
+    <slot />
+  </body>
+</html>
+```
+
+Create the React island that renders Chrona UI:
+
+```tsx tab="src/components/docs.tsx"
+import { DocsLayout } from 'chrona-ui/layouts/docs';
+import { DocsPage, type DocsPageProps } from 'chrona-ui/layouts/docs/page';
+import type { Root } from 'chrona-core/page-tree';
+import type { ReactNode } from 'react';
+import { navigate } from 'astro:transitions/client';
+import { RootProvider } from 'chrona-ui/provider/astro';
+import type { AstroProviderProps } from 'chrona-core/framework/astro';
+import SearchDialog from './search';
+
+export function Docs({
+  tree,
+  children,
+  pathname,
+  params,
+  page,
+}: {
+  tree: Root;
+  children: ReactNode;
+  pathname: string;
+  params: AstroProviderProps['params'];
+  page?: DocsPageProps;
+}) {
+  return (
+    <RootProvider
+      pathname={pathname}
+      params={params}
+      navigate={navigate}
+      theme={{ enabled: false }}
+      search={{ SearchDialog }}
+    >
+      <DocsLayout
+        tree={tree}
+        themeSwitch={{
+          enabled: false,
+        }}
+        nav={{
+          title: 'Chrona on Astro',
+        }}
+      >
+        <DocsPage {...page}>{children}</DocsPage>
+      </DocsLayout>
+    </RootProvider>
+  );
+}
+```
+
+Create a search dialog:
+
+```tsx tab="src/components/search.tsx"
+'use client';
+import {
+  SearchDialog,
+  SearchDialogClose,
+  SearchDialogContent,
+  SearchDialogHeader,
+  SearchDialogIcon,
+  SearchDialogInput,
+  SearchDialogList,
+  SearchDialogOverlay,
+  type SharedProps,
+} from 'chrona-ui/components/dialog/search';
+import { useDocsSearch } from 'chrona-core/search/client';
+import { staticClient } from 'chrona-core/search/client/orama-static';
+import { useI18n } from 'chrona-ui/contexts/i18n';
+
+export default function DefaultSearchDialog(props: SharedProps) {
+  const { locale } = useI18n(); // (optional) for i18n
+  const { search, setSearch, query } = useDocsSearch({
+    client: staticClient({
+      locale,
+    }),
+  });
+
+  return (
+    <SearchDialog search={search} onSearchChange={setSearch} isLoading={query.isLoading} {...props}>
+      <SearchDialogOverlay />
+      <SearchDialogContent>
+        <SearchDialogHeader>
+          <SearchDialogIcon />
+          <SearchDialogInput />
+          <SearchDialogClose />
+        </SearchDialogHeader>
+        <SearchDialogList items={query.data !== 'empty' ? query.data : null} />
+      </SearchDialogContent>
+    </SearchDialog>
+  );
+}
+```
+
+Create the docs route, search endpoint, and metadata image endpoint:
+
+```astro tab="src/pages/[...slug].astro"
+---
+import { render, type CollectionEntry } from "astro:content";
+import { Docs } from "@/components/docs";
+import defaultMdxComponents from "chrona-ui/mdx";
+import "@/styles/global.css";
+import { getPageImageUrl, source } from "@/lib/source";
+import Layout from "@/components/layout.astro";
+import type { TOCItemType } from "chrona-core/toc";
+
+interface Props {
+  page: CollectionEntry<"docs">;
+}
+
+export async function getStaticPaths() {
+  return source.getPages().map((page) => ({
+    params: { slug: page.slugs.length > 0 ? page.slugs.join("/") : undefined },
+    props: { page: page.data._raw },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content, headings } = await render(page);
+const slugs = typeof Astro.params.slug === "string" ? Astro.params.slug.split("/") : [];
+const docsPage = source.getPage(slugs)!;
+const image = getPageImageUrl(docsPage);
+
+const toc: TOCItemType[] = headings.map((heading) => ({
+  depth: heading.depth,
+  title: heading.text,
+  url: "#" + heading.slug,
+}));
+---
+
+<Layout>
+  <title>{page.data.title}</title>
+  <meta name="title" content={page.data.title} />
+  <meta name="description" content={page.data.description} />
+  <meta property="og:image" content={image} />
+  <Docs
+    tree={source.getPageTree()}
+    pathname={Astro.url.pathname}
+    params={Astro.params}
+    page={{ toc }}
+    client:load
+  >
+    <h1 class="font-semibold text-3xl">{page.data.title}</h1>
+    <p class="text-lg text-fd-muted-foreground mb-8">{page.data.description}</p>
+    <div class="prose flex-1">
+      <Content components={{ ...defaultMdxComponents }} />
+    </div>
+  </Docs>
+</Layout>
+```
+
+```ts tab="src/pages/api/search.ts"
+import type { APIRoute } from 'astro';
+import { createFromSource } from 'chrona-core/search/server';
+import { getStructuredData, source } from '@/lib/source';
+
+const server = createFromSource(source, {
+  buildIndex(page) {
+    return {
+      id: page.data._raw.id,
+      title: page.data.title,
+      description: page.data.description,
+      structuredData: getStructuredData(page.data._raw),
+      url: page.url,
+    };
+  },
+});
+
+export const GET: APIRoute = () => {
+  return server.staticGET();
+};
+```
+
+```ts tab="src/pages/og/docs/[...slug]/image.webp.ts"
+import type { APIRoute } from 'astro';
+import { createElement } from 'react';
+import { ImageResponse } from 'takumi-js/response';
+import { generate as DefaultImage } from 'chrona-ui/og/takumi';
+import { source } from '@/lib/source';
+
+export function getStaticPaths() {
+  return source.getPages().map((page) => ({
+    params: {
+      slug: page.slugs.length > 0 ? page.slugs.join('/') : undefined,
+    },
+  }));
+}
+
+export const GET: APIRoute = ({ params }) => {
+  const slugs = params.slug?.split('/').filter((item) => item.length > 0) ?? [];
+  const page = source.getPage(slugs);
+
+  if (!page) return new Response(undefined, { status: 404 });
+
+  return new ImageResponse(
+    createElement(DefaultImage, {
+      title: page.data.title,
+      description: page.data.description,
+      site: 'Astro',
+    }),
+    {
+      width: 1200,
+      height: 630,
+      format: 'webp',
+    },
+  );
+};
+```
+
+### Done
+
+You can start writing documents at `content/docs`:
+
+```mdx title="content/docs/index.mdx"
+---
+title: Hello World
+description: Your first document
+---
+
+I love Chrona.
+```
