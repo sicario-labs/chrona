@@ -2,14 +2,30 @@ import { createFileRoute } from '@tanstack/react-router'
 import { DocsLayout } from '@chrona/base-ui/layouts/docs'
 
 
-export const Route = createFileRoute('/$projectSlug/docs/$')({
+export const Route = createFileRoute('/docs/$')({
   component: DynamicDocViewer,
   loader: async ({ params }) => {
     const splat = (params as any)['_splat'] || 'index'
-    const projectId = 'demo-project-id'
     
-    // In a real app we'd fetch the exact url for the API. Since this runs on the client,
-    // relative URLs work.
+    // Extract project slug from subdomain (e.g. acme.chrona.dev -> acme)
+    // If we are on localhost, default to a demo project for development
+    let projectSlug = 'demo'
+    if (typeof window !== 'undefined') {
+      const host = window.location.hostname
+      if (host.includes('.chrona.dev')) {
+        projectSlug = host.split('.')[0]
+      } else if (host === 'localhost' || host === '127.0.0.1') {
+        projectSlug = 'demo'
+      } else {
+        // Custom domain (e.g. docs.acme.com)
+        // In reality, we'd lookup the project by custom domain
+        projectSlug = 'demo'
+      }
+    }
+    
+    // In a real app we'd fetch from our API using the slug to find the projectId.
+    // For now, we mock the ID mapping:
+    const projectId = projectSlug === 'demo' ? 'demo-project-id' : `proj-${projectSlug}`
     
     const [treeRes, pageRes] = await Promise.all([
       fetch(`/api/builds/${projectId}/tree.json`),
@@ -22,7 +38,7 @@ export const Route = createFileRoute('/$projectSlug/docs/$')({
     return {
       tree: await treeRes.json(),
       page: await pageRes.json(),
-      projectSlug: params.projectSlug
+      projectSlug
     }
   },
   pendingComponent: () => <div className="flex h-screen items-center justify-center">Loading Docs...</div>,

@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/_dashboard'
 import { Route as DashboardDashboardRouteImport } from './routes/_dashboard.dashboard'
-import { Route as ProjectSlugDocsSplatRouteImport } from './routes/$projectSlug.docs.$'
+import { Route as DocsSplatRouteImport } from './routes/docs.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,46 +28,41 @@ const DashboardDashboardRoute = DashboardDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => DashboardRoute,
 } as any)
-const ProjectSlugDocsSplatRoute = ProjectSlugDocsSplatRouteImport.update({
-  id: '/$projectSlug/docs/$',
-  path: '/$projectSlug/docs/$',
+const DocsSplatRoute = DocsSplatRouteImport.update({
+  id: '/docs/$',
+  path: '/docs/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardDashboardRoute
-  '/$projectSlug/docs/$': typeof ProjectSlugDocsSplatRoute
+  '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardDashboardRoute
-  '/$projectSlug/docs/$': typeof ProjectSlugDocsSplatRoute
+  '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_dashboard': typeof DashboardRouteWithChildren
   '/_dashboard/dashboard': typeof DashboardDashboardRoute
-  '/$projectSlug/docs/$': typeof ProjectSlugDocsSplatRoute
+  '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/$projectSlug/docs/$'
+  fullPaths: '/' | '/dashboard' | '/docs/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/$projectSlug/docs/$'
-  id:
-    | '__root__'
-    | '/'
-    | '/_dashboard'
-    | '/_dashboard/dashboard'
-    | '/$projectSlug/docs/$'
+  to: '/' | '/dashboard' | '/docs/$'
+  id: '__root__' | '/' | '/_dashboard' | '/_dashboard/dashboard' | '/docs/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRouteWithChildren
-  ProjectSlugDocsSplatRoute: typeof ProjectSlugDocsSplatRoute
+  DocsSplatRoute: typeof DocsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -93,11 +88,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDashboardRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/$projectSlug/docs/$': {
-      id: '/$projectSlug/docs/$'
-      path: '/$projectSlug/docs/$'
-      fullPath: '/$projectSlug/docs/$'
-      preLoaderRoute: typeof ProjectSlugDocsSplatRouteImport
+    '/docs/$': {
+      id: '/docs/$'
+      path: '/docs/$'
+      fullPath: '/docs/$'
+      preLoaderRoute: typeof DocsSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -118,7 +113,7 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRouteWithChildren,
-  ProjectSlugDocsSplatRoute: ProjectSlugDocsSplatRoute,
+  DocsSplatRoute: DocsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
