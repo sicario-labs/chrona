@@ -1,7 +1,7 @@
 import { compile } from '@mdx-js/mdx';
 import matter from 'gray-matter';
-import { source, type VirtualFile } from '@chrona/core/source/source';
-import { loader } from '@chrona/core/source/loader';
+import { source, type VirtualFile } from 'chrona-core/source/source';
+import { loader } from 'chrona-core/source/loader';
 import { fetchBlob, fetchTree, type GitHubFile } from './github';
 
 export interface CompilerResult {

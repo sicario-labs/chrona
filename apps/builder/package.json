@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "hono": "latest",
-    "@chrona/core": "workspace:*",
+    "chrona-core": "workspace:*",
     "@mdx-js/mdx": "^3.0.0",
     "gray-matter": "^4.0.3"
   },
