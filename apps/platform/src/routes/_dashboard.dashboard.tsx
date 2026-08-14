@@ -101,9 +101,9 @@ function DashboardPage() {
                 <button className={buttonVariants({ variant: 'ghost', size: 'icon', className: 'h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground' })} title="View Live Site">
                   <ExternalLink className="w-4 h-4" />
                 </button>
-                <button className={buttonVariants({ variant: 'ghost', size: 'icon', className: 'h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground' })} title="Settings">
+                <Link to={`/dashboard/projects/${project.id}`} className={buttonVariants({ variant: 'ghost', size: 'icon', className: 'h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground' })} title="Settings">
                   <Settings className="w-4 h-4" />
-                </button>
+                </Link>
               </div>
             </div>
 

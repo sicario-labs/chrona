@@ -77,7 +77,9 @@ export const projects = pgTable('projects', {
   layout: text('layout').default('docs'),
   configJson: jsonb('config_json').default({}),
   customDomain: text('custom_domain'),
-  customDomainVerified: boolean('custom_domain_verified').default(false),
+  customDomainTxtName: text('custom_domain_txt_name'),
+  customDomainTxtValue: text('custom_domain_txt_value'),
+  customDomainStatus: text('custom_domain_status').default('none'), // none, pending, active, active_redeploying, moved, deleted, etc.
   status: text('status').default('active'),
   createdAt: timestamp('created_at').defaultNow()
 })

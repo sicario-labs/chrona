@@ -6,6 +6,7 @@ import { projectsRouter } from './routes/projects'
 
 import { githubRouter } from './routes/github'
 import { buildsRouter } from './routes/builds'
+import { domainsRouter } from './routes/domains'
 
 const app = new Hono()
 
@@ -25,5 +26,6 @@ app.route('/api/orgs', projectsRouter)
 // Mount Integrations & Internal
 app.route('/api/github', githubRouter)
 app.route('/api/builds', buildsRouter)
+app.route('/api/domains', domainsRouter)
 
 export default app
