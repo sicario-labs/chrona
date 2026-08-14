@@ -37,7 +37,7 @@ githubRouter.post('/webhook', async (c) => {
     const trackingProjects = await db.select().from(projects)
       .where(eq(projects.githubRepo, repoFullName))
 
-    const targetProjects = trackingProjects.filter(p => p.githubBranch === branch)
+    const targetProjects = trackingProjects.filter((p: any) => p.githubBranch === branch)
 
     // In a real implementation, we would push a message to Cloudflare Queues here
     // for each targetProject to trigger a build.

@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { eq } from 'drizzle-orm'
-import { db } from '../db'
+import { db } from '../auth'
 import { projects } from '../db/schema'
 
 export const domainsRouter = new Hono()
