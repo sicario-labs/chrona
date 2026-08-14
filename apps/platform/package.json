@@ -22,6 +22,7 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@hono/vite-dev-server": "^0.26.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/router-devtools": "latest",
     "@tanstack/router-plugin": "latest",

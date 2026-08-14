@@ -14,6 +14,8 @@ const pool = new Pool({
 export const db = drizzle(pool, { schema })
 
 export const auth = betterAuth({
+  baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
+  trustedOrigins: ['http://localhost:3000', 'http://localhost:5173'],
   database: drizzleAdapter(db, {
     provider: "pg", // PostgreSQL
     schema: {
