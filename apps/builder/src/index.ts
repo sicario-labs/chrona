@@ -1,6 +1,8 @@
 export interface Env {
   BUILD_QUEUE: Queue<BuildJob>
   CHRONA_BUILDS: R2Bucket
+  AI: any
+  VECTOR_INDEX: any
 }
 
 type BuildJob = {
@@ -47,6 +49,51 @@ export default {
         });
 
         await Promise.all(uploads);
+        
+        // 5. Generate embeddings and index them in Vectorize
+        const vectorChunks: any[] = [];
+        
+        for (const [path, data] of Object.entries(result.pages)) {
+          if (!data.chunks || data.chunks.length === 0) continue;
+          
+          try {
+            // Generate embeddings for all chunks in this page using Cloudflare AI
+            const embeddingResponse = await env.AI.run('@cf/baai/bge-base-en-v1.5', {
+              text: data.chunks
+            });
+            
+            // embeddingResponse.data is an array of number arrays (embeddings)
+            const embeddings = embeddingResponse.data;
+            
+            data.chunks.forEach((chunkText, idx) => {
+              vectorChunks.push({
+                id: `${job.projectId}-${path.replace(/[^a-zA-Z0-9-]/g, '_')}-${idx}`,
+                values: embeddings[idx],
+                metadata: {
+                  projectId: job.projectId,
+                  path: path.replace(/\.mdx?$/, ''),
+                  title: data.frontmatter?.title || 'Untitled',
+                  content: chunkText
+                }
+              });
+            });
+          } catch (e) {
+            console.error(`Failed to embed chunks for ${path}`, e);
+          }
+        }
+
+        if (vectorChunks.length > 0) {
+          try {
+            // Upsert vectors in batches of 100
+            for (let i = 0; i < vectorChunks.length; i += 100) {
+              const batch = vectorChunks.slice(i, i + 100);
+              await env.VECTOR_INDEX.upsert(batch);
+            }
+            console.log(`Indexed ${vectorChunks.length} chunks into Vectorize for project ${job.projectId}`);
+          } catch (e) {
+            console.error('Failed to upsert vectors', e);
+          }
+        }
         
         console.log(`Successfully completed build for project ${job.projectId}`)
         

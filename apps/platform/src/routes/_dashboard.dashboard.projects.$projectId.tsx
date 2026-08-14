@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { Globe, ShieldCheck, ShieldAlert, Loader2, RefreshCw } from 'lucide-react'
 import { buttonVariants } from '@chrona/base-ui/components/ui/button'
+import { AnalyticsDashboard } from '../../components/analytics'
+import { ThemeSettings } from '../../components/theme-settings'
 
 export const Route = createFileRoute('/_dashboard/dashboard/projects/$projectId')({
   component: ProjectSettingsPage,
@@ -69,9 +71,13 @@ function ProjectSettingsPage() {
   return (
     <div className="flex flex-col gap-8 max-w-4xl">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Project Settings</h1>
-        <p className="text-fd-muted-foreground mt-1">Configure your project and custom domains.</p>
+        <h1 className="text-3xl font-bold tracking-tight">Project Overview</h1>
+        <p className="text-fd-muted-foreground mt-1">Analytics, configuration, and custom domains.</p>
       </div>
+
+      <AnalyticsDashboard projectId={projectId} />
+
+      <ThemeSettings projectId={projectId} />
 
       <div className="rounded-xl border border-fd-border bg-fd-card text-fd-card-foreground shadow-sm overflow-hidden">
         <div className="p-6 border-b border-fd-border bg-fd-muted/30 flex items-center justify-between">

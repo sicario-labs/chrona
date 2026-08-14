@@ -2,11 +2,13 @@ import { Hono } from 'hono'
 import { auth } from './auth'
 
 import { orgsRouter } from './routes/orgs'
-import { projectsRouter } from './routes/projects'
+import { projectsRouter, directProjectRouter } from './routes/projects'
 
 import { githubRouter } from './routes/github'
 import { buildsRouter } from './routes/builds'
 import { domainsRouter } from './routes/domains'
+import { searchRouter } from './routes/search'
+import { analyticsRouter } from './routes/analytics'
 
 const app = new Hono()
 
@@ -22,10 +24,13 @@ app.get('/api/health', (c) => {
 // Mount CRUD routers
 app.route('/api/orgs', orgsRouter)
 app.route('/api/orgs', projectsRouter)
+app.route('/api/projects', directProjectRouter)
 
 // Mount Integrations & Internal
 app.route('/api/github', githubRouter)
 app.route('/api/builds', buildsRouter)
 app.route('/api/domains', domainsRouter)
+app.route('/api/search', searchRouter)
+app.route('/api/analytics', analyticsRouter)
 
 export default app

@@ -9,3 +9,10 @@ binding = "BUILD_QUEUE"
 [[r2_buckets]]
 binding = "CHRONA_BUILDS"
 bucket_name = "chrona-builds"
+
+[ai]
+binding = "AI"
+
+[[vectorize]]
+binding = "VECTOR_INDEX"
+index_name = "chrona-vectors"

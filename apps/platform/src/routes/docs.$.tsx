@@ -29,9 +29,10 @@ export const Route = createFileRoute('/docs/$')({
     // For now, we mock the ID mapping:
     const projectId = projectSlug === 'demo' ? 'demo-project-id' : `proj-${projectSlug}`
     
-    const [treeRes, pageRes] = await Promise.all([
+    const [treeRes, pageRes, projectRes] = await Promise.all([
       fetch(`/api/builds/${projectId}/tree.json`),
-      fetch(`/api/builds/${projectId}/${splat}.json`)
+      fetch(`/api/builds/${projectId}/${splat}.json`),
+      fetch(`/api/projects/${projectId}`)
     ])
     
     if (!treeRes.ok) throw new Error('Failed to fetch sidebar tree')
@@ -40,6 +41,7 @@ export const Route = createFileRoute('/docs/$')({
     return {
       tree: await treeRes.json(),
       page: await pageRes.json(),
+      project: projectRes.ok ? await projectRes.json() : null,
       projectSlug
     }
   },
@@ -64,15 +66,59 @@ function useMDXComponent(code: string) {
   }, [code])
 }
 
+function hexToHsl(hex: string) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+  if (!result) return null
+  
+  let r = parseInt(result[1], 16) / 255
+  let g = parseInt(result[2], 16) / 255
+  let b = parseInt(result[3], 16) / 255
+  
+  let max = Math.max(r, g, b), min = Math.min(r, g, b)
+  let h = 0, s = 0, l = (max + min) / 2
+  
+  if (max !== min) {
+    let d = max - min
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+    switch(max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break
+      case g: h = (b - r) / d + 2; break
+      case b: h = (r - g) / d + 4; break
+    }
+    h /= 6
+  }
+  
+  return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`
+}
+
 function DynamicDocViewer() {
-  const { tree, page, projectSlug } = Route.useLoaderData() as any
+  const { tree, page, projectSlug, project } = Route.useLoaderData() as any
   const MDXContent = useMDXComponent(page.compiled)
 
+  const themeConfig = project?.themeConfig || {}
+  const primaryHsl = themeConfig.primaryColor ? hexToHsl(themeConfig.primaryColor) : null
+
   return (
-    <DocsLayout
-      tree={tree}
-      nav={{ title: projectSlug }}
-    >
+    <>
+      {primaryHsl && (
+        <style dangerouslySetInnerHTML={{__html: `
+          :root {
+            --primary: ${primaryHsl};
+            --primary-foreground: 0 0% 100%;
+          }
+          .dark {
+            --primary: ${primaryHsl};
+            --primary-foreground: 0 0% 100%;
+          }
+        `}} />
+      )}
+      <DocsLayout
+        tree={tree}
+        nav={{ 
+          title: projectSlug,
+          // If we had a custom logo component in nav, we could pass it here!
+        }}
+      >
       <div className="prose prose-slate dark:prose-invert max-w-none">
         <h1>{page.frontmatter?.title || 'Untitled'}</h1>
         
@@ -81,5 +127,6 @@ function DynamicDocViewer() {
         </div>
       </div>
     </DocsLayout>
+    </>
   )
 }

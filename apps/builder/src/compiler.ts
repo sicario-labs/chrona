@@ -5,7 +5,27 @@ import { fetchBlob, fetchTree, type GitHubFile } from './github';
 
 export interface CompilerResult {
   pageTree: any;
-  pages: Record<string, { compiled: string; frontmatter: any }>;
+  pages: Record<string, { compiled: string; frontmatter: any; chunks: string[] }>;
+}
+
+function chunkText(text: string, maxLen = 1000): string[] {
+  // Simple chunker that splits by double newline and groups up to maxLen
+  const blocks = text.split('\n\n').map(b => b.trim()).filter(Boolean);
+  const chunks: string[] = [];
+  let currentChunk = '';
+
+  for (const block of blocks) {
+    if (currentChunk.length + block.length > maxLen) {
+      if (currentChunk) chunks.push(currentChunk);
+      // If a single block is too large, it might exceed maxLen, but we'll accept it
+      currentChunk = block;
+    } else {
+      currentChunk = currentChunk ? currentChunk + '\n\n' + block : block;
+    }
+  }
+  if (currentChunk) chunks.push(currentChunk);
+  
+  return chunks;
 }
 
 export async function compileRepo(
@@ -63,7 +83,8 @@ export async function compileRepo(
 
       pages[file.path] = {
         compiled: String(compiled),
-        frontmatter
+        frontmatter,
+        chunks: chunkText(parsed.content)
       };
     }
   });

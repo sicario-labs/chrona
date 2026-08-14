@@ -80,6 +80,26 @@ export const projects = pgTable('projects', {
   customDomainTxtName: text('custom_domain_txt_name'),
   customDomainTxtValue: text('custom_domain_txt_value'),
   customDomainStatus: text('custom_domain_status').default('none'), // none, pending, active, active_redeploying, moved, deleted, etc.
+  themeConfig: jsonb('theme_config').default({}),
   status: text('status').default('active'),
+  createdAt: timestamp('created_at').defaultNow()
+})
+
+export const pageViews = pgTable('page_views', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  projectId: uuid('project_id').references(() => projects.id, { onDelete: 'cascade' }),
+  path: text('path').notNull(),
+  visitorId: text('visitor_id'), // hash of IP + UserAgent for unique visitor tracking without PII
+  userAgent: text('user_agent'),
+  referer: text('referer'),
+  createdAt: timestamp('created_at').defaultNow()
+})
+
+export const searchQueries = pgTable('search_queries', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  projectId: uuid('project_id').references(() => projects.id, { onDelete: 'cascade' }),
+  query: text('query').notNull(),
+  visitorId: text('visitor_id'),
+  resultsCount: bigint('results_count', { mode: 'number' }),
   createdAt: timestamp('created_at').defaultNow()
 })
