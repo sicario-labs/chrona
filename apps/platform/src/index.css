@@ -5,6 +5,9 @@
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --color-brand: #f59e0b;
+  --color-brand-secondary: #ea580c;
+  --color-brand-light: #fbbf24;
 }
 
 body {

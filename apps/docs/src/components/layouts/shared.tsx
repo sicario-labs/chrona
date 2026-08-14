@@ -24,8 +24,8 @@ export const linkItems: LinkItemType[] = [
   },
   {
     text: 'Dashboard',
-    url: '/dashboard',
-    active: 'nested-url',
+    url: 'http://localhost:3000',
+    external: true,
   },
   {
     type: 'icon',

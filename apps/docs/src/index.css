@@ -3,6 +3,7 @@
 @import "chrona-ui/css/preset.css";
 
 @theme {
-  --color-brand: #c026d3;
-  --color-brand-secondary: #3b82f6;
+  --color-brand: #f59e0b;
+  --color-brand-secondary: #ea580c;
+  --color-brand-light: #fbbf24;
 }
