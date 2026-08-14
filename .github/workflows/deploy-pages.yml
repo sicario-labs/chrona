@@ -46,6 +46,12 @@ jobs:
       - name: Build Platform
         run: pnpm --filter platform run build
 
+      - name: Deploy Builder Worker
+        run: pnpm --filter builder run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:

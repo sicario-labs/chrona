@@ -9,7 +9,10 @@
     "lint": "oxlint"
   },
   "dependencies": {
-    "hono": "latest"
+    "hono": "latest",
+    "@chrona/core": "workspace:*",
+    "@mdx-js/mdx": "^3.0.0",
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
