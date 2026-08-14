@@ -1,6 +1,7 @@
 name = "chrona-builder"
 main = "src/index.ts"
 compatibility_date = "2024-05-29"
+compatibility_flags = [ "nodejs_compat" ]
 
 [[queues.consumers]]
 queue = "build-queue"
