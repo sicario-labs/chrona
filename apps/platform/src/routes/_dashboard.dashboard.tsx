@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Plus, Settings, Github, CheckCircle2, Clock, ExternalLink, PenSquare, Layout, Globe, Activity } from 'lucide-react'
+import { buttonVariants } from '@chrona/base-ui/components/ui/button'
 export const Route = createFileRoute('/_dashboard/dashboard')({
   component: DashboardPage,
 })
@@ -37,10 +38,10 @@ function DashboardPage() {
           <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
           <p className="text-fd-muted-foreground mt-1">Manage your documentation projects and deployments.</p>
         </div>
-        <Button className="gap-2">
+        <button className={buttonVariants({ variant: 'primary', className: 'gap-2' })}>
           <Plus className="w-4 h-4" />
           New Project
-        </Button>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -50,7 +51,7 @@ function DashboardPage() {
             {/* Header: Name, Status, URL */}
             <div className="flex justify-between items-start mb-4">
               <div className="flex flex-col gap-1">
-                <Link to={`/dashboard/${project.id}`} className="text-xl font-semibold hover:underline">
+                <Link to="/dashboard" className="text-xl font-semibold hover:underline">
                   {project.name}
                 </Link>
                 <a href={`https://${project.url}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-fd-primary transition-colors">
@@ -94,15 +95,15 @@ function DashboardPage() {
               </div>
               
               <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Button variant="ghost" size="icon" className="h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground" title="Open Web Editor">
+                <button className={buttonVariants({ variant: 'ghost', size: 'icon', className: 'h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground' })} title="Open Web Editor">
                   <PenSquare className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground" title="View Live Site">
+                </button>
+                <button className={buttonVariants({ variant: 'ghost', size: 'icon', className: 'h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground' })} title="View Live Site">
                   <ExternalLink className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground" title="Settings">
+                </button>
+                <button className={buttonVariants({ variant: 'ghost', size: 'icon', className: 'h-8 w-8 text-fd-muted-foreground hover:text-fd-foreground' })} title="Settings">
                   <Settings className="w-4 h-4" />
-                </Button>
+                </button>
               </div>
             </div>
 

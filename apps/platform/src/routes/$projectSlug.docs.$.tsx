@@ -1,6 +1,6 @@
-import { createFileRoute, useParams } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 import { DocsLayout } from '@chrona/base-ui/layouts/docs'
+
 
 export const Route = createFileRoute('/$projectSlug/docs/$')({
   component: DynamicDocViewer,
@@ -34,8 +34,8 @@ export const Route = createFileRoute('/$projectSlug/docs/$')({
   )
 })
 
-import * as _jsx_runtime from 'react/jsx-runtime'
 import * as React from 'react'
+import * as _jsx_runtime from 'react/jsx-runtime'
 
 function useMDXComponent(code: string) {
   return React.useMemo(() => {
@@ -47,7 +47,7 @@ function useMDXComponent(code: string) {
 }
 
 function DynamicDocViewer() {
-  const { tree, page, projectSlug } = Route.useLoaderData()
+  const { tree, page, projectSlug } = Route.useLoaderData() as any
   const MDXContent = useMDXComponent(page.compiled)
 
   return (

@@ -18,6 +18,7 @@ function DashboardLayout() {
 
   return (
     <GlassLayout
+      tree={{ name: 'Dashboard', children: [] }}
       nav={{
         title: 'Chrona Platform',
         children: (

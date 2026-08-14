@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { HomeLayout } from '@chrona/base-ui/layouts/home'
-
-import { Button } from '@chrona/base-ui/components/ui/button'
+import { buttonVariants } from '@chrona/base-ui/components/ui/button'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -16,8 +15,8 @@ function Index() {
           The next-generation documentation platform with true codebase intelligence.
         </p>
         <div className="flex gap-4">
-          <Button>Get Started</Button>
-          <Button variant="outline">View Documentation</Button>
+          <button className={buttonVariants({ variant: 'primary' })}>Get Started</button>
+          <button className={buttonVariants({ variant: 'outline' })}>View Documentation</button>
         </div>
       </div>
     </HomeLayout>
