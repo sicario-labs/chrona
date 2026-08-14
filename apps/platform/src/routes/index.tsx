@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { buttonVariants } from '@chrona/base-ui/components/ui/button'
 import { useSession, signIn } from '../lib/auth-client'
 import { Flame, Github, ArrowRight } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -11,6 +11,7 @@ export const Route = createFileRoute('/')({
 function Index() {
   const { data: session, isPending } = useSession()
   const navigate = useNavigate()
+  const [isRedirecting, setIsRedirecting] = useState(false)
 
   useEffect(() => {
     if (!isPending && session) {
@@ -26,13 +27,33 @@ function Index() {
     )
   }
 
+  const handleGitHubLogin = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsRedirecting(true)
+    try {
+      const res = await signIn.social({
+        provider: 'github',
+        callbackURL: 'http://localhost:3000/dashboard',
+      })
+      if (res?.data?.url) {
+        window.location.href = res.data.url
+      } else if (res?.url) {
+        window.location.href = res.url
+      }
+    } catch (err) {
+      console.error('Sign in error:', err)
+      setIsRedirecting(false)
+    }
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-950 px-4 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Login Card */}
-      <div className="w-full max-w-md p-8 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 backdrop-blur-xl shadow-2xl shadow-black/80 text-center relative z-10">
+      <div className="w-full max-w-md p-8 rounded-2xl bg-zinc-950/90 border border-zinc-800/80 backdrop-blur-xl shadow-2xl shadow-black/80 text-center relative z-10">
         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/20">
           <Flame className="w-6 h-6 text-zinc-950 stroke-[2.5]" />
         </div>
@@ -45,19 +66,16 @@ function Index() {
         </p>
 
         <button
+          type="button"
+          disabled={isRedirecting}
+          onClick={handleGitHubLogin}
           className={buttonVariants({
             className:
-              'w-full bg-zinc-100 hover:bg-white text-zinc-950 font-semibold py-2.5 h-11 justify-center gap-2.5 shadow-lg shadow-white/10 border-0 text-sm cursor-pointer',
+              'w-full bg-zinc-100 hover:bg-white text-zinc-950 font-semibold py-2.5 h-11 justify-center gap-2.5 shadow-lg shadow-white/10 border-0 text-sm cursor-pointer relative z-20 pointer-events-auto',
           })}
-          onClick={async () => {
-            await signIn.social({
-              provider: 'github',
-              callbackURL: 'http://localhost:3000/dashboard',
-            })
-          }}
         >
           <Github className="w-4 h-4" />
-          Continue with GitHub
+          {isRedirecting ? 'Connecting to GitHub...' : 'Continue with GitHub'}
           <ArrowRight className="w-3.5 h-3.5 ml-auto opacity-60" />
         </button>
 
