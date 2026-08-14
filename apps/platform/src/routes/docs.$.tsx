@@ -13,7 +13,9 @@ export const Route = createFileRoute('/docs/$')({
     if (typeof window !== 'undefined') {
       const host = window.location.hostname
       if (host.includes('.chrona.dev')) {
-        projectSlug = host.split('.')[0]
+        projectSlug = host.replace('.chrona.dev', '')
+      } else if (host.endsWith('.localhost')) {
+        projectSlug = host.replace('.localhost', '')
       } else if (host === 'localhost' || host === '127.0.0.1') {
         projectSlug = 'demo'
       } else {
