@@ -1,0 +1,57 @@
+name: 'Chrona Truth Verification CI Gate'
+description: 'Verify documentation claims against live codebase AST, prevent code-doc drift, and post inline annotations.'
+author: 'Chrona'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  fail-on:
+    description: 'Failure severity threshold (error | warning)'
+    required: false
+    default: 'error'
+  format:
+    description: 'Output format (annotations | junit | json | ndjson)'
+    required: false
+    default: 'annotations'
+  docs-dir:
+    description: 'Path to documentation directory (default: content/docs)'
+    required: false
+  diff-only:
+    description: 'Only verify documentation affected by current Git diff / PR changes'
+    required: false
+    default: 'false'
+  output:
+    description: 'Output file path for JUnit XML or JSON report'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Run Chrona CI Truth Gate
+      shell: bash
+      run: |
+        ARGS="ci"
+        if [ "${{ inputs.fail-on }}" != "" ]; then
+          ARGS="$ARGS --fail-on ${{ inputs.fail-on }}"
+        fi
+        if [ "${{ inputs.format }}" != "" ]; then
+          ARGS="$ARGS --format ${{ inputs.format }}"
+        fi
+        if [ "${{ inputs.docs-dir }}" != "" ]; then
+          ARGS="$ARGS --docs-dir ${{ inputs.docs-dir }}"
+        fi
+        if [ "${{ inputs.diff-only }}" == "true" ]; then
+          ARGS="$ARGS --diff"
+        fi
+        if [ "${{ inputs.output }}" != "" ]; then
+          ARGS="$ARGS --output ${{ inputs.output }}"
+        fi
+
+        echo "Running: npx -y chrona $ARGS"
+        npx -y chrona $ARGS

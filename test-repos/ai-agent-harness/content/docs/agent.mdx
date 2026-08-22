@@ -1,0 +1,11 @@
+# AI Agent Harness Reference
+
+```ts
+import { createAgent } from '@sample/ai-agent-harness';
+
+const agent = createAgent('gemini-2.5-pro', [
+  { name: 'webSearch', description: 'Search web', parameters: {} },
+]);
+
+const res = await agent.runTask('Analyze repo');
+```

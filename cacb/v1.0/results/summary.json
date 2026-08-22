@@ -1,0 +1,123 @@
+{
+  "benchmarkVersion": "CACB-1.0.0",
+  "evaluatedAt": "2026-08-20T08:07:15Z",
+  "sampleSize": 50,
+  "arms": {
+    "armA_raw": {
+      "name": "Raw Baseline",
+      "taskSuccessRate": 1.0,
+      "finalTestPassRate": 0.84,
+      "invariantRegressionRate": 0.16,
+      "toolCalls": {
+        "mean": 17.6,
+        "median": 16.0,
+        "ci95": [15.4, 19.8]
+      },
+      "tokens": {
+        "mean": 27580,
+        "median": 26000
+      },
+      "firstEditLatencySec": {
+        "mean": 21.7,
+        "median": 20.0,
+        "ci95": [19.0, 24.4]
+      },
+      "contextEscapeRate": 1.0,
+      "meanCost": 0.2597
+    },
+    "armB_search": {
+      "name": "Search / RAG Index",
+      "taskSuccessRate": 1.0,
+      "finalTestPassRate": 0.84,
+      "invariantRegressionRate": 0.16,
+      "toolCalls": {
+        "mean": 8.6,
+        "median": 8.0,
+        "ci95": [7.6, 9.6]
+      },
+      "tokens": {
+        "mean": 17040,
+        "median": 16000
+      },
+      "firstEditLatencySec": {
+        "mean": 11.2,
+        "median": 10.0,
+        "ci95": [9.8, 12.6]
+      },
+      "contextEscapeRate": 0.284,
+      "meanCost": 0.1468
+    },
+    "armC_chrona": {
+      "name": "Chrona Developer Experience Compiler",
+      "taskSuccessRate": 1.0,
+      "finalTestPassRate": 1.0,
+      "invariantRegressionRate": 0.0,
+      "toolCalls": {
+        "mean": 2.0,
+        "median": 2.0,
+        "ci95": [1.7, 2.3]
+      },
+      "tokens": {
+        "mean": 5754,
+        "median": 5600
+      },
+      "firstEditLatencySec": {
+        "mean": 4.2,
+        "median": 4.2,
+        "ci95": [3.8, 4.6]
+      },
+      "contextEscapeRate": 0.045,
+      "meanCost": 0.0466
+    }
+  },
+  "hypothesisTesting": {
+    "toolCalls": {
+      "chronaVsRaw": {
+        "test": "Wilcoxon Signed-Rank Test (Tie-Corrected)",
+        "pairedMeanDiff": -15.64,
+        "ci95": [-17.76, -13.52],
+        "pairedMedianDiff": -14.5,
+        "W": 0,
+        "Z": 6.156,
+        "pValue": 7.4864e-10,
+        "significant": true
+      },
+      "chronaVsSearch": {
+        "test": "Wilcoxon Signed-Rank Test (Tie-Corrected)",
+        "pairedMeanDiff": -6.60,
+        "ci95": [-7.56, -5.64],
+        "pairedMedianDiff": -6.0,
+        "W": 0,
+        "Z": 6.164,
+        "pValue": 7.1121e-10,
+        "significant": true
+      }
+    },
+    "firstEditLatency": {
+      "chronaVsRaw": {
+        "test": "Wilcoxon Signed-Rank Test (Tie-Corrected)",
+        "pairedMeanDiffSec": -17.57,
+        "ci95": [-20.20, -14.94],
+        "Z": 6.156,
+        "pValue": 7.5101e-10,
+        "significant": true
+      },
+      "chronaVsSearch": {
+        "test": "Wilcoxon Signed-Rank Test (Tie-Corrected)",
+        "pairedMeanDiffSec": -7.03,
+        "ci95": [-8.35, -5.71],
+        "Z": 6.159,
+        "pValue": 7.3369e-10,
+        "significant": true
+      }
+    },
+    "regressionElimination": {
+      "test": "McNemar's Exact Test on Discordant Pairs",
+      "rawRegressedChronaPassed": 8,
+      "chronaRegressedRawPassed": 0,
+      "chiSquare": 6.125,
+      "exactPValue": 0.0078,
+      "significant": true
+    }
+  }
+}

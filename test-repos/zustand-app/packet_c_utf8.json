@@ -1,0 +1,858 @@
+﻿{
+  "workspaceId": "ws_e5c44c72f9fb",
+  "snapshotId": "snap_0ed8c221dc9d66b6",
+  "generatedAt": "2026-08-20T09:21:55.747Z",
+  "manifest": {
+    "purpose": "Compiled task workspace for: \"Replace direct Zustand store subscription with a selector-based pattern\"",
+    "intent": "modify",
+    "target": "src/index_c.ts",
+    "assumptions": [
+      "Preserve existing behavioral contracts and invariant rules.",
+      "Maintain signature compatibility for all direct dependents.",
+      "Ensure test coverage is updated for modified source lines."
+    ],
+    "unresolvedQuestions": [],
+    "claimCoverage": [],
+    "omittedEvidence": []
+  },
+  "reality": {
+    "target": {
+      "file": "src/index_c.ts"
+    },
+    "architecture": {
+      "callChain": [
+        "store()"
+      ],
+      "sideEffects": []
+    },
+    "dependencies": {
+      "graphEdges": [],
+      "transitiveClosure": [],
+      "externalPackages": [
+        "zustand"
+      ]
+    },
+    "contracts": [],
+    "config": {
+      "files": [
+        "package.json"
+      ],
+      "envVars": [],
+      "dbTables": []
+    },
+    "tests": {
+      "files": [],
+      "coverageGaps": [
+        "src/index_c.ts"
+      ]
+    },
+    "provenance": {
+      "created": {
+        "commit": "local-init",
+        "author": "Workspace Author",
+        "date": "2026-08-20",
+        "message": "Initial creation of index_c.ts",
+        "reason": "Component created for index_c"
+      },
+      "recentChanges": 1,
+      "relatedIncidents": []
+    },
+    "risks": [
+      {
+        "level": "MEDIUM",
+        "description": "No automated tests directly cover this dependency boundary.",
+        "mitigation": "Add a regression test suite before proceeding with modifications."
+      }
+    ],
+    "boundary": {
+      "target": "src/index_c.ts",
+      "directDependents": [],
+      "transitiveDependents": [],
+      "affectedTests": [],
+      "affectedApiEndpoints": [],
+      "affectedConfigs": [],
+      "confidence": 0.98,
+      "criticality": "LOW"
+    }
+  },
+  "externalReality": {
+    "zustand": {
+      "packageName": "zustand",
+      "version": "5.0.3",
+      "commit": "working-tree",
+      "api": [
+        {
+          "name": "DevtoolsOptions",
+          "signature": "interface DevtoolsOptions",
+          "file": "esm/middleware/devtools.d.mts",
+          "line": 41,
+          "exportKind": "interface",
+          "parameters": []
+        },
+        {
+          "name": "ExtractState",
+          "signature": "type ExtractState = S extends {\n    getState: () => infer T;\n} ? T : never",
+          "file": "esm/vanilla.d.mts",
+          "line": 15,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "S extends {\n    getState: () => infer T;\n} ? T : never"
+        },
+        {
+          "name": "Mutate",
+          "signature": "type Mutate = number extends Ms['length' & keyof Ms] ? S : Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never",
+          "file": "esm/vanilla.d.mts",
+          "line": 19,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "number extends Ms['length' & keyof Ms] ? S : Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never"
+        },
+        {
+          "name": "NamedSet",
+          "signature": "type NamedSet = WithDevtools<StoreApi<T>>['setState']",
+          "file": "esm/middleware/devtools.d.mts",
+          "line": 53,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "WithDevtools<StoreApi<T>>['setState']"
+        },
+        {
+          "name": "PersistOptions",
+          "signature": "interface PersistOptions",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 21,
+          "exportKind": "interface",
+          "parameters": []
+        },
+        {
+          "name": "PersistStorage",
+          "signature": "interface PersistStorage",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 11,
+          "exportKind": "interface",
+          "parameters": []
+        },
+        {
+          "name": "StateCreator",
+          "signature": "type StateCreator = ((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', never>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', never>, store: Mutate<StoreApi<T>, Mis>) => U) & {\n    $$storeMutators?: Mos;\n}",
+          "file": "esm/vanilla.d.mts",
+          "line": 20,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', never>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', never>, store: Mutate<StoreApi<T>, Mis>) => U) & {\n    $$storeMutators?: Mos;\n}"
+        },
+        {
+          "name": "StateStorage",
+          "signature": "interface StateStorage",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 2,
+          "exportKind": "interface",
+          "parameters": []
+        },
+        {
+          "name": "StorageValue",
+          "signature": "type StorageValue = {\n    state: S;\n    version?: number;\n}",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 7,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "{\n    state: S;\n    version?: number;\n}"
+        },
+        {
+          "name": "StoreApi",
+          "signature": "interface StoreApi",
+          "file": "esm/vanilla.d.mts",
+          "line": 9,
+          "exportKind": "interface",
+          "parameters": []
+        },
+        {
+          "name": "StoreMutatorIdentifier",
+          "signature": "type StoreMutatorIdentifier = keyof StoreMutators<unknown, unknown>",
+          "file": "esm/vanilla.d.mts",
+          "line": 25,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "keyof StoreMutators<unknown, unknown>"
+        },
+        {
+          "name": "StoreMutators",
+          "signature": "interface StoreMutators",
+          "file": "esm/vanilla.d.mts",
+          "line": 23,
+          "exportKind": "interface",
+          "parameters": []
+        },
+        {
+          "name": "UseBoundStore",
+          "signature": "type UseBoundStore = {\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U): U;\n} & S",
+          "file": "esm/react.d.mts",
+          "line": 5,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U): U;\n} & S"
+        },
+        {
+          "name": "UseBoundStoreWithEqualityFn",
+          "signature": "type UseBoundStoreWithEqualityFn = {\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;\n} & S",
+          "file": "esm/traditional.d.mts",
+          "line": 8,
+          "exportKind": "type",
+          "parameters": [],
+          "returnType": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;\n} & S"
+        },
+        {
+          "name": "combine",
+          "signature": "(initialState, create): void",
+          "file": "esm/middleware.mjs",
+          "line": 241,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "initialState",
+              "type": "any",
+              "optional": false
+            },
+            {
+              "name": "create",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "create",
+          "signature": "(createState): void",
+          "file": "esm/react.mjs",
+          "line": 20,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "createState",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "createJSONStorage",
+          "signature": "(getStorage, options): void",
+          "file": "esm/middleware.mjs",
+          "line": 243,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "getStorage",
+              "type": "any",
+              "optional": false
+            },
+            {
+              "name": "options",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "createStore",
+          "signature": "(createState): void",
+          "file": "esm/vanilla.mjs",
+          "line": 22,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "createState",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "createWithEqualityFn",
+          "signature": "(createState, defaultEqualityFn): void",
+          "file": "esm/traditional.mjs",
+          "line": 24,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "createState",
+              "type": "any",
+              "optional": false
+            },
+            {
+              "name": "defaultEqualityFn",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "shallow",
+          "signature": "(valueA, valueB): void",
+          "file": "esm/vanilla/shallow.mjs",
+          "line": 33,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "valueA",
+              "type": "any",
+              "optional": false
+            },
+            {
+              "name": "valueB",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "useShallow",
+          "signature": "(selector): void",
+          "file": "esm/react/shallow.mjs",
+          "line": 4,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "selector",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "useStore",
+          "signature": "(api, selector = identity): void",
+          "file": "esm/react.mjs",
+          "line": 5,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "api",
+              "type": "any",
+              "optional": false
+            },
+            {
+              "name": "selector",
+              "type": "any",
+              "optional": true
+            }
+          ],
+          "returnType": ""
+        },
+        {
+          "name": "useStoreWithEqualityFn",
+          "signature": "(api, selector = identity, equalityFn): void",
+          "file": "esm/traditional.mjs",
+          "line": 7,
+          "exportKind": "function",
+          "parameters": [
+            {
+              "name": "api",
+              "type": "any",
+              "optional": false
+            },
+            {
+              "name": "selector",
+              "type": "any",
+              "optional": true
+            },
+            {
+              "name": "equalityFn",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "returnType": ""
+        }
+      ],
+      "contracts": [],
+      "claims": [],
+      "evidence": [
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware/devtools.d.mts",
+          "line": 41,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "interface DevtoolsOptions",
+            "parameters": []
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.d.mts",
+          "line": 15,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type ExtractState = S extends {\n    getState: () => infer T;\n} ? T : never",
+            "parameters": [],
+            "returnType": "S extends {\n    getState: () => infer T;\n} ? T : never"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.d.mts",
+          "line": 19,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type Mutate = number extends Ms['length' & keyof Ms] ? S : Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never",
+            "parameters": [],
+            "returnType": "number extends Ms['length' & keyof Ms] ? S : Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware/devtools.d.mts",
+          "line": 53,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type NamedSet = WithDevtools<StoreApi<T>>['setState']",
+            "parameters": [],
+            "returnType": "WithDevtools<StoreApi<T>>['setState']"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 21,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "interface PersistOptions",
+            "parameters": []
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 11,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "interface PersistStorage",
+            "parameters": []
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.d.mts",
+          "line": 20,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type StateCreator = ((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', never>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', never>, store: Mutate<StoreApi<T>, Mis>) => U) & {\n    $$storeMutators?: Mos;\n}",
+            "parameters": [],
+            "returnType": "((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', never>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', never>, store: Mutate<StoreApi<T>, Mis>) => U) & {\n    $$storeMutators?: Mos;\n}"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 2,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "interface StateStorage",
+            "parameters": []
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware/persist.d.mts",
+          "line": 7,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type StorageValue = {\n    state: S;\n    version?: number;\n}",
+            "parameters": [],
+            "returnType": "{\n    state: S;\n    version?: number;\n}"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.d.mts",
+          "line": 9,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "interface StoreApi",
+            "parameters": []
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.d.mts",
+          "line": 25,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type StoreMutatorIdentifier = keyof StoreMutators<unknown, unknown>",
+            "parameters": [],
+            "returnType": "keyof StoreMutators<unknown, unknown>"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.d.mts",
+          "line": 23,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "interface StoreMutators",
+            "parameters": []
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/react.d.mts",
+          "line": 5,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type UseBoundStore = {\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U): U;\n} & S",
+            "parameters": [],
+            "returnType": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U): U;\n} & S"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/traditional.d.mts",
+          "line": 8,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "type UseBoundStoreWithEqualityFn = {\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;\n} & S",
+            "parameters": [],
+            "returnType": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;\n} & S"
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware.mjs",
+          "line": 241,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(initialState, create): void",
+            "parameters": [
+              {
+                "name": "initialState",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "create",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/react.mjs",
+          "line": 20,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(createState): void",
+            "parameters": [
+              {
+                "name": "createState",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/middleware.mjs",
+          "line": 243,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(getStorage, options): void",
+            "parameters": [
+              {
+                "name": "getStorage",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "options",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla.mjs",
+          "line": 22,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(createState): void",
+            "parameters": [
+              {
+                "name": "createState",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/traditional.mjs",
+          "line": 24,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(createState, defaultEqualityFn): void",
+            "parameters": [
+              {
+                "name": "createState",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "defaultEqualityFn",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/vanilla/shallow.mjs",
+          "line": 33,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(valueA, valueB): void",
+            "parameters": [
+              {
+                "name": "valueA",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "valueB",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/react/shallow.mjs",
+          "line": 4,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(selector): void",
+            "parameters": [
+              {
+                "name": "selector",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/react.mjs",
+          "line": 5,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(api, selector = identity): void",
+            "parameters": [
+              {
+                "name": "api",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "selector",
+                "type": "any",
+                "optional": true
+              }
+            ],
+            "returnType": ""
+          }
+        },
+        {
+          "source": "dependency-types",
+          "strength": "STRONG",
+          "file": "esm/traditional.mjs",
+          "line": 7,
+          "description": "Verified signature from Chrona Truth Registry (zustand@5.0.3)",
+          "data": {
+            "exists": true,
+            "compiles": true,
+            "signature": "(api, selector = identity, equalityFn): void",
+            "parameters": [
+              {
+                "name": "api",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "selector",
+                "type": "any",
+                "optional": true
+              },
+              {
+                "name": "equalityFn",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "returnType": ""
+          }
+        }
+      ],
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "bf3a358fcf16138ea74b4d01062a961585778107924bbdc4c361808130aa0185",
+        "verified": true
+      },
+      "provenance": {
+        "source": "chrona-registry",
+        "publishedAt": "2026-08-20T09:10:59.636Z",
+        "chronaVersion": "0.2.0",
+        "parserVersion": "0.144.0"
+      }
+    }
+  },
+  "evidence": {
+    "claims": [],
+    "gitEvidence": [
+      {
+        "commit": "local-init",
+        "author": "Workspace Author",
+        "date": "2026-08-20",
+        "message": "Initial creation of index_c.ts",
+        "reason": "Component created for index_c"
+      }
+    ],
+    "sourceSlices": [
+      {
+        "id": "src/index_b.ts:1-19",
+        "file": "src/index_b.ts",
+        "startLine": 1,
+        "endLine": 19,
+        "content": "import { createStore } from 'zustand/vanilla';\n\ninterface AppState {\n  count: number;\n  increment: () => void;\n}\n\nexport const store = createStore<AppState>((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 })),\n}));\n\n// We currently subscribe directly to the entire store.\n// Task: Replace this direct store subscription with a selector-based pattern\n// so we only log when 'count' specifically changes.\nstore.subscribe((state) => {\n  console.log('Store updated:', state.count);\n});\n",
+        "role": "target",
+        "proves": [],
+        "confidence": 0.95
+      },
+      {
+        "id": "src/index_c.ts:1-19",
+        "file": "src/index_c.ts",
+        "startLine": 1,
+        "endLine": 19,
+        "content": "import { createStore } from 'zustand/vanilla';\n\ninterface AppState {\n  count: number;\n  increment: () => void;\n}\n\nexport const store = createStore<AppState>((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 })),\n}));\n\n// We currently subscribe directly to the entire store.\n// Task: Replace this direct store subscription with a selector-based pattern\n// so we only log when 'count' specifically changes.\nstore.subscribe((state) => {\n  console.log('Store updated:', state.count);\n});\n",
+        "role": "target",
+        "proves": [],
+        "confidence": 0.95
+      },
+      {
+        "id": "src/index.ts:1-19",
+        "file": "src/index.ts",
+        "startLine": 1,
+        "endLine": 19,
+        "content": "import { createStore } from 'zustand/vanilla';\n\ninterface AppState {\n  count: number;\n  increment: () => void;\n}\n\nexport const store = createStore<AppState>((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 })),\n}));\n\n// We currently subscribe directly to the entire store.\n// Task: Replace this direct store subscription with a selector-based pattern\n// so we only log when 'count' specifically changes.\nstore.subscribe((state) => {\n  console.log('Store updated:', state.count);\n});\n",
+        "role": "target",
+        "proves": [],
+        "confidence": 0.95
+      }
+    ]
+  },
+  "projection": {
+    "quality": "VALID",
+    "evidenceSufficiency": 1,
+    "minimumSufficientBudget": 390,
+    "recommendedTokenBudget": 390,
+    "missingCriticalEvidence": [],
+    "coverageScore": 1,
+    "precisionScore": 1,
+    "evidenceCompleteness": 1,
+    "boundaryCompleteness": 1,
+    "contextEfficiency": 0,
+    "tokenCount": 390,
+    "tokenBudget": 8000,
+    "filesInspected": 3,
+    "filesIncluded": 3
+  }
+}
+

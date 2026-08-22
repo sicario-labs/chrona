@@ -1,0 +1,8 @@
+{
+  "name": "cli",
+  "docsDir": "content/docs",
+  "framework": "vite",
+  "hasTypeScript": true,
+  "symbolsCount": 12,
+  "version": "1.4.1"
+}

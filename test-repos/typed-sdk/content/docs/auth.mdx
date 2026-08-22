@@ -1,0 +1,22 @@
+# Authentication Reference
+
+The `authenticate` function exchanges API keys for a live session:
+
+```ts
+import { authenticate } from '@sample/typed-sdk';
+
+const session = await authenticate({
+  apiKey: 'api_test_key',
+  timeout: 5000,
+});
+```
+
+### Deprecated Methods
+
+```ts
+import { legacyLogin } from '@sample/typed-sdk';
+```
+
+<Callout type="warning">
+`legacyLogin` is deprecated. Use `authenticate` instead.
+</Callout>

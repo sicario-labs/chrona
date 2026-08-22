@@ -1,0 +1,43 @@
+# Monorepo Guide
+
+Managing documentation verification across multi-package monorepos (pnpm, Turborepo, Nx).
+
+---
+
+## Monorepo Discovery Behavior
+
+When Chrona runs at the root of a monorepo containing a `packages/` directory:
+1. Discovers all package subdirectories under `packages/*/src`.
+2. Indexes symbol exports across each package independently.
+3. Automatically resolves cross-package imports (e.g. `import { DocumentationVerifier } from '@chrona/engine'`).
+
+---
+
+## Verifying Specific Packages
+
+To verify a single package in a monorepo workspace:
+
+```bash
+# Using pnpm filter
+pnpm --filter @sample/cli check
+
+# Using cwd
+npx chrona check --cwd packages/cli
+```
+
+---
+
+## Monorepo Turbo Task Definition
+
+In `turbo.json`, add Chrona as a verification pipeline step:
+
+```json
+{
+  "tasks": {
+    "verify:docs": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    }
+  }
+}
+```

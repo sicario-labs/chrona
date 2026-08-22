@@ -1,0 +1,11 @@
+# Infrastructure Provisioning
+
+```ts
+import { provisionCluster } from '@sample/infra-iac';
+
+const cluster = provisionCluster({
+  name: 'prod-cluster',
+  region: 'us-east-1',
+  nodes: 5,
+});
+```

@@ -1,0 +1,8 @@
+{
+  "name": "chrona",
+  "docsDir": "content/docs",
+  "framework": "next",
+  "hasTypeScript": true,
+  "symbolsCount": 312,
+  "version": "1.4.1"
+}

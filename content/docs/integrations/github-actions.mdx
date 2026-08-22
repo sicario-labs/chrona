@@ -1,0 +1,57 @@
+# GitHub Actions Integration
+
+Automating documentation truth verification on pull requests and branch pushes.
+
+---
+
+## Standard Workflow (`.github/workflows/chrona.yml`)
+
+```yaml
+name: Chrona Truth Gate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  verify:
+    name: Verify Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Chrona CI Gate
+        run: npx chrona ci --fail-on error --diff origin/main --format github
+```
+
+---
+
+## Ingesting Verification into Chrona Cloud
+
+To enable persistent truth tracking, historical drift analytics, and live SVG status badges:
+
+```yaml
+- name: Run Chrona CI and Ingest
+  run: npx chrona ci --fail-on error
+  env:
+    CHRONA_API_KEY: ${{ secrets.CHRONA_API_KEY }}
+    CHRONA_API_URL: https://api.chronadocs.xyz
+```

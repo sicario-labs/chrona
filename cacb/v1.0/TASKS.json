@@ -1,0 +1,452 @@
+[
+  {
+    "id": "TASK-01",
+    "repo": "radix3",
+    "category": "Feature",
+    "task": "Add strict route matching option to createRouter",
+    "intent": "modify",
+    "target": "createRouter",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-02",
+    "repo": "radix3",
+    "category": "Diagnosis",
+    "task": "Investigate why duplicate overlapping routes are accepted on registration without error",
+    "intent": "investigate",
+    "target": "routesOverlap",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-03",
+    "repo": "radix3",
+    "category": "Deletion",
+    "task": "Evaluate safety of deleting NullProtoObj in src/object.ts",
+    "intent": "delete",
+    "target": "NullProtoObj",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-04",
+    "repo": "radix3",
+    "category": "Bugfix",
+    "task": "Fix trailing slash normalization bug in findAllRoutes",
+    "intent": "modify",
+    "target": "findAllRoutes",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-05",
+    "repo": "radix3",
+    "category": "Refactor",
+    "task": "Optimize Trie node regex compilation cache in regexp-to-route",
+    "intent": "refactor",
+    "target": "toRouteRegexp",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-06",
+    "repo": "destr",
+    "category": "Security",
+    "task": "Implement strict JSON deserialization mode with SyntaxError throwing and prototype pollution guards",
+    "intent": "modify",
+    "target": "destr",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-07",
+    "repo": "destr",
+    "category": "Feature",
+    "task": "Add custom reviver support to safeDestr while maintaining proto poisoning filter",
+    "intent": "modify",
+    "target": "safeDestr",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-08",
+    "repo": "destr",
+    "category": "Bugfix",
+    "task": "Fix BigInt literal parsing when strict mode is disabled",
+    "intent": "modify",
+    "target": "destr",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-09",
+    "repo": "ufo",
+    "category": "Feature",
+    "task": "Add query parameter serializer options arrayFormat: bracket | comma | repeat",
+    "intent": "modify",
+    "target": "withQuery",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-10",
+    "repo": "ufo",
+    "category": "Bugfix",
+    "task": "Fix hash anchor truncation when parsing URLs containing double query parameters",
+    "intent": "modify",
+    "target": "parseURL",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-11",
+    "repo": "ufo",
+    "category": "Refactor",
+    "task": "Unify cleanDoubleSlashes regex path cleaner across resolveURL and joinURL",
+    "intent": "refactor",
+    "target": "joinURL",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-12",
+    "repo": "ufo",
+    "category": "Feature",
+    "task": "Add support for decoding encoded URI query keys in parseQuery",
+    "intent": "modify",
+    "target": "parseQuery",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-13",
+    "repo": "zustand",
+    "category": "Diagnosis",
+    "task": "Diagnose stale state returns and listener iteration tearing during concurrent setState updates",
+    "intent": "investigate",
+    "target": "createStore",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-14",
+    "repo": "zustand",
+    "category": "Bugfix",
+    "task": "Snapshot listener Set before forEach iteration to prevent mutation tearing during unsubscriptions",
+    "intent": "modify",
+    "target": "createStoreImpl",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-15",
+    "repo": "zustand",
+    "category": "Feature",
+    "task": "Add shallow equality comparator option to useStore selector subscription",
+    "intent": "modify",
+    "target": "useStore",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-16",
+    "repo": "zustand",
+    "category": "Refactor",
+    "task": "Migrate subscribeWithSelector middleware to use createStore internal listener snapshotting",
+    "intent": "refactor",
+    "target": "subscribeWithSelector",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-17",
+    "repo": "ky",
+    "category": "Concurrency",
+    "task": "Why does a race condition occur when concurrent requests retry after an AbortSignal event?",
+    "intent": "investigate",
+    "target": "retry",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-18",
+    "repo": "ky",
+    "category": "Feature",
+    "task": "Add beforeRetry hook allowing async token refresh before dispatching retries",
+    "intent": "modify",
+    "target": "Ky",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-19",
+    "repo": "ky",
+    "category": "Bugfix",
+    "task": "Fix timeout leak on cloned Request objects in Ky request pipeline",
+    "intent": "modify",
+    "target": "timeout",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-20",
+    "repo": "defu",
+    "category": "Security",
+    "task": "Prevent prototype pollution via __proto__ and constructor.prototype key injection in defuFn",
+    "intent": "modify",
+    "target": "defu",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-21",
+    "repo": "defu",
+    "category": "Feature",
+    "task": "Add array merge strategy options (concat vs overwrite) to createDefu customizer",
+    "intent": "modify",
+    "target": "createDefu",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-22",
+    "repo": "defu",
+    "category": "Bugfix",
+    "task": "Fix custom merger handling when overriding plain objects with null literals",
+    "intent": "modify",
+    "target": "defu",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-23",
+    "repo": "klona",
+    "category": "Feature",
+    "task": "Add RegExp and Date preserve options to klona/full clone algorithm",
+    "intent": "modify",
+    "target": "klona",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-24",
+    "repo": "klona",
+    "category": "Bugfix",
+    "task": "Fix symbol property preservation in klona/lite",
+    "intent": "modify",
+    "target": "klona",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-25",
+    "repo": "p-limit",
+    "category": "Concurrency",
+    "task": "Add clearQueue method allowing cancellation of queued pending async functions",
+    "intent": "modify",
+    "target": "pLimit",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-26",
+    "repo": "p-limit",
+    "category": "Bugfix",
+    "task": "Ensure queue size counter decreases immediately when a queued task throws an unhandled rejection",
+    "intent": "modify",
+    "target": "pLimit",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-27",
+    "repo": "scule",
+    "category": "Feature",
+    "task": "Add kebabCase and snakeCase support with accented unicode character folding",
+    "intent": "modify",
+    "target": "kebabCase",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-28",
+    "repo": "scule",
+    "category": "Bugfix",
+    "task": "Fix camelCase conversion for consecutive uppercase acronyms (e.g. XMLHttpRequest)",
+    "intent": "modify",
+    "target": "camelCase",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-29",
+    "repo": "nanoid",
+    "category": "Feature",
+    "task": "Add custom random bytes generator callback option to customAlphabet",
+    "intent": "modify",
+    "target": "customAlphabet",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-30",
+    "repo": "nanoid",
+    "category": "Security",
+    "task": "Verify entropy calculation in customRandom against non-power-of-two alphabet lengths",
+    "intent": "investigate",
+    "target": "customRandom",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-31",
+    "repo": "clsx",
+    "category": "Feature",
+    "task": "Support nested Set and Map entries in clsx class list generation",
+    "intent": "modify",
+    "target": "clsx",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-32",
+    "repo": "clsx",
+    "category": "Refactor",
+    "task": "Optimize string concatenation loop using array push and join in clsx/lite",
+    "intent": "refactor",
+    "target": "clsx",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-33",
+    "repo": "mitt",
+    "category": "Feature",
+    "task": "Add once method to register one-time event listeners with automatic deregistration",
+    "intent": "modify",
+    "target": "mitt",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-34",
+    "repo": "mitt",
+    "category": "Bugfix",
+    "task": "Prevent handler duplication when registering the same function multiple times on wildcard event",
+    "intent": "modify",
+    "target": "mitt",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-35",
+    "repo": "dotenv",
+    "category": "Feature",
+    "task": "Add override option to config allowing existing process.env variables to be overwritten",
+    "intent": "modify",
+    "target": "config",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-36",
+    "repo": "dotenv",
+    "category": "Bugfix",
+    "task": "Fix multiline quoted string parsing with escaped internal double quotes in parse",
+    "intent": "modify",
+    "target": "parse",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-37",
+    "repo": "chalk",
+    "category": "Feature",
+    "task": "Add hex color support to chalk template tag literal parser",
+    "intent": "modify",
+    "target": "chalk",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-38",
+    "repo": "chalk",
+    "category": "Bugfix",
+    "task": "Fix nested style closure reset codes when styling multiline strings in chalk",
+    "intent": "modify",
+    "target": "chalk",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-39",
+    "repo": "ms",
+    "category": "Feature",
+    "task": "Add support for parsing fractional weeks and years in ms string parser",
+    "intent": "modify",
+    "target": "ms",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-40",
+    "repo": "ms",
+    "category": "Bugfix",
+    "task": "Throw TypeError on non-finite number inputs in ms format converter",
+    "intent": "modify",
+    "target": "ms",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-41",
+    "repo": "hono",
+    "category": "Refactor",
+    "task": "Extract route param regex matchers into reusable pattern cache across Hono router",
+    "intent": "refactor",
+    "target": "Hono",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-42",
+    "repo": "hono",
+    "category": "Feature",
+    "task": "Add strict trailing slash redirection middleware to Hono router",
+    "intent": "modify",
+    "target": "Hono",
+    "complexity": "medium"
+  },
+  {
+    "id": "TASK-43",
+    "repo": "hono",
+    "category": "Bugfix",
+    "task": "Fix context response body stream cancellation when client closes socket abruptly",
+    "intent": "modify",
+    "target": "Context",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-44",
+    "repo": "fastify",
+    "category": "Feature",
+    "task": "Add preParsing hook schema validator for fastify request body",
+    "intent": "modify",
+    "target": "FastifyInstance",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-45",
+    "repo": "fastify",
+    "category": "Diagnosis",
+    "task": "Diagnose encapsulation boundary leakage when registering decorator inside scoped plugin",
+    "intent": "investigate",
+    "target": "decorate",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-46",
+    "repo": "zod",
+    "category": "Feature",
+    "task": "Add exact optional property type checking to z.object schema validation",
+    "intent": "modify",
+    "target": "ZodObject",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-47",
+    "repo": "zod",
+    "category": "Bugfix",
+    "task": "Fix union schema error aggregation when multiple discriminated union branches fail",
+    "intent": "modify",
+    "target": "ZodDiscriminatedUnion",
+    "complexity": "high"
+  },
+  {
+    "id": "TASK-48",
+    "repo": "is",
+    "category": "Feature",
+    "task": "Add isPlainObject and isIterable type guard checks",
+    "intent": "modify",
+    "target": "is",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-49",
+    "repo": "is",
+    "category": "Bugfix",
+    "task": "Fix isPromise type guard to support both native promises and thenables",
+    "intent": "modify",
+    "target": "isPromise",
+    "complexity": "low"
+  },
+  {
+    "id": "TASK-50",
+    "repo": "radix3",
+    "category": "Deletion",
+    "task": "Safely remove deprecated matchHelper function and migrate all internal calls to findRoute",
+    "intent": "delete",
+    "target": "matchHelper",
+    "complexity": "medium"
+  }
+]

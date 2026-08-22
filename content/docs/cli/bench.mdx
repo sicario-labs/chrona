@@ -1,0 +1,66 @@
+# chrona bench
+
+Measure Developer Task Success Rate (DTSR), Time to First Success, and DX Integrity.
+
+---
+
+## Usage
+
+```bash
+chrona bench [options]
+```
+
+## What it does
+
+`chrona bench` evaluates the holistic developer experience of your documentation by testing whether developer recipes and tasks succeed:
+- **DTSR (Developer Task Success Rate)**: Percentage of documented developer workflows that pass verification without errors.
+- **TTFST (Time to First Successful Task)**: Estimated latency for a new developer or agent to complete an initial task.
+- **DX Integrity**: Comprehensive quality score combining verified claims, executable code snippets, and zero contradictions.
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--cwd <path>` | `string` | `process.cwd()` | Working directory for the repository |
+| `--json` | `boolean` | `false` | Output benchmark evaluation as JSON (v1) |
+
+---
+
+## Examples
+
+### Run Developer Experience Benchmark
+
+```bash
+chrona bench
+```
+
+### JSON Evaluation Output
+
+```bash
+chrona bench --json
+```
+
+Output:
+```json
+{
+  "schemaVersion": "v1",
+  "repository": "rou3",
+  "dtsr": 1.0,
+  "ttfstSeconds": 132,
+  "dxIntegrity": 97.1,
+  "tasksEvaluated": 5,
+  "tasksPassed": 5,
+  "tasksFailed": 0,
+  "discoveryCoverage": 1.0,
+  "executableExamplesRate": 0.85,
+  "contradictedClaims": 1,
+  "unverifiedNarrative": 15,
+  "diagnostics": {
+    "errors": 1,
+    "warnings": 0,
+    "info": 0
+  }
+}
+```

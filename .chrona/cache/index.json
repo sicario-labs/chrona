@@ -1,0 +1,386 @@
+{
+  "version": "v1",
+  "files": {
+    "content/docs/api-reference.mdx": {
+      "mtimeMs": 1786784000548.4875,
+      "hash": "e8c7f96b7f83a727",
+      "claimsCacheKey": "e42eb7670acb8b77"
+    },
+    "content/docs/architecture.mdx": {
+      "mtimeMs": 1787082563609.3867,
+      "hash": "123fecc75ae61bea",
+      "claimsCacheKey": "01013df2d55d975f"
+    },
+    "content/docs/index.mdx": {
+      "mtimeMs": 1787090834760.3933,
+      "hash": "bd6e341582d37dd9",
+      "claimsCacheKey": "890a1d15beebcaf2"
+    },
+    "content/docs/getting-started.mdx": {
+      "mtimeMs": 1786783765256.0105,
+      "hash": "09291abeeac35376",
+      "claimsCacheKey": "1110591fc2c46653"
+    },
+    "content/docs/cli.mdx": {
+      "mtimeMs": 1786784242683.932,
+      "hash": "c1c865e26aa1fd76",
+      "claimsCacheKey": "c166b41affcd71de"
+    },
+    "content/docs/architecture/adapters.mdx": {
+      "mtimeMs": 1787090982746.7288,
+      "hash": "d0c224cb1d88ec57",
+      "claimsCacheKey": "09bf6e54922aa765"
+    },
+    "content/docs/architecture/compiler-pipeline.mdx": {
+      "mtimeMs": 1787090980221.7004,
+      "hash": "24c0c9923eae22e4",
+      "claimsCacheKey": "46d1d57959a703d6"
+    },
+    "content/docs/architecture/overview.mdx": {
+      "mtimeMs": 1787090977228.4045,
+      "hash": "76ccb456712b487b",
+      "claimsCacheKey": "05eef8742ca02c14"
+    },
+    "content/docs/cli/audit.mdx": {
+      "mtimeMs": 1787090871975.5264,
+      "hash": "78bfa6b9040468c4",
+      "claimsCacheKey": "fee08ce14928774c"
+    },
+    "content/docs/cli/auth.mdx": {
+      "mtimeMs": 1787090901999.438,
+      "hash": "fd19a740996da23e",
+      "claimsCacheKey": "cb4bed9edc5c7942"
+    },
+    "content/docs/cli/badge.mdx": {
+      "mtimeMs": 1787090887871.051,
+      "hash": "55488abb5d1e7c77",
+      "claimsCacheKey": "a122b32f356637a3"
+    },
+    "content/docs/cli/ci.mdx": {
+      "mtimeMs": 1787090865290.9126,
+      "hash": "526852c54fcdf89b",
+      "claimsCacheKey": "062497d8ffd2c6cb"
+    },
+    "content/docs/cli/bench.mdx": {
+      "mtimeMs": 1787090884008.6418,
+      "hash": "8a9f87555699af17",
+      "claimsCacheKey": "bbe1af7e6b436290"
+    },
+    "content/docs/cli/discover.mdx": {
+      "mtimeMs": 1787090875036.7483,
+      "hash": "2d96d62b2c7ce938",
+      "claimsCacheKey": "b0f64014403182b3"
+    },
+    "content/docs/cli/check.mdx": {
+      "mtimeMs": 1787090862021.7786,
+      "hash": "3a25940f80dd5c64",
+      "claimsCacheKey": "7dd0019f49e34210"
+    },
+    "content/docs/cli/deploy.mdx": {
+      "mtimeMs": 1787090899374.0852,
+      "hash": "e51d6a96996cbc30",
+      "claimsCacheKey": "3303501f7ca6a5b1"
+    },
+    "content/docs/cli/env.mdx": {
+      "mtimeMs": 1787090904240.2407,
+      "hash": "2dcfcd7aeeb06dea",
+      "claimsCacheKey": "fca1b6474497821c"
+    },
+    "content/docs/cli/impact.mdx": {
+      "mtimeMs": 1787090869176.0732,
+      "hash": "491817e82ef92cd7",
+      "claimsCacheKey": "2806a187979856a1"
+    },
+    "content/docs/cli/init.mdx": {
+      "mtimeMs": 1787090857927.5703,
+      "hash": "748c2015b9403dd2",
+      "claimsCacheKey": "7eb464841371c2c7"
+    },
+    "content/docs/cli/mcp.mdx": {
+      "mtimeMs": 1787090896307.978,
+      "hash": "ee0a681f42df37a1",
+      "claimsCacheKey": "1fe28e6d2540b553"
+    },
+    "content/docs/cli/overview.mdx": {
+      "mtimeMs": 1787090855070.4468,
+      "hash": "330a048497097f47",
+      "claimsCacheKey": "418cf5c238e18adf"
+    },
+    "content/docs/cli/plan.mdx": {
+      "mtimeMs": 1787090877606.8423,
+      "hash": "7eac2325fa68cea5",
+      "claimsCacheKey": "12c6278c50bdfac3"
+    },
+    "content/docs/cli/repair.mdx": {
+      "mtimeMs": 1787090880123.387,
+      "hash": "372cf9a6166b4619",
+      "claimsCacheKey": "713d36b1a0eb85b3"
+    },
+    "content/docs/cli/workspace.mdx": {
+      "mtimeMs": 1787091017718.2798,
+      "hash": "e4d20c4ea7acf43f",
+      "claimsCacheKey": "ad93a9716bc09752"
+    },
+    "content/docs/concepts/claim-ir.mdx": {
+      "mtimeMs": 1787090965305.5076,
+      "hash": "9864dcc77963396f",
+      "claimsCacheKey": "8e8f29193b9f8048"
+    },
+    "content/docs/concepts/compiler-model.mdx": {
+      "mtimeMs": 1787090959233.6504,
+      "hash": "de542e62f0215b02",
+      "claimsCacheKey": "84c9822a2e44f371"
+    },
+    "content/docs/concepts/evidence.mdx": {
+      "mtimeMs": 1787090967815.8667,
+      "hash": "a6e2c481ee4db635",
+      "claimsCacheKey": "298f90e55c94e4da"
+    },
+    "content/docs/concepts/provenance.mdx": {
+      "mtimeMs": 1787090973690.7158,
+      "hash": "e86d912d0742b6af",
+      "claimsCacheKey": "2e2b21a913eba3f5"
+    },
+    "content/docs/concepts/workspace.mdx": {
+      "mtimeMs": 1787090970579.0713,
+      "hash": "0ca0da1134b3edbf",
+      "claimsCacheKey": "185f1a98b8e5b779"
+    },
+    "content/docs/configuration/environment-variables.mdx": {
+      "mtimeMs": 1787090914519.949,
+      "hash": "cb5c34f63e986cb9",
+      "claimsCacheKey": "3f4a36fa1674ecff"
+    },
+    "content/docs/configuration/overview.mdx": {
+      "mtimeMs": 1787090907199.871,
+      "hash": "f4a49b1fbc0d54f8",
+      "claimsCacheKey": "be9144d27e351ba6"
+    },
+    "content/docs/configuration/reference.mdx": {
+      "mtimeMs": 1787090911590.207,
+      "hash": "5af034c4be05e998",
+      "claimsCacheKey": "ec177b60d715e618"
+    },
+    "content/docs/diagnostics/codes.mdx": {
+      "mtimeMs": 1787091022343.0884,
+      "hash": "788709bd80013af2",
+      "claimsCacheKey": "d542f60f9117ef4a"
+    },
+    "content/docs/diagnostics/overview.mdx": {
+      "mtimeMs": 1787090917678.302,
+      "hash": "0f3fafbd8ed08eff",
+      "claimsCacheKey": "a4b5315cbb10292d"
+    },
+    "content/docs/getting-started/first-verification.mdx": {
+      "mtimeMs": 1787091036551.4644,
+      "hash": "b5bf3dce4a6bbfea",
+      "claimsCacheKey": "ceeb97c828191d79"
+    },
+    "content/docs/getting-started/concepts.mdx": {
+      "mtimeMs": 1787091027485.5283,
+      "hash": "229886bfab67093e",
+      "claimsCacheKey": "29d4fd39dd525a0c"
+    },
+    "content/docs/diagnostics/suppression.mdx": {
+      "mtimeMs": 1787090925772.785,
+      "hash": "a209f3782c2b7295",
+      "claimsCacheKey": "b7c0662684faf0a1"
+    },
+    "content/docs/getting-started/installation.mdx": {
+      "mtimeMs": 1787090838186.577,
+      "hash": "c4bad75dab9d9495",
+      "claimsCacheKey": "c7a4fa8b6b3b69ef"
+    },
+    "content/docs/getting-started/quickstart.mdx": {
+      "mtimeMs": 1787090842197.4812,
+      "hash": "fe842bdc84e4ffa6",
+      "claimsCacheKey": "d0510e7efda4fb7b"
+    },
+    "content/docs/guides/git-diff-verification.mdx": {
+      "mtimeMs": 1787090937381.058,
+      "hash": "4846a3433a97c8f6",
+      "claimsCacheKey": "536deee77db605be"
+    },
+    "content/docs/guides/github-actions.mdx": {
+      "mtimeMs": 1787090940573.7798,
+      "hash": "adbc46b5d2e39007",
+      "claimsCacheKey": "f7ba4d96431782d1"
+    },
+    "content/docs/guides/monorepos.mdx": {
+      "mtimeMs": 1787091041265.8086,
+      "hash": "dcc529efe82b6e92",
+      "claimsCacheKey": "b4428e44261458fe"
+    },
+    "content/docs/guides/incremental-verification.mdx": {
+      "mtimeMs": 1787090934673.4138,
+      "hash": "262e9412bca8cdc3",
+      "claimsCacheKey": "ef7f60581397de82"
+    },
+    "content/docs/guides/troubleshooting.mdx": {
+      "mtimeMs": 1787090946685.819,
+      "hash": "de8768eb75d9b76f",
+      "claimsCacheKey": "14b0e06dc565af6a"
+    },
+    "content/docs/guides/verifying-code-examples.mdx": {
+      "mtimeMs": 1787091045655.8599,
+      "hash": "c83f04f2d6e5685b",
+      "claimsCacheKey": "b2f6e48f7b9e52cf"
+    },
+    "content/docs/guides/verifying-documentation.mdx": {
+      "mtimeMs": 1787090928649.7483,
+      "hash": "b051b3ae76d4e459",
+      "claimsCacheKey": "26656c0799c0f891"
+    },
+    "content/docs/integrations/ci-providers.mdx": {
+      "mtimeMs": 1787090952549.4004,
+      "hash": "de86a0093ac7220d",
+      "claimsCacheKey": "c8e8a0b72a5cc7d5"
+    },
+    "content/docs/integrations/github-actions.mdx": {
+      "mtimeMs": 1787090949556.0564,
+      "hash": "b9675a4dc6bc09fc",
+      "claimsCacheKey": "df83d306b9d441f9"
+    },
+    "content/docs/integrations/mcp.mdx": {
+      "mtimeMs": 1787090955719.2202,
+      "hash": "c4ba92e095fb2fcf",
+      "claimsCacheKey": "4557fdb3b9c2aa03"
+    },
+    "content/docs/reference/exit-codes.mdx": {
+      "mtimeMs": 1787090985406.8538,
+      "hash": "9fc356b858d9e281",
+      "claimsCacheKey": "5dac72f782c7b634"
+    },
+    "content/docs/reference/mcp-tools.mdx": {
+      "mtimeMs": 1787090992245.3174,
+      "hash": "c268d1a54e79ae6b",
+      "claimsCacheKey": "b27f1cfa04ac62b1"
+    },
+    "content/docs/reference/output-formats.mdx": {
+      "mtimeMs": 1787090988742.0415,
+      "hash": "7b5604011a6843b5",
+      "claimsCacheKey": "9f8796272a0782c4"
+    },
+    "content/docs/reference/terminology.mdx": {
+      "mtimeMs": 1787090995477.1196,
+      "hash": "be90d23362527f2d",
+      "claimsCacheKey": "f1725cf70fc8862b"
+    },
+    "docs/adr/0001-domain-chronadocs-xyz.md": {
+      "mtimeMs": 1786915927262.4207,
+      "hash": "7c6729a5110a9384",
+      "claimsCacheKey": "0b37d765e3adbd5f"
+    },
+    "docs/adr/0002-free-tier-spend-cap.md": {
+      "mtimeMs": 1786915942118.9014,
+      "hash": "f540a98193a550ac",
+      "claimsCacheKey": "a7bb019f73711281"
+    },
+    "docs/adr/0003-control-plane-d1.md": {
+      "mtimeMs": 1786958235724.363,
+      "hash": "68ce056a2b91eae9",
+      "claimsCacheKey": "dc39dc0bfbc366eb"
+    },
+    "docs/adr/0004-kill-pages-for-tenants.md": {
+      "mtimeMs": 1786915963885.0398,
+      "hash": "f9f4376444bdad22",
+      "claimsCacheKey": "6512d52c2d553d1e"
+    },
+    "docs/adr/0005-single-edge-worker-topology.md": {
+      "mtimeMs": 1786915972826.1265,
+      "hash": "26a6d21cf35c769c",
+      "claimsCacheKey": "7fdaac40107d8645"
+    },
+    "docs/adr/0008-external-build-fleet.md": {
+      "mtimeMs": 1786916008902.7383,
+      "hash": "3d54c91f9406f1a6",
+      "claimsCacheKey": "ac47123157ab861b"
+    },
+    "docs/adr/0006-deploy-id-in-cache-key.md": {
+      "mtimeMs": 1786915991973.8337,
+      "hash": "be9a918d4891c7b5",
+      "claimsCacheKey": "8dd6760a96b3c1af"
+    },
+    "docs/adr/0007-durable-object-alias-registry.md": {
+      "mtimeMs": 1786916000264.6519,
+      "hash": "1f4ebcc322c43d93",
+      "claimsCacheKey": "bda60ca81ae49c84"
+    },
+    "docs/adr/0010-console-fork-vite-tanstack.md": {
+      "mtimeMs": 1786916030957.5251,
+      "hash": "392dfc7d47699249",
+      "claimsCacheKey": "c76eecdb988eed70"
+    },
+    "docs/adr/0009-auth-better-auth.md": {
+      "mtimeMs": 1786916016573.2437,
+      "hash": "9f50ebf36ad18c0d",
+      "claimsCacheKey": "8e93f42a38c09f2f"
+    },
+    "docs/documentation-audit.md": {
+      "mtimeMs": 1787091176440.8474,
+      "hash": "f498ca70f7a3684b",
+      "claimsCacheKey": "df865d8a45dd2acb"
+    },
+    "docs/adr/0010-console-shadcn-preset.md": {
+      "mtimeMs": 1786950556121.118,
+      "hash": "8a8175bd97be81c0",
+      "claimsCacheKey": "b7823860804e40da"
+    },
+    "docs/real-world-benchmark.md": {
+      "mtimeMs": 1787091900121.2202,
+      "hash": "0430d87af3948230",
+      "claimsCacheKey": "f5bfa7f1ecd121a2"
+    },
+    "docs/adr/0011-billing-bachs.md": {
+      "mtimeMs": 1786916039196.515,
+      "hash": "0e41c480cd1ba956",
+      "claimsCacheKey": "eddfd47cf657f080"
+    },
+    "docs/investor-narrative.md": {
+      "mtimeMs": 1787090503448.9275,
+      "hash": "9a013304fd3e4f32",
+      "claimsCacheKey": "5f9cafa72435a2f6"
+    },
+    "docs/adr/0012-custom-domains-cf-for-saas.md": {
+      "mtimeMs": 1786916048091.908,
+      "hash": "8a5bc1c7890cd6fb",
+      "claimsCacheKey": "b6badfc3cb996099"
+    },
+    "docs/spikes/D0.6-chrona-docs-pages-dev-ownership.md": {
+      "mtimeMs": 1786916331772.3962,
+      "hash": "e51d9a1e75e73c91",
+      "claimsCacheKey": "2c7af020f351456f"
+    },
+    "docs/hosted-docs-plan.md": {
+      "mtimeMs": 1786983811230.6287,
+      "hash": "0d42e0da3d4061d8",
+      "claimsCacheKey": "5c092c367db946ad"
+    },
+    "docs/sprint-9-reality.md": {
+      "mtimeMs": 1787090508000.2266,
+      "hash": "a734bbafe207b279",
+      "claimsCacheKey": "482ad54dafc59086"
+    },
+    "docs/yc-sprint-plan.md": {
+      "mtimeMs": 1787088443578.6614,
+      "hash": "8ea4cb59dc77a94e",
+      "claimsCacheKey": "28311ddd7433fc89"
+    },
+    "docs/spikes/D0.7-phaseops-workers-dev-dead-code.md": {
+      "mtimeMs": 1786916344946.2307,
+      "hash": "16e7e45d67b3998b",
+      "claimsCacheKey": "e2fa478cff3758e7"
+    },
+    ".impeccable.md": {
+      "mtimeMs": 1786997955298.5642,
+      "hash": "d3e2a05a2c2dc24d",
+      "claimsCacheKey": "b3e48ab243d05fa2"
+    },
+    "README.md": {
+      "mtimeMs": 1786695189654.0872,
+      "hash": "71d9dba4b23fed85",
+      "claimsCacheKey": "6ab33a900c056853"
+    }
+  },
+  "evidenceMap": {}
+}

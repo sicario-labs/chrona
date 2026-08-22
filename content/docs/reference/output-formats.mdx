@@ -1,0 +1,15 @@
+# Output Formats Reference
+
+Supported terminal and file serialization formats for Chrona commands.
+
+---
+
+## Formats Matrix
+
+| Format | Flag | Primary Use Case |
+|---|---|---|
+| **Pretty** | `--format pretty` (default) | Colored, human-readable terminal output with tables and symbols |
+| **JSON** | `--format json` or `--json` | Single-payload JSON report for scripts and automated integrations |
+| **NDJSON** | `--format ndjson` or `--stream` | Newline-delimited JSON stream for real-time progress events |
+| **JUnit XML** | `--format junit` | Standard XML test report for CI dashboards (GitLab, CircleCI) |
+| **GitHub Annotations** | `--format github` | Workflow command strings (`::error::`, `::warning::`) for PR tabs |

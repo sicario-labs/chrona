@@ -1,0 +1,25 @@
+# Architecture Overview
+
+High-level architectural design of the Chrona Monorepo and Engine.
+
+---
+
+## Monorepo Packages
+
+```text
+c:/chrona/
+├── packages/
+│   ├── engine/       # @chrona/engine: Core compilation, oxc AST extraction, Claim IR, rules
+│   ├── cli/          # @chrona-engine/cli: Commander CLI, MCP server, config loader, formatters
+│   └── api/          # @chrona/api: Fastify Cloud verification ingestion & dynamic SVG badges
+├── test-repos/       # 10 representative real-world repository archetypes
+└── content/docs/     # Official Chrona Documentation
+```
+
+---
+
+## Separation of Concerns
+
+1. **`@chrona/engine`**: Pure computational core. Never performs network I/O or assumes execution environments. Accepts repository snapshots and emits verification diagnostics.
+2. **`@chrona-engine/cli`**: Presentation and integration layer. Manages terminal output, file reading, Git processes, and MCP stdio streams.
+3. **`@chrona/api`**: Cloud verification receipt store and SVG status badge generator.

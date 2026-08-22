@@ -1,0 +1,13 @@
+# OAuth Provider Reference
+
+```ts
+import { OAuthProvider } from '@sample/auth-provider';
+
+const auth = new OAuthProvider({
+  clientId: 'app_123',
+  clientSecret: 'secret_456',
+  redirectUri: 'https://app.com/callback',
+});
+
+const url = auth.getAuthorizationUrl();
+```

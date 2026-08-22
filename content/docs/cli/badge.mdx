@@ -1,0 +1,59 @@
+# chrona badge
+
+Generate live Chrona verification status badge markdown and HTML snippets for `README.md`.
+
+---
+
+## Usage
+
+```bash
+chrona badge [options]
+```
+
+## What it does
+
+`chrona badge` outputs dynamic SVG status badge links compliant with Shields.io standards. The badge reflects real-time verification status (`passing`, `drifted`, `failing`, `error`).
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--org <name>` | `string` | `'owner'` | GitHub organization or repository owner |
+| `--repo <name>` | `string` | `'repo'` | Repository name |
+| `--host <url>` | `string` | `'https://api.chronadocs.xyz'` | Chrona API server endpoint |
+| `--label <text>` | `string` | `'truth'` | Custom badge left-side label |
+| `--format <type>` | `'markdown' \| 'html' \| 'url'` | `'markdown'` | Snippet format to print |
+
+---
+
+## Examples
+
+### Generate Markdown Badge Snippet
+
+```bash
+chrona badge --org chronadocs --repo truth-engine
+```
+
+Output:
+```markdown
+[![Chrona Verified](https://api.chronadocs.xyz/badges/chronadocs/truth-engine/status.svg)](https://chronadocs.xyz/chronadocs/truth-engine)
+```
+
+### Generate HTML Snippet
+
+```bash
+chrona badge --org chronadocs --repo truth-engine --format html
+```
+
+Output:
+```html
+<a href="https://chronadocs.xyz/chronadocs/truth-engine"><img src="https://api.chronadocs.xyz/badges/chronadocs/truth-engine/status.svg" alt="Chrona Verified" /></a>
+```
+
+### Custom Label and Endpoint
+
+```bash
+chrona badge --org my-org --repo sdk --label "docs truth" --format url
+```

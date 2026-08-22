@@ -1,0 +1,62 @@
+# GitHub Actions Integration
+
+Integrating Chrona into GitHub Actions CI pipelines with automated PR annotations.
+
+---
+
+## The Official GitHub Action
+
+Chrona provides an official composite action in [`action.yml`](../../action.yml):
+
+```yaml
+# .github/workflows/chrona.yml
+name: Documentation Truth Gate
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    name: Verify Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Chrona Truth Gate
+        uses: chronadocs/chrona@v1
+        with:
+          fail-on: 'error'
+          diff: 'origin/main'
+```
+
+---
+
+## Action Inputs Reference
+
+| Input | Description | Default |
+|---|---|---|
+| `fail-on` | Severity threshold to fail the job (`error` or `warn`) | `'error'` |
+| `diff` | Base Git reference for scoped diff verification | `''` |
+| `cwd` | Working directory of the target project | `'.'` |
+| `docs-dir` | Custom documentation directory | `'content/docs'` |
+| `api-key` | Chrona Cloud API key for ingestion | `''` |
+
+---
+
+## PR Annotations
+
+When running on GitHub Actions, Chrona automatically outputs workflow commands that annotate modified files directly in the GitHub PR "Files Changed" tab:
+
+```text
+::error file=content/docs/api.mdx,line=40::[DOC-103] Phantom option `{ routes }` not accepted by `createRouter`
+```

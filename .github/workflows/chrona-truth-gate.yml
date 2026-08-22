@@ -1,0 +1,88 @@
+name: Chrona Truth Gate
+
+# Reusable CI gate for Chrona: fails the build when documentation drifts from
+# the codebase AST (DOC-xxx errors). Adopt it in any repo with:
+#
+#   jobs:
+#     chrona:
+#       uses: chrona/chrona/.github/workflows/chrona-truth-gate.yml@main
+#       with:
+#         cwd: packages/core/src
+#
+# Runs `chrona check --json` as a merge gate (non-zero exit fails the job) and
+# emits a structured Agent Work Order on pull requests via `chrona impact`.
+
+on:
+  workflow_call:
+    inputs:
+      cwd:
+        description: Working directory of the repository to audit (defaults to repo root).
+        required: false
+        type: string
+        default: .
+      node-version:
+        required: false
+        type: string
+        default: "22"
+    secrets:
+      # Optional API key so `chrona check` can report to the control plane.
+      CHRONA_AUTH_TOKEN:
+        required: false
+  push:
+    branches: [main, master, dev]
+  pull_request:
+    branches: [main, master, dev]
+
+jobs:
+  verify-truth:
+    name: Chrona Truth Referee
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version || '22' }}
+
+      - name: Install Chrona CLI
+        run: npm install -g @chrona-engine/cli
+
+      - name: Run Truth Referee Gate
+        env:
+          CHRONA_AUTH_TOKEN: ${{ secrets.CHRONA_AUTH_TOKEN }}
+        run: |
+          chrona check --json \
+            --cwd "${{ inputs.cwd || '.' }}" \
+            > truth-report.json
+          status=$(jq -r '.status' truth-report.json)
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" = "fail" ]; then
+            echo "❌ Chrona truth gate FAILED — documentation drifted from code."
+            exit 1
+          fi
+        id: truth
+
+      - name: Compute Change Impact & Agent Work Order
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          chrona impact --commit origin/${{ github.base_ref }} --cwd "${{ inputs.cwd || '.' }}" --json > work-order.json
+
+      - name: Output Verification Summary
+        run: |
+          echo "### 🛡️ Chrona Truth Referee Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "Status: **${{ steps.truth.outputs.status }}**" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          jq '.' truth-report.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Agent Work Order
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrona-work-order
+          path: work-order.json
+          if-no-files-found: ignore

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "projectName": "engine",
+  "updatedAt": "2026-08-22T20:10:47.894Z",
+  "decisions": {
+    "ADR-001": {
+      "id": "ADR-001",
+      "statement": "We use Cloudflare Workers for edge routing",
+      "rationale": "Sub-10ms global latency and zero cold starts",
+      "recordedAt": "2026-08-22T20:10:47.894Z",
+      "recordedBy": "developer",
+      "status": "active",
+      "contracts": [],
+      "tags": [
+        "edge",
+        "infrastructure"
+      ],
+      "lastVerifiedAt": "2026-08-22T20:10:47.894Z"
+    }
+  }
+}

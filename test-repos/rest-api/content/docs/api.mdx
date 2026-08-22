@@ -1,0 +1,13 @@
+# REST API Framework
+
+```ts
+import { registerRoute, createRouter } from '@sample/rest-api';
+
+const router = createRouter();
+
+registerRoute({
+  path: '/users',
+  method: 'GET',
+  handler: async () => [{ id: '1', name: 'Alice' }],
+});
+```

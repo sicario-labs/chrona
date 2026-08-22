@@ -1,0 +1,10 @@
+# Database Pool Reference
+
+```ts
+import { createDatabasePool } from '@sample/agent-monorepo';
+
+const pool = createDatabasePool('postgres://localhost:5432/main');
+const users = await pool.executeQuery('SELECT * FROM users');
+```
+
+Use `createDatabasePool` to manage connections.

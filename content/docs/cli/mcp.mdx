@@ -1,0 +1,81 @@
+# chrona mcp
+
+Start the Model Context Protocol (MCP) server or install multi-agent configuration across AI coding platforms.
+
+---
+
+## Usage
+
+```bash
+chrona mcp [options]
+```
+
+## What it does
+
+`chrona mcp` bridges Chrona's verification engine with AI coding agents:
+1. **MCP Server**: Starts a stdio-based MCP server exposing `get_verified_context`, `discover_evidence`, `get_agent_work_order`, and `get_workspace_model`.
+2. **Auto-Installer (`--install`)**: Automatically writes standard MCP configuration files for specific AI tools or all supported platforms at once.
+3. **Config Generator (`--generate`)**: Prints exact JSON/YAML MCP configuration snippets for manual inclusion.
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--cwd <path>` | `string` | `process.cwd()` | Working directory for the repository |
+| `--install <platform>` | `string` | — | Auto-install configuration for agent (`cursor`, `claude`, `antigravity`, `kiro`, `kilo`, `opencode`, `qoder`, `mimo`, `deepseek`, `windsurf`, `zed`, `continue`, `jetbrains`, `goose`, `all`) |
+| `--generate <platform>` | `string` | — | Print configuration snippet for agent platform |
+| `--scope <scope>` | `'project' \| 'user'` | `'project'` | Install scope (`project` in repo or `user` home directory) |
+
+---
+
+## Examples
+
+### Start the MCP Server
+
+```bash
+chrona mcp
+```
+
+### Auto-Install Configuration for All AI Agents
+
+```bash
+chrona mcp --install all
+```
+
+Generates:
+- `.cursor/mcp.json` (Cursor)
+- `.claude/mcp.json` (Claude Code)
+- `.antigravity/mcp_config.json` (Google Antigravity)
+- `.kiro/mcp.json` (Kiro)
+- `.cline/mcp.json` (Cline)
+- `.roo/mcp.json` (Roo Code)
+- `opencode.json` (OpenCode)
+- `.qoder/.mcp.json` (Qoder)
+- `mimocode.jsonc` (Mimo)
+- `cordis.patch.yml` (DeepSeek Harness)
+- `codex-tools.json` (OpenAI Codex)
+- `.codeium/windsurf/mcp_config.json` (Windsurf)
+- `.zed/settings.json` (Zed Editor)
+- `.continue/config.json` (Continue.dev)
+- `.idea/mcp.json` (JetBrains)
+- `goose.config.yaml` (Goose)
+
+### Generate Configuration Snippet for Cursor
+
+```bash
+chrona mcp --generate cursor
+```
+
+Output:
+```json
+{
+  "mcpServers": {
+    "chrona": {
+      "command": "npx",
+      "args": ["@chrona-engine/cli", "mcp"]
+    }
+  }
+}
+```

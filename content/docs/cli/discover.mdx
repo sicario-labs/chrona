@@ -1,0 +1,78 @@
+# chrona discover
+
+Extract codebase structure, exported symbols, types, and test suites into the Evidence Graph.
+
+---
+
+## Usage
+
+```bash
+chrona discover [options]
+```
+
+## What it does
+
+`chrona discover` scans your source tree using the AST Truth Referee to extract raw code evidence without performing documentation claim verification. It emits:
+- Exported functions, classes, interfaces, and variables.
+- Function signatures and parameter types.
+- TypeScript type definitions.
+- Discovered test files and test targets.
+- CLI command declarations.
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--cwd <path>` | `string` | `process.cwd()` | Working directory for the target repository |
+| `--json` | `boolean` | `false` | Output Evidence Graph as JSON (v1) |
+
+---
+
+## Examples
+
+### Discover Codebase Evidence
+
+```bash
+chrona discover
+```
+
+### JSON Evidence Graph Output
+
+```bash
+chrona discover --json
+```
+
+Output:
+```json
+{
+  "schemaVersion": "v1",
+  "repository": "rou3",
+  "sourceCommit": "68f6d87",
+  "exports": [
+    {
+      "name": "createRouter",
+      "signature": "(): RouterContext<T>",
+      "file": "src/index.ts",
+      "line": 7
+    }
+  ],
+  "types": [
+    {
+      "name": "RouterContext",
+      "definition": "interface RouterContext<T> { ... }",
+      "file": "src/types.ts"
+    }
+  ],
+  "tests": [
+    {
+      "name": "router.test.ts",
+      "file": "test/router.test.ts",
+      "targetSymbol": "createRouter"
+    }
+  ],
+  "cliCommands": [],
+  "generatedAt": "2026-08-18T22:30:00.000Z"
+}
+```

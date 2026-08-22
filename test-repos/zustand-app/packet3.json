@@ -1,0 +1,117 @@
+{
+  "workspaceId": "ws_df4fcfa89a9e",
+  "snapshotId": "snap_f08e1ece859141fb",
+  "generatedAt": "2026-08-20T09:18:30.831Z",
+  "manifest": {
+    "purpose": "Compiled task workspace for: \"Replace direct store subscription with a selector-based pattern\"",
+    "intent": "modify",
+    "target": "src/index.ts",
+    "assumptions": [
+      "Preserve existing behavioral contracts and invariant rules.",
+      "Maintain signature compatibility for all direct dependents.",
+      "Ensure test coverage is updated for modified source lines."
+    ],
+    "unresolvedQuestions": [],
+    "claimCoverage": [],
+    "omittedEvidence": []
+  },
+  "reality": {
+    "target": {
+      "file": "src/index.ts"
+    },
+    "architecture": {
+      "callChain": [
+        "store()"
+      ],
+      "sideEffects": []
+    },
+    "dependencies": {
+      "graphEdges": [],
+      "transitiveClosure": [],
+      "externalPackages": []
+    },
+    "contracts": [],
+    "config": {
+      "files": [
+        "package.json"
+      ],
+      "envVars": [],
+      "dbTables": []
+    },
+    "tests": {
+      "files": [],
+      "coverageGaps": [
+        "src/index.ts"
+      ]
+    },
+    "provenance": {
+      "created": {
+        "commit": "local-init",
+        "author": "Workspace Author",
+        "date": "2026-08-20",
+        "message": "Initial creation of index.ts",
+        "reason": "Component created for index"
+      },
+      "recentChanges": 1,
+      "relatedIncidents": []
+    },
+    "risks": [
+      {
+        "level": "MEDIUM",
+        "description": "No automated tests directly cover this dependency boundary.",
+        "mitigation": "Add a regression test suite before proceeding with modifications."
+      }
+    ],
+    "boundary": {
+      "target": "src/index.ts",
+      "directDependents": [],
+      "transitiveDependents": [],
+      "affectedTests": [],
+      "affectedApiEndpoints": [],
+      "affectedConfigs": [],
+      "confidence": 0.98,
+      "criticality": "LOW"
+    }
+  },
+  "externalReality": {},
+  "evidence": {
+    "claims": [],
+    "gitEvidence": [
+      {
+        "commit": "local-init",
+        "author": "Workspace Author",
+        "date": "2026-08-20",
+        "message": "Initial creation of index.ts",
+        "reason": "Component created for index"
+      }
+    ],
+    "sourceSlices": [
+      {
+        "id": "src/index.ts:1-25",
+        "file": "src/index.ts",
+        "startLine": 1,
+        "endLine": 25,
+        "content": "import { createStore } from 'zustand/vanilla';\nimport { subscribeWithSelector } from 'zustand/middleware';\n\ninterface AppState {\n  count: number;\n  increment: () => void;\n}\n\nexport const store = createStore<AppState>()(\n  subscribeWithSelector((set) => ({\n    count: 0,\n    increment: () => set((state) => ({ count: state.count + 1 })),\n  }))\n);\n\n// We currently subscribe directly to the entire store.\n// Task: Replace this direct store subscription with a selector-based pattern\n// so we only log when 'count' specifically changes.\nstore.subscribe(\n  (state) => state.count,\n  (count) => {\n    console.log('Store updated:', count);\n  }\n);\n",
+        "role": "target",
+        "proves": [],
+        "confidence": 0.95
+      }
+    ]
+  },
+  "projection": {
+    "quality": "VALID",
+    "evidenceSufficiency": 1,
+    "minimumSufficientBudget": 161,
+    "recommendedTokenBudget": 161,
+    "missingCriticalEvidence": [],
+    "coverageScore": 1,
+    "precisionScore": 1,
+    "evidenceCompleteness": 1,
+    "boundaryCompleteness": 1,
+    "contextEfficiency": 0,
+    "tokenCount": 161,
+    "tokenBudget": 8000,
+    "filesInspected": 1,
+    "filesIncluded": 1
+  }
+}

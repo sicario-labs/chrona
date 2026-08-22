@@ -1,0 +1,16 @@
+# Quickstart Guide
+
+Install and initialize the client:
+
+```ts
+import { ApiClient, authenticate } from '@sample/typed-sdk';
+
+const client = new ApiClient({
+  apiKey: 'secret_key_123',
+});
+
+const session = await client.login();
+console.log(session.userId);
+```
+
+Use `authenticate` directly if you need token exchange without the client class.

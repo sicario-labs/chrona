@@ -1,0 +1,10 @@
+# State Store
+
+```ts
+import { createStore } from '@sample/state-store';
+
+const store = createStore({ count: 0 });
+
+store.setState((s) => ({ count: s.count + 1 }));
+console.log(store.getState().count);
+```

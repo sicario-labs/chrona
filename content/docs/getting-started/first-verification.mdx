@@ -1,0 +1,138 @@
+# Your First Verification Walkthrough
+
+This tutorial demonstrates how to detect, inspect, and fix documentation drift using Chrona.
+
+---
+
+## Step 1: Examine the Source Code
+
+Suppose your codebase has a function `createRouter` in `src/router.ts`:
+
+```typescript
+// src/router.ts
+export interface RouterContext<T> {
+  routes: unknown[];
+}
+
+export function createRouter<T = unknown>(): RouterContext<T> {
+  return { routes: [] };
+}
+```
+
+Notice that `createRouter` takes **no arguments**.
+
+---
+
+## Step 2: Introduce a Documentation Error
+
+In your documentation file `content/docs/quickstart.mdx`, describe the function with a phantom parameter:
+
+```markdown
+# Quickstart
+
+Initialize the router by passing initial route configurations:
+
+<!-- chrona-ignore -->
+```ts
+import { createRouter } from './router';
+
+// This option no longer exists in the API!
+const router = createRouter({ routes: ['/home', '/about'] });
+```
+```
+
+---
+
+## Step 3: Run `chrona check`
+
+Execute the verification command:
+
+```bash
+npx chrona check
+```
+
+Chrona compares the documentation example against the AST signature of `createRouter`:
+
+```text
+=== Chrona Verification Report ===
+
+  ✖ [DOC-103] Phantom option `{ routes }` not accepted by `createRouter`
+    at content/docs/quickstart.mdx:7
+    Expected: ()
+    Received: ({ routes: [...] })
+
+Status: FAIL (1 error found)
+```
+
+---
+
+## Step 4: Inspect the Explanation with `chrona ws --explain`
+
+To see the complete epistemic history and evidence chain, run:
+
+```bash
+npx chrona ws --explain createRouter
+```
+
+Output:
+```text
+Why does createRouter look like this?
+
+Current Implementation:
+  src/router.ts:5
+  (): RouterContext<T>
+
+Documentation References:
+  Total References: 1
+  ✗ content/docs/quickstart.mdx:7 → [DOC-103] Phantom option `{ routes }` not accepted
+
+Epistemic Verdict:
+  Symbol `createRouter` is implemented in `src/router.ts:5` with signature `(): RouterContext<T>`.
+  Documentation in `content/docs/quickstart.mdx:7` is contradictory: Phantom option `{ routes }` not accepted.
+
+Evidence Chain:
+  • AST: src/router.ts:5 ((): RouterContext<T>)
+  • Git: commit 68f6d87 (main)
+  • Contradiction [DOC-103]: Phantom option `{ routes }` not accepted
+```
+
+---
+
+## Step 5: Fix the Documentation
+
+Update `content/docs/quickstart.mdx` to reflect the true API:
+
+```markdown
+# Quickstart
+
+Initialize the router:
+
+<!-- chrona-ignore -->
+```ts
+import { createRouter } from './router';
+
+const router = createRouter();
+```
+```
+
+---
+
+## Step 6: Verify Again
+
+Run `chrona check` once more:
+
+```bash
+npx chrona check
+```
+
+Output:
+```text
+=== Chrona Verification Report ===
+
+  ✔ 1 claim verified
+  ✔ 0 contradictions found
+
+Status: PASS
+```
+
+Your documentation is now 100% sound and verified against code.

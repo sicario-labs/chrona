@@ -1,0 +1,57 @@
+# Configuration Reference
+
+Complete property reference for `cli.json` and `chrona.config.ts`.
+
+---
+
+## Schema Properties
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `$schema` | `string` | `"node_modules/@chrona/cli/dist/schema.json"` | JSON schema reference for editor autocomplete |
+| `baseDir` | `string` | Auto (`"src"` or `"app"`) | Root source directory containing implementation code |
+| `framework` | `string` | Auto | Documentation framework: `next`, `astro`, `waku`, `react-router`, `tanstack-start` |
+| `uiLibrary` | `string` | `"base-ui"` | UI component primitive: `"base-ui"` or `"radix-ui"` |
+| `aliases` | `object` | See Aliases table | Directory alias resolution for layouts and components |
+| `commands` | `object` | `{}` | Automation commands |
+| `commands.format` | `string` | `undefined` | Shell command to auto-format generated output files |
+| `rules` | `object` | Default rules | Severity overrides for `DOC-xxx` diagnostic rules |
+
+---
+
+## Aliases Schema (`aliases`)
+
+| Key | Type | Default | Description |
+|---|---|---|---|
+| `uiDir` | `string` | `"./components/ui"` | Directory containing UI primitives |
+| `componentsDir` | `string` | `"./components"` | General component directory |
+| `layoutDir` | `string` | `"./layouts"` | Page layout wrappers |
+| `cssDir` | `string` | `"./styles"` | Global styles and CSS modules |
+| `libDir` | `string` | `"./lib"` | Shared utilities and helpers |
+
+---
+
+## Rules Configuration (`rules`)
+
+You can tune the severity of individual compiler diagnostics in `chrona.config.ts`:
+
+```typescript
+export default {
+  rules: {
+    'DOC-101': 'error',    // Missing export
+    'DOC-102': 'error',    // Signature mismatch
+    'DOC-103': 'error',    // Parameter mismatch
+    'DOC-104': 'error',    // Contradicted claim
+    'DOC-107': 'error',    // Type mismatch
+    'DOC-201': 'error',    // Broken example
+    'DOC-401': 'warning',  // Undocumented deprecation
+    'DOC-501': 'off'       // Task degradation
+  }
+};
+```
+
+Valid severity levels:
+- `'error'`: Emits error diagnostic; causes `chrona check` and `chrona ci` to fail.
+- `'warning'`: Emits warning diagnostic; non-blocking unless `--fail-on warn` is set.
+- `'info'`: Informational message.
+- `'off'`: Disables the rule completely.

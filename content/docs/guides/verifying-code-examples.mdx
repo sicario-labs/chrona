@@ -1,0 +1,32 @@
+# Verifying Code Examples
+
+Ensuring that code snippets in your documentation compile and match exported signatures.
+
+---
+
+## How Chrona Verifies Code Snippets
+
+When Chrona encounters fenced code blocks marked with `ts`, `tsx`, `js`, or `jsx`:
+
+````markdown
+<!-- chrona-ignore -->
+```ts
+import { runBuild } from '@sample/cli-tool';
+
+const result = runBuild({ entry: 'src/index.ts' });
+```
+````
+
+Chrona:
+1. Extracts imported symbol names (`runBuild`) and matches them to your project's export registry.
+2. Evaluates the passed parameter object `{ entry: 'src/index.ts' }` against the TypeScript parameter type definition.
+3. Checks for missing required options or invalid property types (`DOC-103`).
+4. Verifies that called methods exist on returned objects.
+
+---
+
+## Best Practices for Authoring Snippets
+
+1. **Use Real Imports**: Use the package name as defined in `package.json` or relative paths matching your project layout.
+2. **Explicit Signatures**: If illustrating optional parameters, ensure the optional flags (`?`) match the source code.
+3. **Use Pragmas for Pseudo-code**: If a snippet is intentionally illustrative pseudo-code and not meant to compile, prefix it with `<!-- chrona-ignore -->`.

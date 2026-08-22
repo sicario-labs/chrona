@@ -1,0 +1,1269 @@
+{
+  "version": 1,
+  "projectName": "cli",
+  "createdAt": "2026-08-19T11:06:06.098Z",
+  "snapshots": [
+    {
+      "id": "03d576ea2c8e9306",
+      "commit": "2cc870d",
+      "branch": "main",
+      "timestamp": "2026-08-19T11:06:06.099Z",
+      "summary": {
+        "totalClaims": 0,
+        "claimsVerified": 0,
+        "contradictionsFound": 0,
+        "unverifiedCount": 0,
+        "ambiguousCount": 0
+      },
+      "durationMs": 1120
+    }
+  ],
+  "symbols": {
+    "Target": {
+      "symbol": "Target",
+      "file": "",
+      "currentSignature": "interface Target",
+      "history": [],
+      "driftEvents": []
+    },
+    "add": {
+      "symbol": "add",
+      "file": "",
+      "currentSignature": "(input: string[], connector: RegistryConnector, config: LoadedConfig): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "AuditTarget": {
+      "symbol": "AuditTarget",
+      "file": "",
+      "currentSignature": "interface AuditTarget",
+      "history": [],
+      "driftEvents": []
+    },
+    "AuditResult": {
+      "symbol": "AuditResult",
+      "file": "",
+      "currentSignature": "interface AuditResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaAudit": {
+      "symbol": "runChronaAudit",
+      "file": "",
+      "currentSignature": "(options: { targets?: AuditTarget[]; json?: boolean } = {}): Promise<AuditResult[]>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaAuthCreateKey": {
+      "symbol": "runChronaAuthCreateKey",
+      "file": "",
+      "currentSignature": "(options: { name?: string }): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaAuthListKeys": {
+      "symbol": "runChronaAuthListKeys",
+      "file": "",
+      "currentSignature": "(): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaAuthRevokeKey": {
+      "symbol": "runChronaAuthRevokeKey",
+      "file": "",
+      "currentSignature": "(options: { id: string }): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "BadgeCommandOptions": {
+      "symbol": "BadgeCommandOptions",
+      "file": "",
+      "currentSignature": "interface BadgeCommandOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaBadge": {
+      "symbol": "runChronaBadge",
+      "file": "",
+      "currentSignature": "(options: BadgeCommandOptions = {}): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "BenchOptions": {
+      "symbol": "BenchOptions",
+      "file": "",
+      "currentSignature": "interface BenchOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaBench": {
+      "symbol": "runChronaBench",
+      "file": "",
+      "currentSignature": "(options: BenchOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "BuildWorkerOptions": {
+      "symbol": "BuildWorkerOptions",
+      "file": "",
+      "currentSignature": "interface BuildWorkerOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "processBuildJob": {
+      "symbol": "processBuildJob",
+      "file": "",
+      "currentSignature": "(options: BuildWorkerOptions = {}): Promise<boolean>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runBuildWorker": {
+      "symbol": "runBuildWorker",
+      "file": "",
+      "currentSignature": "(options: BuildWorkerOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "BuildOptions": {
+      "symbol": "BuildOptions",
+      "file": "",
+      "currentSignature": "interface BuildOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "BuildResult": {
+      "symbol": "BuildResult",
+      "file": "",
+      "currentSignature": "interface BuildResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "resolveDocsTargetDir": {
+      "symbol": "resolveDocsTargetDir",
+      "file": "",
+      "currentSignature": "(cwd: string): Promise<string>",
+      "history": [],
+      "driftEvents": []
+    },
+    "compileStaticBundle": {
+      "symbol": "compileStaticBundle",
+      "file": "",
+      "currentSignature": "(cwd: string, outDir: string): Promise<BuildResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaBuild": {
+      "symbol": "runChronaBuild",
+      "file": "",
+      "currentSignature": "(options: BuildOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "CheckOptions": {
+      "symbol": "CheckOptions",
+      "file": "",
+      "currentSignature": "interface CheckOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "getChronaVerificationResult": {
+      "symbol": "getChronaVerificationResult",
+      "file": "",
+      "currentSignature": "(cwd: string, diffRef?: string): Promise<VerificationResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "getChronaCheckReport": {
+      "symbol": "getChronaCheckReport",
+      "file": "",
+      "currentSignature": "(cwd: string, diffRef?: string): Promise<CompilerVerificationReport>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaCheck": {
+      "symbol": "runChronaCheck",
+      "file": "",
+      "currentSignature": "(options: CheckOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "CiOptions": {
+      "symbol": "CiOptions",
+      "file": "",
+      "currentSignature": "interface CiOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaCi": {
+      "symbol": "runChronaCi",
+      "file": "",
+      "currentSignature": "(options: CiOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "customise": {
+      "symbol": "customise",
+      "file": "",
+      "currentSignature": "(config: LoadedConfig, connector: RegistryConnector): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeployOptions": {
+      "symbol": "DeployOptions",
+      "file": "",
+      "currentSignature": "interface DeployOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaDeploy": {
+      "symbol": "runChronaDeploy",
+      "file": "",
+      "currentSignature": "(options: DeployOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "uploadAndPromote": {
+      "symbol": "uploadAndPromote",
+      "file": "",
+      "currentSignature": "(config: ReturnType<typeof loadDeployConfig>, distDir: string, cwd: string, forceProd: boolean, commitOverride?: string, branchOverride?: string): Promise<{\n  deployId: string;\n  tenant: string;\n  url: string;\n  previewUrl: string;\n  permalinkUrl: string;\n  files: number;\n  bytes: number;\n  skipped: number;\n  isProd: boolean;\n}>",
+      "history": [],
+      "driftEvents": []
+    },
+    "uploadDistToR2": {
+      "symbol": "uploadDistToR2",
+      "file": "",
+      "currentSignature": "(distDir: string, bucket: string, project: string, cwd: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "distOf": {
+      "symbol": "distOf",
+      "file": "",
+      "currentSignature": "(cwd: string, output = 'dist'): Promise<string | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "DevOptions": {
+      "symbol": "DevOptions",
+      "file": "",
+      "currentSignature": "interface DevOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaDev": {
+      "symbol": "runChronaDev",
+      "file": "",
+      "currentSignature": "(options: DevOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "DiscoverOptions": {
+      "symbol": "DiscoverOptions",
+      "file": "",
+      "currentSignature": "interface DiscoverOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaDiscover": {
+      "symbol": "runChronaDiscover",
+      "file": "",
+      "currentSignature": "(options: DiscoverOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "EnvOptions": {
+      "symbol": "EnvOptions",
+      "file": "",
+      "currentSignature": "interface EnvOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaEnvSet": {
+      "symbol": "runChronaEnvSet",
+      "file": "",
+      "currentSignature": "(key: string, value: string, options: EnvOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaEnvList": {
+      "symbol": "runChronaEnvList",
+      "file": "",
+      "currentSignature": "(options: EnvOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaEnvGet": {
+      "symbol": "runChronaEnvGet",
+      "file": "",
+      "currentSignature": "(key: string, options: EnvOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaEnvUnset": {
+      "symbol": "runChronaEnvUnset",
+      "file": "",
+      "currentSignature": "(key: string, options: EnvOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "ExplainCommandOptions": {
+      "symbol": "ExplainCommandOptions",
+      "file": "",
+      "currentSignature": "interface ExplainCommandOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaExplain": {
+      "symbol": "runChronaExplain",
+      "file": "",
+      "currentSignature": "(target: string, options: ExplainCommandOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "exportEpub": {
+      "symbol": "exportEpub",
+      "file": "",
+      "currentSignature": "(options: {\n  output?: string;\n  framework: string;\n  scaffoldOnly?: boolean;\n}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "JsonTreeNode": {
+      "symbol": "JsonTreeNode",
+      "file": "",
+      "currentSignature": "type JsonTreeNode = | {\n      type: 'file';\n      name: string;\n    }\n  | {\n      type: 'directory';\n      name: string;\n      contents: JsonTreeNode[];\n    }\n  | {\n      type: 'report';\n    }\n  | {\n      type: 'link';\n      name: string;\n    }",
+      "history": [],
+      "driftEvents": []
+    },
+    "treeToMdx": {
+      "symbol": "treeToMdx",
+      "file": "",
+      "currentSignature": "(input: JsonTreeNode[], noRoot = false): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "treeToJavaScript": {
+      "symbol": "treeToJavaScript",
+      "file": "",
+      "currentSignature": "(input: JsonTreeNode[], noRoot?: boolean, importName = 'chrona-ui/components/files'): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "runGuardCommand": {
+      "symbol": "runGuardCommand",
+      "file": "",
+      "currentSignature": "(program: Command): void",
+      "history": [],
+      "driftEvents": []
+    },
+    "ImpactOptions": {
+      "symbol": "ImpactOptions",
+      "file": "",
+      "currentSignature": "interface ImpactOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaImpact": {
+      "symbol": "runChronaImpact",
+      "file": "",
+      "currentSignature": "(options: ImpactOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "InitOptions": {
+      "symbol": "InitOptions",
+      "file": "",
+      "currentSignature": "interface InitOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "initChronaAgentWorkflow": {
+      "symbol": "initChronaAgentWorkflow",
+      "file": "",
+      "currentSignature": "(options: InitOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "HookMode": {
+      "symbol": "HookMode",
+      "file": "",
+      "currentSignature": "type HookMode = 'warn' | 'strict'",
+      "history": [],
+      "driftEvents": []
+    },
+    "InstallHookOptions": {
+      "symbol": "InstallHookOptions",
+      "file": "",
+      "currentSignature": "interface InstallHookOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaInstallHook": {
+      "symbol": "runChronaInstallHook",
+      "file": "",
+      "currentSignature": "(options: InstallHookOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaLogin": {
+      "symbol": "runChronaLogin",
+      "file": "",
+      "currentSignature": "(): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "LsOptions": {
+      "symbol": "LsOptions",
+      "file": "",
+      "currentSignature": "interface LsOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaLs": {
+      "symbol": "runChronaLs",
+      "file": "",
+      "currentSignature": "(options: LsOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "renderRecord": {
+      "symbol": "renderRecord",
+      "file": "",
+      "currentSignature": "(record: DeploymentRecord): void",
+      "history": [],
+      "driftEvents": []
+    },
+    "McpCommandOptions": {
+      "symbol": "McpCommandOptions",
+      "file": "",
+      "currentSignature": "interface McpCommandOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runMcpServer": {
+      "symbol": "runMcpServer",
+      "file": "",
+      "currentSignature": "(options: McpCommandOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runMemoryCommand": {
+      "symbol": "runMemoryCommand",
+      "file": "",
+      "currentSignature": "(program: Command): void",
+      "history": [],
+      "driftEvents": []
+    },
+    "PlanOptions": {
+      "symbol": "PlanOptions",
+      "file": "",
+      "currentSignature": "interface PlanOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "DiscoveredTask": {
+      "symbol": "DiscoveredTask",
+      "file": "",
+      "currentSignature": "interface DiscoveredTask",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaPlan": {
+      "symbol": "runChronaPlan",
+      "file": "",
+      "currentSignature": "(options: PlanOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "PreviewOptions": {
+      "symbol": "PreviewOptions",
+      "file": "",
+      "currentSignature": "interface PreviewOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaPreview": {
+      "symbol": "runChronaPreview",
+      "file": "",
+      "currentSignature": "(options: PreviewOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runPublishCommand": {
+      "symbol": "runPublishCommand",
+      "file": "",
+      "currentSignature": "(program: Command): void",
+      "history": [],
+      "driftEvents": []
+    },
+    "RepairOptions": {
+      "symbol": "RepairOptions",
+      "file": "",
+      "currentSignature": "interface RepairOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaRepair": {
+      "symbol": "runChronaRepair",
+      "file": "",
+      "currentSignature": "(options: RepairOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "RollbackOptions": {
+      "symbol": "RollbackOptions",
+      "file": "",
+      "currentSignature": "interface RollbackOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaRollback": {
+      "symbol": "runChronaRollback",
+      "file": "",
+      "currentSignature": "(token: string, options: RollbackOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "findDeployment": {
+      "symbol": "findDeployment",
+      "file": "",
+      "currentSignature": "(records: DeploymentRecord[], token: string): DeploymentRecord | undefined",
+      "history": [],
+      "driftEvents": []
+    },
+    "WorkspaceCommandOptions": {
+      "symbol": "WorkspaceCommandOptions",
+      "file": "",
+      "currentSignature": "interface WorkspaceCommandOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaWorkspace": {
+      "symbol": "runChronaWorkspace",
+      "file": "",
+      "currentSignature": "(options: WorkspaceCommandOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "Framework": {
+      "symbol": "Framework",
+      "file": "",
+      "currentSignature": "type Framework = (typeof frameworks)[number]",
+      "history": [],
+      "driftEvents": []
+    },
+    "createConfigSchema": {
+      "symbol": "createConfigSchema",
+      "file": "",
+      "currentSignature": "(cwd = process.cwd()): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "ConfigInput": {
+      "symbol": "ConfigInput",
+      "file": "",
+      "currentSignature": "type ConfigInput = z.input<ConfigSchema>",
+      "history": [],
+      "driftEvents": []
+    },
+    "LoadedConfig": {
+      "symbol": "LoadedConfig",
+      "file": "",
+      "currentSignature": "type LoadedConfig = z.output<ConfigSchema>",
+      "history": [],
+      "driftEvents": []
+    },
+    "createOrLoadConfig": {
+      "symbol": "createOrLoadConfig",
+      "file": "",
+      "currentSignature": "(file = './cli.json'): Promise<LoadedConfig>",
+      "history": [],
+      "driftEvents": []
+    },
+    "initConfig": {
+      "symbol": "initConfig",
+      "file": "",
+      "currentSignature": "(file = './cli.json'): Promise<LoadedConfig | undefined>",
+      "history": [],
+      "driftEvents": []
+    },
+    "getDefaultConfig": {
+      "symbol": "getDefaultConfig",
+      "file": "",
+      "currentSignature": "(cwd?: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "AgentPlatform": {
+      "symbol": "AgentPlatform",
+      "file": "",
+      "currentSignature": "type AgentPlatform = | 'all'\n  | 'antigravity'\n  | 'agy'\n  | 'claude'\n  | 'claude-code'\n  | 'cursor'\n  | 'windsurf'\n  | 'zed'\n  | 'continue'\n  | 'jetbrains'\n  | 'junie'\n  | 'goose'\n  | 'librechat'\n  | 'cody'\n  | 'sourcegraph'\n  | 'kiro'\n  | 'kilo'\n  | 'command-code'\n  | 'cline'\n  | 'roo'\n  | 'roo-code'\n  | 'opencode'\n  | 'qoder'\n  | 'mimo'\n  | 'mimo-code'\n  | 'deepseek'\n  | 'dsh'\n  | 'codex'\n  | 'openai'",
+      "history": [],
+      "driftEvents": []
+    },
+    "GeneratedConfig": {
+      "symbol": "GeneratedConfig",
+      "file": "",
+      "currentSignature": "interface GeneratedConfig",
+      "history": [],
+      "driftEvents": []
+    },
+    "GeneratorOptions": {
+      "symbol": "GeneratorOptions",
+      "file": "",
+      "currentSignature": "interface GeneratorOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "generateAgentMcpConfig": {
+      "symbol": "generateAgentMcpConfig",
+      "file": "",
+      "currentSignature": "(platform: AgentPlatform, options: GeneratorOptions = {}): GeneratedConfig[]",
+      "history": [],
+      "driftEvents": []
+    },
+    "installAgentMcpConfig": {
+      "symbol": "installAgentMcpConfig",
+      "file": "",
+      "currentSignature": "(platform: AgentPlatform, options: GeneratorOptions = {}): Promise<GeneratedConfig[]>",
+      "history": [],
+      "driftEvents": []
+    },
+    "generateJunitXml": {
+      "symbol": "generateJunitXml",
+      "file": "",
+      "currentSignature": "(result: VerificationResult): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "StreamEvent": {
+      "symbol": "StreamEvent",
+      "file": "",
+      "currentSignature": "type StreamEvent = | { type: 'check:start'; timestamp: string; scope: string }\n  | { type: 'file:start'; file: string; claimsCount: number }\n  | { type: 'claim:verified'; claimId: string; file: string; line: number; subject: string }\n  | { type: 'claim:contradicted'; claimId: string; file: string; line: number; diagnostic: CompilerDiagnostic }\n  | {\n      type: 'check:complete';\n      status: 'pass' | 'warn' | 'fail';\n      errorsCount: number;\n      warningsCount: number;\n      claimsVerified: number;\n      contradictionsFound: number;\n      durationMs: number;\n    }",
+      "history": [],
+      "driftEvents": []
+    },
+    "NdjsonStreamWriter": {
+      "symbol": "NdjsonStreamWriter",
+      "file": "",
+      "currentSignature": "class NdjsonStreamWriter",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaComponentInstaller": {
+      "symbol": "ChronaComponentInstaller",
+      "file": "",
+      "currentSignature": "class ChronaComponentInstaller extends ComponentInstaller",
+      "history": [],
+      "driftEvents": []
+    },
+    "pluginPreserveLayouts": {
+      "symbol": "pluginPreserveLayouts",
+      "file": "",
+      "currentSignature": "(): InstallerPlugin",
+      "history": [],
+      "driftEvents": []
+    },
+    "LeasedJob": {
+      "symbol": "LeasedJob",
+      "file": "",
+      "currentSignature": "interface LeasedJob",
+      "history": [],
+      "driftEvents": []
+    },
+    "JobStatusPayload": {
+      "symbol": "JobStatusPayload",
+      "file": "",
+      "currentSignature": "interface JobStatusPayload",
+      "history": [],
+      "driftEvents": []
+    },
+    "SealFile": {
+      "symbol": "SealFile",
+      "file": "",
+      "currentSignature": "interface SealFile",
+      "history": [],
+      "driftEvents": []
+    },
+    "BuildClient": {
+      "symbol": "BuildClient",
+      "file": "",
+      "currentSignature": "class BuildClient",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeployConfig": {
+      "symbol": "DeployConfig",
+      "file": "",
+      "currentSignature": "interface DeployConfig",
+      "history": [],
+      "driftEvents": []
+    },
+    "loadDeployConfig": {
+      "symbol": "loadDeployConfig",
+      "file": "",
+      "currentSignature": "(): DeployConfig",
+      "history": [],
+      "driftEvents": []
+    },
+    "isR2Configured": {
+      "symbol": "isR2Configured",
+      "file": "",
+      "currentSignature": "(config: DeployConfig): boolean",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2ConfigFor": {
+      "symbol": "r2ConfigFor",
+      "file": "",
+      "currentSignature": "(config: DeployConfig): R2Config",
+      "history": [],
+      "driftEvents": []
+    },
+    "deployObjectKey": {
+      "symbol": "deployObjectKey",
+      "file": "",
+      "currentSignature": "(tenant: string, deployId: string, path: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "assetObjectKey": {
+      "symbol": "assetObjectKey",
+      "file": "",
+      "currentSignature": "(tenant: string, hash: string, ext: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "manifestKey": {
+      "symbol": "manifestKey",
+      "file": "",
+      "currentSignature": "(tenant: string, deployId: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "ManifestEntry": {
+      "symbol": "ManifestEntry",
+      "file": "",
+      "currentSignature": "interface ManifestEntry",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeployManifest": {
+      "symbol": "DeployManifest",
+      "file": "",
+      "currentSignature": "interface DeployManifest",
+      "history": [],
+      "driftEvents": []
+    },
+    "contentTypeFor": {
+      "symbol": "contentTypeFor",
+      "file": "",
+      "currentSignature": "(path: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "isHashedAssetFile": {
+      "symbol": "isHashedAssetFile",
+      "file": "",
+      "currentSignature": "(filename: string): boolean",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeployReport": {
+      "symbol": "DeployReport",
+      "file": "",
+      "currentSignature": "interface DeployReport",
+      "history": [],
+      "driftEvents": []
+    },
+    "liveUrl": {
+      "symbol": "liveUrl",
+      "file": "",
+      "currentSignature": "(project: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "permalinkUrl": {
+      "symbol": "permalinkUrl",
+      "file": "",
+      "currentSignature": "(project: string, deployId: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "previewUrl": {
+      "symbol": "previewUrl",
+      "file": "",
+      "currentSignature": "(tenant: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "EdgeRpcResult": {
+      "symbol": "EdgeRpcResult",
+      "file": "",
+      "currentSignature": "interface EdgeRpcResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgeRegister": {
+      "symbol": "edgeRegister",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, deployId: string, commit: string, branch: string): Promise<EdgeRpcResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgePromote": {
+      "symbol": "edgePromote",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, deployId: string): Promise<EdgeRpcResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgePromotePreview": {
+      "symbol": "edgePromotePreview",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, deployId: string): Promise<EdgeRpcResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgeRollback": {
+      "symbol": "edgeRollback",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, deployId: string): Promise<EdgeRpcResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgeList": {
+      "symbol": "edgeList",
+      "file": "",
+      "currentSignature": "(config: DeployConfig): Promise<{ deploys: unknown[]; aliases: unknown[] } | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgeGetRoute": {
+      "symbol": "edgeGetRoute",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, alias = 'prod'): Promise<string | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2Exists": {
+      "symbol": "r2Exists",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, key: string): Promise<boolean>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2DeleteObject": {
+      "symbol": "r2DeleteObject",
+      "file": "",
+      "currentSignature": "(config: DeployConfig, key: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeploymentRecord": {
+      "symbol": "DeploymentRecord",
+      "file": "",
+      "currentSignature": "interface DeploymentRecord",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeploymentLedger": {
+      "symbol": "DeploymentLedger",
+      "file": "",
+      "currentSignature": "interface DeploymentLedger",
+      "history": [],
+      "driftEvents": []
+    },
+    "ProjectEnv": {
+      "symbol": "ProjectEnv",
+      "file": "",
+      "currentSignature": "type ProjectEnv = Record<string, string>",
+      "history": [],
+      "driftEvents": []
+    },
+    "EnvLedger": {
+      "symbol": "EnvLedger",
+      "file": "",
+      "currentSignature": "interface EnvLedger",
+      "history": [],
+      "driftEvents": []
+    },
+    "loadLedger": {
+      "symbol": "loadLedger",
+      "file": "",
+      "currentSignature": "(): Promise<DeploymentLedger>",
+      "history": [],
+      "driftEvents": []
+    },
+    "saveLedger": {
+      "symbol": "saveLedger",
+      "file": "",
+      "currentSignature": "(ledger: DeploymentLedger): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "loadEnvLedger": {
+      "symbol": "loadEnvLedger",
+      "file": "",
+      "currentSignature": "(): Promise<EnvLedger>",
+      "history": [],
+      "driftEvents": []
+    },
+    "saveEnvLedger": {
+      "symbol": "saveEnvLedger",
+      "file": "",
+      "currentSignature": "(ledger: EnvLedger): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "gitCommit": {
+      "symbol": "gitCommit",
+      "file": "",
+      "currentSignature": "(cwd: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "gitRemote": {
+      "symbol": "gitRemote",
+      "file": "",
+      "currentSignature": "(cwd: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "projectId": {
+      "symbol": "projectId",
+      "file": "",
+      "currentSignature": "(cwd: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "shortCommit": {
+      "symbol": "shortCommit",
+      "file": "",
+      "currentSignature": "(commit: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "DeviceAuthSession": {
+      "symbol": "DeviceAuthSession",
+      "file": "",
+      "currentSignature": "interface DeviceAuthSession",
+      "history": [],
+      "driftEvents": []
+    },
+    "UserCredentials": {
+      "symbol": "UserCredentials",
+      "file": "",
+      "currentSignature": "interface UserCredentials",
+      "history": [],
+      "driftEvents": []
+    },
+    "saveCredentials": {
+      "symbol": "saveCredentials",
+      "file": "",
+      "currentSignature": "(creds: UserCredentials): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "getStoredCredentials": {
+      "symbol": "getStoredCredentials",
+      "file": "",
+      "currentSignature": "(): Promise<UserCredentials | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "getAuthToken": {
+      "symbol": "getAuthToken",
+      "file": "",
+      "currentSignature": "(): Promise<string>",
+      "history": [],
+      "driftEvents": []
+    },
+    "initiateDeviceAuth": {
+      "symbol": "initiateDeviceAuth",
+      "file": "",
+      "currentSignature": "(): Promise<DeviceAuthSession>",
+      "history": [],
+      "driftEvents": []
+    },
+    "pollDeviceToken": {
+      "symbol": "pollDeviceToken",
+      "file": "",
+      "currentSignature": "(session: DeviceAuthSession, onTick?: (elapsed: number) => void): Promise<UserCredentials>",
+      "history": [],
+      "driftEvents": []
+    },
+    "EdgeSyncOptions": {
+      "symbol": "EdgeSyncOptions",
+      "file": "",
+      "currentSignature": "interface EdgeSyncOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "EdgeSyncResult": {
+      "symbol": "EdgeSyncResult",
+      "file": "",
+      "currentSignature": "interface EdgeSyncResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "edgeSyncDeploy": {
+      "symbol": "edgeSyncDeploy",
+      "file": "",
+      "currentSignature": "(options: EdgeSyncOptions): Promise<EdgeSyncResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "cachedProject": {
+      "symbol": "cachedProject",
+      "file": "",
+      "currentSignature": "(tenant: string): Promise<{ orgId: string; projectId: string } | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "ensureProject": {
+      "symbol": "ensureProject",
+      "file": "",
+      "currentSignature": "(tenant: string): Promise<{ orgId: string; projectId: string }>",
+      "history": [],
+      "driftEvents": []
+    },
+    "runTree": {
+      "symbol": "runTree",
+      "file": "",
+      "currentSignature": "(args: string): Promise<JsonTreeNode[]>",
+      "history": [],
+      "driftEvents": []
+    },
+    "exists": {
+      "symbol": "exists",
+      "file": "",
+      "currentSignature": "(pathLike: string): Promise<boolean>",
+      "history": [],
+      "driftEvents": []
+    },
+    "R2Config": {
+      "symbol": "R2Config",
+      "file": "",
+      "currentSignature": "interface R2Config",
+      "history": [],
+      "driftEvents": []
+    },
+    "R2HeadResult": {
+      "symbol": "R2HeadResult",
+      "file": "",
+      "currentSignature": "interface R2HeadResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "R2Object": {
+      "symbol": "R2Object",
+      "file": "",
+      "currentSignature": "interface R2Object",
+      "history": [],
+      "driftEvents": []
+    },
+    "R2MultipartPart": {
+      "symbol": "R2MultipartPart",
+      "file": "",
+      "currentSignature": "interface R2MultipartPart",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2Host": {
+      "symbol": "r2Host",
+      "file": "",
+      "currentSignature": "(config: R2Config): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2Head": {
+      "symbol": "r2Head",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string): Promise<R2HeadResult | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2Put": {
+      "symbol": "r2Put",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string, body: Uint8Array, contentType?: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2Delete": {
+      "symbol": "r2Delete",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2Get": {
+      "symbol": "r2Get",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string): Promise<Uint8Array | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2List": {
+      "symbol": "r2List",
+      "file": "",
+      "currentSignature": "(config: R2Config, prefix: string): Promise<R2Object[]>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2MultipartStart": {
+      "symbol": "r2MultipartStart",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string): Promise<string>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2MultipartPart": {
+      "symbol": "r2MultipartPart",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string, uploadId: string, partNumber: number, body: Uint8Array): Promise<string>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2MultipartComplete": {
+      "symbol": "r2MultipartComplete",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string, uploadId: string, parts: R2MultipartPart[]): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2MultipartAbort": {
+      "symbol": "r2MultipartAbort",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string, uploadId: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "r2UploadLarge": {
+      "symbol": "r2UploadLarge",
+      "file": "",
+      "currentSignature": "(config: R2Config, key: string, body: Uint8Array, _contentType?: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "RemoteDeployOptions": {
+      "symbol": "RemoteDeployOptions",
+      "file": "",
+      "currentSignature": "interface RemoteDeployOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "RemoteDeployResult": {
+      "symbol": "RemoteDeployResult",
+      "file": "",
+      "currentSignature": "interface RemoteDeployResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "runRemoteDeploy": {
+      "symbol": "runRemoteDeploy",
+      "file": "",
+      "currentSignature": "(options: RemoteDeployOptions): Promise<RemoteDeployResult>",
+      "history": [],
+      "driftEvents": []
+    },
+    "IgnoreMatcher": {
+      "symbol": "IgnoreMatcher",
+      "file": "",
+      "currentSignature": "class IgnoreMatcher",
+      "history": [],
+      "driftEvents": []
+    },
+    "parseIgnoreFile": {
+      "symbol": "parseIgnoreFile",
+      "file": "",
+      "currentSignature": "(contents: string): IgnoreMatcher",
+      "history": [],
+      "driftEvents": []
+    },
+    "BundleFile": {
+      "symbol": "BundleFile",
+      "file": "",
+      "currentSignature": "interface BundleFile",
+      "history": [],
+      "driftEvents": []
+    },
+    "packTarGz": {
+      "symbol": "packTarGz",
+      "file": "",
+      "currentSignature": "(files: BundleFile[]): Buffer",
+      "history": [],
+      "driftEvents": []
+    },
+    "extractTarGz": {
+      "symbol": "extractTarGz",
+      "file": "",
+      "currentSignature": "(buffer: Buffer): Map<string, Buffer>",
+      "history": [],
+      "driftEvents": []
+    },
+    "PackSourceOptions": {
+      "symbol": "PackSourceOptions",
+      "file": "",
+      "currentSignature": "interface PackSourceOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "SourceBundle": {
+      "symbol": "SourceBundle",
+      "file": "",
+      "currentSignature": "interface SourceBundle",
+      "history": [],
+      "driftEvents": []
+    },
+    "packSourceBundle": {
+      "symbol": "packSourceBundle",
+      "file": "",
+      "currentSignature": "(options: PackSourceOptions): Promise<SourceBundle>",
+      "history": [],
+      "driftEvents": []
+    },
+    "writeSourceBundle": {
+      "symbol": "writeSourceBundle",
+      "file": "",
+      "currentSignature": "(bundle: SourceBundle, destDir: string): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "sourceObjectKey": {
+      "symbol": "sourceObjectKey",
+      "file": "",
+      "currentSignature": "(tenant: string, commit: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "ansiLink": {
+      "symbol": "ansiLink",
+      "file": "",
+      "currentSignature": "(url: string, text: string): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "emitFailureSignal": {
+      "symbol": "emitFailureSignal",
+      "file": "",
+      "currentSignature": "(): void",
+      "history": [],
+      "driftEvents": []
+    },
+    "LiveStatus": {
+      "symbol": "LiveStatus",
+      "file": "",
+      "currentSignature": "class LiveStatus",
+      "history": [],
+      "driftEvents": []
+    },
+    "renderDriftDiff": {
+      "symbol": "renderDriftDiff",
+      "file": "",
+      "currentSignature": "(code: string, message: string, file: string, line: number, claim: string, evidence: string[], suggestedAction?: string): void",
+      "history": [],
+      "driftEvents": []
+    }
+  }
+}

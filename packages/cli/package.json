@@ -1,15 +1,23 @@
 {
-  "name": "@chrona/cli",
-  "version": "1.4.1",
-  "description": "The CLI tool for Chrona",
+  "name": "@chrona-engine/cli",
+  "version": "1.5.0",
+  "description": "The Typechecker & Compiler for Documentation (Docs that never go stale)",
   "keywords": [
-    "Docs",
-    "Chrona"
+    "chrona",
+    "documentation",
+    "compiler",
+    "type-checker",
+    "ast",
+    "mcp",
+    "ai-agents",
+    "software-memory",
+    "vite",
+    "ci"
   ],
   "homepage": "https://chrona.dev",
   "license": "MIT",
-  "author": "Fuma Nama",
-  "repository": "github:chrona/chrona",
+  "author": "Emmanuel Enyi",
+  "repository": "github:sicario-labs/chrona",
   "bin": {
     "cli": "./dist/index.js"
   },
@@ -30,12 +38,15 @@
     "clean": "rimraf dist",
     "dev": "tsdown --watch",
     "lint": "oxlint .",
+    "test": "vitest run",
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
+    "@chrona-engine/engine": "workspace:*",
     "@clack/prompts": "^1.7.0",
     "commander": "^15.0.0",
     "fuma-cli": "^0.1.1",
+    "oxc-parser": "^0.144.0",
     "picocolors": "^1.1.1",
     "tinyexec": "^1.3.0",
     "zod": "^4.4.3"

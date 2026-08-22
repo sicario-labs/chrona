@@ -1,0 +1,41 @@
+---
+title: CLI Command Reference
+description: Ground-truth reference for npx chrona terminal commands and parameters.
+---
+
+# Chrona CLI Reference
+
+> [!IMPORTANT]
+> **Evidence Graph Validation**: All flags and options below are verified against `packages/cli/src/index.ts`. Unsupported claims (such as legacy `--cloud-sync` or `--ai-model` flags) have been purged.
+
+## Supported Commands
+
+### `npx chrona init`
+
+Initializes the Chrona Agent Workflow in your repository workspace.
+
+```bash
+npx chrona init
+```
+
+#### Verified Actions:
+1. **AST & Workspace Analysis**: Detects TypeScript, Next.js, README, and public export count.
+2. **Skill Installation**: Writes `.agents/skills/chrona/SKILL.md`.
+3. **Configuration**: Writes `.chrona/config.json`.
+4. **Workspace Destination**: Prepares `content/docs/`.
+
+---
+
+### `npx chrona tree [path]`
+
+Generates a visual file tree or MDX representation of a directory structure.
+
+```bash
+npx chrona tree ./content/docs --js
+```
+
+#### Verified Options:
+- `[json_or_args]` (`string`, optional): Path or tree arguments.
+- `[output]` (`string`, optional): Output file path.
+- `--js`: Outputs as a JavaScript component file.
+- `--no-root`: Removes root tree node.

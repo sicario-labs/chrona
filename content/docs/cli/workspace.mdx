@@ -1,0 +1,136 @@
+# chrona workspace (alias: chrona ws)
+
+Inspect the epistemic model of the software workspace: sources, claims, evidence, relationships, and deep symbol explanations.
+
+---
+
+## Usage
+
+```bash
+chrona workspace [options]
+chrona ws [options]
+```
+
+## What it does
+
+The **Chrona Workspace** is the persistent epistemic model of your software environment. `chrona workspace` allows you to inspect:
+1. **Sources**: Symbol counts, exports, types, and modules.
+2. **Knowledge**: Documentation pages, claims, verified count, warnings, and contradictions.
+3. **Evidence**: AST ground truth, Git history, and package metadata.
+4. **Integrity**: Overall soundness percentage and diagnostic counts.
+5. **Deep Explanation**: Inspect why a symbol has its current shape, which documentation references match or contradict it, and the exact evidence chain via `--explain <symbol>`.
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--cwd <path>` | `string` | `process.cwd()` | Working directory for the repository |
+| `--docs-dir <path>` | `string` | `content/docs` | Custom documentation directory |
+| `--scope <name>` | `string` | — | Retrieve verified context with provenance for a specific symbol or scope |
+| `--explain <symbol>` | `string` | — | Deep epistemic explanation for why a symbol looks like this and why docs drift |
+| `--json` | `boolean` | `false` | Output full workspace model as structured JSON |
+
+---
+
+## Examples
+
+### View Workspace Overview Scorecard
+
+```bash
+chrona ws
+```
+
+Output:
+```text
+Chrona Workspace
+────────────────────────────────────────
+Project       rou3
+Repository    h3js/rou3
+Commit        68f6d87 (main)
+
+Sources
+  47 symbols
+  47 exports
+  0 types
+  1 modules
+
+Documentation
+  6 pages
+  49 claims
+  33 verified
+  1 contradictions
+
+Evidence
+  ✓ TypeScript AST
+  ✓ Git history
+  ✓ package metadata
+  ✓ executable examples
+
+Integrity
+  97.1% [FAIL]
+
+Last verification: Just now
+```
+
+### Deep Epistemic Explanation (`--explain <symbol>`)
+
+```bash
+chrona ws --explain createRouter
+```
+
+Output:
+```text
+Why does createRouter look like this?
+
+Current Implementation:
+  src/index.ts:7
+  (): RouterContext<T>
+
+Documentation References:
+  Total References: 18
+  ✓ content/docs/api-reference.mdx:38
+  ✓ content/docs/index.mdx:8
+  ✗ content/docs/api-reference.mdx:40 → [DOC-103] Phantom option `{ routes }` not accepted by `createRouter`
+
+Epistemic Verdict:
+  Symbol `createRouter` is implemented in `src/index.ts:7` with signature `(): RouterContext<T>`. Documentation in `content/docs/api-reference.mdx:40` is contradictory: Phantom option `{ routes }` not accepted by `createRouter`.
+
+Evidence Chain:
+  • AST: src/index.ts:7 ((): RouterContext<T>)
+  • Git: commit 68f6d87 (main)
+  • Claims: 18 claim(s) extracted from documentation
+  • Contradiction [DOC-103]: Phantom option `{ routes }` not accepted by `createRouter`
+```
+
+### Querying Verified Context (`--scope <symbol>`)
+
+```bash
+chrona ws --scope createRouter
+```
+
+Output:
+```text
+=== Verified Context for [createRouter] ===
+
+Entry Points:
+  • createRouter (src/index.ts:7)
+    (): RouterContext<T>
+
+Public API Signatures:
+  • createRouter: (): RouterContext<T>
+
+Verified Code Examples:
+  From content/docs/api-reference.mdx:37
+  <!-- chrona-ignore -->
+  ```ts title="Usage"
+  import { createRouter } from 'rou3';
+  const router = createRouter();
+  ```
+
+Known Documentation Drift:
+  ⚠ [DOC-103] Phantom option `{ routes }` not accepted by `createRouter` (content/docs/api-reference.mdx:40)
+
+Evidence Chain: ✓ AST Provenance │ ✓ Package Metadata │ ✓ Git Commit 68f6d87
+```

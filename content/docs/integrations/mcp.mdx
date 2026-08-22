@@ -1,0 +1,55 @@
+# Model Context Protocol (MCP) Integration
+
+Universal Model Context Protocol integration for Cursor, Claude Code, Google Antigravity, Kiro, OpenAI Codex, Windsurf, Zed, and Continue.
+
+---
+
+## What Chrona MCP Exposes
+
+Chrona's MCP server runs over `stdio` and equips AI coding agents with real-time codebase truth:
+
+| Tool Name | Description |
+|---|---|
+| `get_verified_context` | Retrieves AST-provenanced signatures, verified examples, and known drift for a symbol |
+| `discover_evidence` | Returns the raw AST evidence graph for exports, types, and test suites |
+| `get_agent_work_order` | Returns a structured repair action list for documentation debt and contradictions |
+| `get_workspace_model` | Returns the complete epistemic workspace model, sources, claims, and integrity |
+
+---
+
+## 1-Command Installation for Any Agent
+
+Run the automatic configurator from your repository root:
+
+```bash
+# Install for all supported agents
+npx chrona mcp --install all
+
+# Install for a specific agent
+npx chrona mcp --install cursor
+npx chrona mcp --install claude
+npx chrona mcp --install antigravity
+```
+
+---
+
+## Supported AI Platforms & Config Paths
+
+| Platform | Configuration File Path |
+|---|---|
+| **Cursor** | `.cursor/mcp.json` |
+| **Claude Code** | `.claude/mcp.json` |
+| **Google Antigravity** | `.antigravity/mcp_config.json` |
+| **Kiro / Kilo** | `.kiro/mcp.json` |
+| **Cline** | `.cline/mcp.json` |
+| **Roo Code** | `.roo/mcp.json` |
+| **OpenCode** | `opencode.json` |
+| **Qoder** | `.qoder/.mcp.json` |
+| **Mimo Code** | `mimocode.jsonc` |
+| **DeepSeek Harness** | `cordis.patch.yml` |
+| **OpenAI Codex** | `codex-tools.json` |
+| **Windsurf (Codeium)** | `.codeium/windsurf/mcp_config.json` |
+| **Zed Editor** | `.zed/settings.json` |
+| **Continue.dev** | `.continue/config.json` |
+| **JetBrains** | `.idea/mcp.json` |
+| **Goose** | `goose.config.yaml` |

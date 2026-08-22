@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "projectName": "chrona",
+  "updatedAt": "2026-08-20T05:29:09.980Z",
+  "decisions": {
+    "ADR-001": {
+      "id": "ADR-001",
+      "statement": "We use SQLite-backed Durable Objects for alias routing",
+      "rationale": "Single ms propagation with zero cache-purge delay",
+      "recordedAt": "2026-08-20T05:29:09.980Z",
+      "recordedBy": "developer",
+      "status": "active",
+      "contracts": [],
+      "tags": [
+        "edge",
+        "routing"
+      ],
+      "lastVerifiedAt": "2026-08-20T05:29:09.980Z"
+    }
+  }
+}

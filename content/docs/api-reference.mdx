@@ -1,0 +1,62 @@
+---
+title: API Reference
+description: Ground-truth API reference for exported packages, public functions, and CLI interfaces.
+---
+
+# API Reference
+
+> [!NOTE]
+> This reference documents only public, user-facing APIs exported by Chrona packages. Internal helpers and `@internal` utilities are omitted.
+
+## `@chrona/engine`
+
+### `indexProject(options?: IndexOptions): Promise<RepositoryIndex>`
+
+Scans and indexes all exported TypeScript declarations, JSDoc annotations, and symbol references in a repository.
+
+#### Parameters:
+- `options.tsconfigPath` (`string`, optional): Path to `tsconfig.json`. Default: `'./tsconfig.json'`.
+- `options.resolveAliases` (`boolean`, optional): Resolves `import`/`export` alias chains back to their original declaration. Default: `true`.
+- `options.collectReferences` (`boolean`, optional): Collects usage locations across all workspace files. Default: `true`.
+
+#### Returns:
+- `Promise<RepositoryIndex>`: Object containing `symbols` map, `byName` lookup, and file list.
+
+#### Example (from test suite):
+```ts
+import { indexProject } from '@chrona/engine';
+
+const repoIndex = await indexProject({
+  tsconfigPath: './tsconfig.json',
+  collectReferences: true,
+});
+
+console.log(`Indexed ${repoIndex.symbols.size} exported symbols.`);
+```
+
+---
+
+### `indexProjectFromProject(project: Project, options?: IndexOptions): Promise<RepositoryIndex>`
+
+Indexes declarations from a pre-existing `ts-morph` `Project` instance.
+
+#### Parameters:
+- `project` (`Project`): Active `ts-morph` project instance.
+- `options` (`IndexOptions`, optional): Custom indexing options.
+
+---
+
+## `@chrona/cli`
+
+### `initChronaAgentWorkflow(options?: InitOptions): Promise<void>`
+
+Bootstraps the Chrona AI Agent workflow in a local codebase directory.
+
+#### Parameters:
+- `options.cwd` (`string`, optional): Target workspace path. Default: `process.cwd()`.
+- `options.force` (`boolean`, optional): Forces overwriting existing configuration files.
+
+#### Side Effects:
+1. Installs `.agents/skills/chrona/SKILL.md`.
+2. Creates `.chrona/config.json`.
+3. Prepares `content/docs/`.

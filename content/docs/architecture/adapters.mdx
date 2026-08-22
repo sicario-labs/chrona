@@ -1,0 +1,25 @@
+# Language & Framework Adapters
+
+How Chrona decouples the verification compiler from specific programming languages and document frameworks.
+
+---
+
+## The Adapter Pattern
+
+Chrona uses an extensible `AdapterRegistry` to handle language-specific AST extraction:
+
+```typescript
+export interface LanguageAdapter {
+  name: string;
+  supportedExtensions: string[];
+  extractExports(code: string, filePath: string): ExtractedSymbol[];
+  extractTypes?(code: string, filePath: string): ExtractedType[];
+}
+```
+
+---
+
+## Implemented Adapters
+
+- **TypeScript / JavaScript Adapter**: Backed by `oxc-parser` supporting modern TypeScript 5+, JSX/TSX, ES modules, and CommonJS.
+- **Markdown / MDX Adapter**: Backed by AST regex & syntax traversers extracting code snippets, parameter assertions, and headings.

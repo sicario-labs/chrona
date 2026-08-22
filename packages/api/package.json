@@ -1,0 +1,33 @@
+{
+  "name": "@chrona-engine/api",
+  "version": "0.2.0",
+  "description": "Chrona Truth Verification Cloud API & Verification Badges",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "types:check": "tsc --noEmit",
+    "lint": "oxlint ."
+  },
+  "dependencies": {
+    "@chrona-engine/engine": "workspace:*",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "tsdown": "0.22.14",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0",
+    "@types/node": "26.1.2"
+  }
+}

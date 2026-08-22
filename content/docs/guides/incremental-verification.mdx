@@ -1,0 +1,27 @@
+# Incremental Verification & Caching
+
+How Chrona achieves sub-50ms verification times on large repositories using content-addressable AST caches.
+
+---
+
+## Incremental Cache Architecture
+
+Chrona maintains a fast local verification cache in `.chrona/cache/`. The cache key is computed from:
+1. **Source Fingerprints**: SHA-256 hashes of AST tokens for exported symbols.
+2. **Document Hashes**: Hash of Markdown/MDX content blocks.
+3. **Rule Configuration**: Serialized compiler rule flags.
+
+When you run `chrona check`, unmodified documents whose dependent AST symbols have not changed bypass re-parsing completely.
+
+---
+
+## Clearing the Cache
+
+If you suspect cache corruption or want a completely clean verification run:
+
+```bash
+# Delete the local cache directory
+npx rimraf .chrona/cache
+```
+
+Or pass clean execution flags in CI runners.

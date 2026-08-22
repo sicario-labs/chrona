@@ -1,0 +1,59 @@
+# Chrona Documentation
+
+> **Software changes faster than its knowledge. Chrona maintains a continuously verifiable knowledge model of software.**
+
+Chrona is a documentation verification compiler and epistemic truth engine for modern software projects. It analyzes source code AST, documentation claims, executable code snippets, Git history, and package metadata to ensure what your documentation asserts about your software is actually true.
+
+```text
+                        CHRONA
+                          │
+             "Continuously verifiable
+                software knowledge"
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+       CHRONA WORKSPACE         TEMPORAL MEMORY
+              │                       │
+      ┌───────┼───────┐               │
+      │       │       │               │
+   Software Knowledge Evidence     Evolution
+      │       │       │               │
+      └───────┼───────┘               │
+              │                       │
+              ▼                       ▼
+       Documentation            Change Intelligence
+        Type Checking                 │
+              │                       │
+              └──────────┬────────────┘
+                         ▼
+                 VERIFIED CONTEXT
+                         │
+                         ▼
+                    AI AGENTS
+```
+
+---
+
+## Core Capabilities
+
+- **Documentation Type-Checking**: Detect code-documentation drift before users or coding agents do using `chrona check` and `chrona ci`.
+- **AST Ground Truth Referee**: Uses the Rust-powered `oxc` parser to extract typed exports, signatures, parameters, and JSDoc deprecations in milliseconds.
+- **Claim Intermediate Representation (Claim IR)**: Extracts structured assertions from Markdown/MDX prose and validates them against the codebase AST.
+- **Git Change Intelligence**: Computes exact documentation impact (`chrona impact`) across Git commits and pull requests.
+- **Epistemic Workspace Model**: The **Workspace** is the fundamental unit of truth (`chrona ws`) uniting Software, Knowledge, Evidence, and Relationships into a queryable graph.
+- **Universal Multi-Agent MCP Integration**: Exposes `get_verified_context` and `get_workspace_model` to 20+ AI coding agent platforms (Cursor, Claude Code, Google Antigravity, Kiro, OpenAI Codex, Windsurf).
+
+---
+
+## Quick Navigation
+
+| Section | Description |
+|---|---|
+| [Getting Started](./getting-started/quickstart.mdx) | 60-second quickstart, installation, and first verification tutorial |
+| [CLI Reference](./cli/overview.mdx) | Comprehensive documentation for all Chrona CLI commands and options |
+| [Configuration Reference](./configuration/reference.mdx) | Configuration file schema, defaults, and environment variables |
+| [Diagnostics (DOC-xxx)](./diagnostics/codes.mdx) | Complete reference of compiler diagnostic codes and fix strategies |
+| [Guides](./guides/verifying-documentation.mdx) | Guides for CI gates, Git diff verification, and suppression rules |
+| [MCP & AI Agents](./integrations/mcp.mdx) | Universal MCP server setup and tool schemas for coding agents |
+| [Workspace & Provenance](./concepts/workspace.mdx) | Deep dive into the Epistemic Workspace model and software memory |
+| [Reference](./reference/exit-codes.mdx) | Exit codes, output formats, MCP tools, and glossary |

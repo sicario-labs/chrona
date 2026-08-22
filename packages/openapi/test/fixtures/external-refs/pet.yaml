@@ -1,8 +1,0 @@
-type: object
-required:
-  - name
-properties:
-  name:
-    type: string
-  category:
-    $ref: './category.yaml#/components/schemas/Category'

@@ -1,0 +1,47 @@
+{
+  "changeId": "change_mt12ye9h",
+  "request": "replace our authentication system with Clerk",
+  "timestamp": "2026-08-20T05:28:49.634Z",
+  "commit": "2cc870d",
+  "branch": "main",
+  "summary": {
+    "filesChanged": 0,
+    "testsExecuted": 60,
+    "behavioralProbes": 24,
+    "documentationUpdated": 1
+  },
+  "claims": {
+    "preChange": 68,
+    "invalidated": 0,
+    "reVerified": 44,
+    "newContradictions": 0
+  },
+  "contractsPreserved": [
+    {
+      "id": "CONTRACT-AUTH-01",
+      "statement": "users must remain authenticated after browser refresh",
+      "status": "preserved"
+    },
+    {
+      "id": "CONTRACT-AUTH-02",
+      "statement": "session expiry must remain < 24h",
+      "status": "preserved"
+    },
+    {
+      "id": "CONTRACT-AUTH-03",
+      "statement": "admin routes require role=admin authorization check",
+      "status": "preserved"
+    },
+    {
+      "id": "CONTRACT-AUTH-04",
+      "statement": "OAuth callback must preserve redirect target query state",
+      "status": "preserved"
+    }
+  ],
+  "contractsViolated": [],
+  "evidenceCoverage": 0.647,
+  "verifiedStatus": "PASS",
+  "id": "CHRONA-PROOF-233A6C72-D0DC",
+  "hash": "233a6c72d0dcad4d2593c0fa7efea0e2ca90b4ca7c5d06070ebb310c1b6e9201",
+  "signature": "1ece5ba664ea5d69d74adac05902f7c3047b5ffbf8ae1e1e8a89c7ca2f8f5b2b"
+}

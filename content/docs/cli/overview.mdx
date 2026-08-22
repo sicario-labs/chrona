@@ -1,0 +1,57 @@
+# CLI Reference Overview
+
+The Chrona Command Line Interface (`chrona`) provides developer-facing commands for local verification, CI/CD gates, change impact calculation, and agent integration.
+
+---
+
+## Global Usage
+
+```bash
+chrona [command] [options]
+```
+
+### Global Options
+
+| Option | Type | Description |
+|---|---|---|
+| `--config <string>` | `string` | Custom path to configuration file (defaults to `cli.json` or `chrona.config.ts`) |
+| `-V, --version` | `boolean` | Output the version number |
+| `-h, --help` | `boolean` | Display help for command |
+
+---
+
+## Command Matrix
+
+| Command | Alias | Primary Purpose |
+|---|---|---|
+| [`chrona init`](./init.mdx) | — | Initialize docs workspace and configure pre-commit hook |
+| [`chrona check`](./check.mdx) | — | Audit documentation claims against live codebase AST |
+| [`chrona ci`](./ci.mdx) | — | Strict truth gate for CI with GitHub annotations |
+| [`chrona impact`](./impact.mdx) | — | Calculate documentation impact for recent Git commits |
+| [`chrona audit`](./audit.mdx) | — | Zero-config multi-repository verification audit |
+| [`chrona discover`](./discover.mdx) | — | Extract AST exports, types, and tests into evidence graph |
+| [`chrona plan`](./plan.mdx) | — | Inspect Developer Task DAG and coverage IR |
+| [`chrona repair`](./repair.mdx) | — | Generate structured agent work order for documentation debt |
+| [`chrona bench`](./bench.mdx) | — | Measure Developer Task Success Rate and DX integrity |
+| [`chrona badge`](./badge.mdx) | — | Generate live Markdown/HTML verification status badges |
+| [`chrona workspace`](./workspace.mdx) | `ws` | Inspect epistemic model and deep symbol explanation |
+| [`chrona mcp`](./mcp.mdx) | — | Start or install universal MCP server for AI coding agents |
+| [`chrona dev`](./deploy.mdx) | — | Start local Vite documentation runtime with live verification |
+| [`chrona build`](./deploy.mdx) | — | Compile production docs bundle and `/llms.txt` manifests |
+| [`chrona preview`](./deploy.mdx) | — | Preview static production documentation build |
+| [`chrona deploy`](./deploy.mdx) | — | Verify, build, upload to edge deploy store, and promote |
+| [`chrona ls`](./deploy.mdx) | — | List deployment history for current project |
+| [`chrona rollback`](./deploy.mdx) | — | Flip production alias to a prior deployment |
+| [`chrona login`](./auth.mdx) | — | Authenticate terminal session using RFC 8628 Device Flow |
+| [`chrona auth:*`](./auth.mdx) | — | Manage org-scoped API keys for CI and cloud ingestion |
+| [`chrona env`](./env.mdx) | — | Manage per-project environment variables |
+
+---
+
+## Exit Codes
+
+All Chrona commands adhere to standardized exit codes:
+
+- **`0`**: Success (no verification errors detected).
+- **`1`**: Verification failure (contradictions found or CI failure threshold met).
+- **`2`**: Fatal configuration error, invalid CLI flags, or missing files.

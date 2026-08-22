@@ -1,0 +1,21 @@
+# CLI Commands Reference
+
+Use `runBuild` to bundle applications:
+
+```ts
+import { runBuild } from '@sample/cli-tool';
+
+const res = runBuild({
+  entry: 'src/main.ts',
+  outDir: 'dist',
+  minify: true,
+});
+```
+
+Clean artifacts using `runClean`:
+
+```ts
+import { runClean } from '@sample/cli-tool';
+
+runClean('build');
+```

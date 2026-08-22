@@ -1,0 +1,40 @@
+# chrona repair
+
+Inspect outstanding documentation debt and execute agent repair work orders.
+
+---
+
+## Usage
+
+```bash
+chrona repair [options]
+```
+
+## What it does
+
+`chrona repair` generates structured remediation plans for documentation contradictions and missing claims. When paired with AI coding agents, the work order provides exact files, line numbers, expected signatures, and suggested edits.
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--cwd <path>` | `string` | `process.cwd()` | Working directory for the repository |
+| `--json` | `boolean` | `false` | Output repair order as structured JSON (v1) |
+
+---
+
+## Examples
+
+### View Repair Debt in Terminal
+
+```bash
+chrona repair
+```
+
+### Emit Agent Work Order as JSON
+
+```bash
+chrona repair --json
+```

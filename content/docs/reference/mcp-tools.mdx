@@ -1,0 +1,96 @@
+# MCP Tools Reference
+
+Complete input and output schema reference for Chrona's Model Context Protocol (MCP) server.
+
+---
+
+## 1. `get_verified_context`
+
+Retrieve verified context, entry points, public signatures, verified examples, and known drift for a specific symbol or whole workspace.
+
+### Input Schema
+```json
+{
+  "type": "object",
+  "properties": {
+    "symbol": {
+      "type": "string",
+      "description": "The symbol name or scope to retrieve verified context for"
+    }
+  }
+}
+```
+
+### Output Schema
+```typescript
+interface VerifiedContextOutput {
+  scope: string;
+  entryPoints: Array<{ name: string; file: string; line: number; signature?: string }>;
+  publicApi: Array<{ name: string; signature: string; returnType?: string }>;
+  verifiedExamples: Array<{ file: string; line: number; snippet: string }>;
+  knownDrift: Array<{ code: string; message: string; file: string; line: number }>;
+  evidence: {
+    astProvenance: boolean;
+    packageJson: boolean;
+    executableExample: boolean;
+    commit: string;
+  };
+}
+```
+
+---
+
+## 2. `discover_evidence`
+
+Extract codebase structure, exported symbols, types, and test suites.
+
+### Input Schema
+```json
+{
+  "type": "object",
+  "properties": {
+    "limit": {
+      "type": "number",
+      "description": "Optional maximum number of exports to return"
+    }
+  }
+}
+```
+
+---
+
+## 3. `get_agent_work_order`
+
+Generate structured repair actions for documentation contradictions and debt.
+
+### Input Schema
+```json
+{
+  "type": "object",
+  "properties": {
+    "commit": {
+      "type": "string",
+      "description": "Target commit hash to calculate work order for"
+    }
+  }
+}
+```
+
+---
+
+## 4. `get_workspace_model`
+
+Return the full epistemic workspace model, sources, claims, evidence, and integrity score.
+
+### Input Schema
+```json
+{
+  "type": "object",
+  "properties": {
+    "scope": {
+      "type": "string",
+      "description": "Optional symbol or scope filter"
+    }
+  }
+}
+```

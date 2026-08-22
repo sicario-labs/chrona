@@ -1,0 +1,25 @@
+# Epistemic Evidence Hierarchy
+
+How Chrona ranks and weighs different forms of codebase evidence.
+
+---
+
+## The Epistemic Evidence Hierarchy
+
+Chrona categorizes evidence into four hierarchical tiers:
+
+```text
+Tier 1: AST Ground Truth (Compiler-verified exports, types, signatures)
+   ↓
+Tier 2: Git History & Diffs (Commit author, timestamp, change delta)
+   ↓
+Tier 3: Package Metadata (package.json exports, package names, dependencies)
+   ↓
+Tier 4: Sandboxed Runtime Execution (Executable code block outcomes)
+```
+
+---
+
+## Multi-Evidence Corroboration
+
+When evaluating a claim, Chrona never relies on a single heuristic. A claim is marked `verified` only when the highest available evidence tier confirms the assertion without contradictions.

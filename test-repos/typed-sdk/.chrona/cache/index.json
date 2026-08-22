@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "files": {
+    "content/docs/quickstart.mdx": {
+      "mtimeMs": 1787088540092.4758,
+      "hash": "c6661c5378754ebc",
+      "claimsCacheKey": "6310b8936fc3e1b4"
+    },
+    "content/docs/auth.mdx": {
+      "mtimeMs": 1787088542994.5715,
+      "hash": "918e76ce1a00cc64",
+      "claimsCacheKey": "1a73bc4e18a1f50e"
+    }
+  },
+  "evidenceMap": {}
+}

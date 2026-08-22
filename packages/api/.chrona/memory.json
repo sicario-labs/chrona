@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "projectName": "api",
+  "createdAt": "2026-08-19T11:06:11.939Z",
+  "snapshots": [
+    {
+      "id": "14b645b2b36acd9b",
+      "commit": "2cc870d",
+      "branch": "main",
+      "timestamp": "2026-08-19T11:06:11.939Z",
+      "summary": {
+        "totalClaims": 0,
+        "claimsVerified": 0,
+        "contradictionsFound": 0,
+        "unverifiedCount": 0,
+        "ambiguousCount": 0
+      },
+      "durationMs": 646
+    }
+  ],
+  "symbols": {
+    "BadgeOptions": {
+      "symbol": "BadgeOptions",
+      "file": "",
+      "currentSignature": "interface BadgeOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "generateBadgeSvg": {
+      "symbol": "generateBadgeSvg",
+      "file": "",
+      "currentSignature": "(options: BadgeOptions): string",
+      "history": [],
+      "driftEvents": []
+    },
+    "TierPlan": {
+      "symbol": "TierPlan",
+      "file": "",
+      "currentSignature": "type TierPlan = 'free' | 'pro' | 'team'",
+      "history": [],
+      "driftEvents": []
+    },
+    "PlanLimits": {
+      "symbol": "PlanLimits",
+      "file": "",
+      "currentSignature": "interface PlanLimits",
+      "history": [],
+      "driftEvents": []
+    },
+    "checkQuota": {
+      "symbol": "checkQuota",
+      "file": "",
+      "currentSignature": "(plan: TierPlan, currentRepos: number, currentVerifications: number): { allowed: boolean; reason?: string }",
+      "history": [],
+      "driftEvents": []
+    },
+    "publishPackage": {
+      "symbol": "publishPackage",
+      "file": "",
+      "currentSignature": "(model: RegistryPackageModel): Promise<{ ok: boolean }>",
+      "history": [],
+      "driftEvents": []
+    },
+    "fetchPackage": {
+      "symbol": "fetchPackage",
+      "file": "",
+      "currentSignature": "(name: string, version: string = 'latest'): Promise<RegistryPackageModel | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "searchPackages": {
+      "symbol": "searchPackages",
+      "file": "",
+      "currentSignature": "(query: string): Promise<Array<{ name: string; version: string; symbols: number }>>",
+      "history": [],
+      "driftEvents": []
+    },
+    "ProjectRecord": {
+      "symbol": "ProjectRecord",
+      "file": "",
+      "currentSignature": "interface ProjectRecord",
+      "history": [],
+      "driftEvents": []
+    },
+    "ApiServerOptions": {
+      "symbol": "ApiServerOptions",
+      "file": "",
+      "currentSignature": "interface ApiServerOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaApiServer": {
+      "symbol": "ChronaApiServer",
+      "file": "",
+      "currentSignature": "class ChronaApiServer",
+      "history": [],
+      "driftEvents": []
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# ORM Models
+
+```ts
+import { defineModel } from '@sample/orm-database';
+
+interface User {
+  id: string;
+  name: string;
+}
+
+const UserModel = defineModel<User>('users', [
+  { name: 'id', type: 'string', primaryKey: true },
+  { name: 'name', type: 'string' },
+]);
+```

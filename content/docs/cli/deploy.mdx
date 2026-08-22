@@ -1,0 +1,92 @@
+# chrona deploy, dev, build, ls, rollback
+
+Manage documentation builds, local live-preview servers, and edge deployments.
+
+---
+
+## chrona dev
+
+Start the local Vite documentation runtime with real-time Code Verification and AI endpoints.
+
+```bash
+chrona dev [options]
+```
+
+### Options
+- `--cwd <path>`: Working directory (default: `process.cwd()`).
+- `--port <number>`: Port for Vite dev server (default: `5174`).
+
+---
+
+## chrona build
+
+Audit documentation truth and compile a static production bundle with `/llms.txt` manifests.
+
+```bash
+chrona build [options]
+```
+
+### Options
+- `--cwd <path>`: Working directory (default: `process.cwd()`).
+- `--output <path>`: Output directory for static assets (default: `dist`).
+- `--no-strict`: Allow build to proceed with non-fatal warnings.
+
+---
+
+## chrona preview
+
+Preview your production static documentation build locally.
+
+```bash
+chrona preview [options]
+```
+
+### Options
+- `--cwd <path>`: Working directory.
+- `--port <number>`: Preview server port (default: `4173`).
+
+---
+
+## chrona deploy
+
+Verify truth, compile, upload documentation to the edge deploy store (Cloudflare R2), and promote to production.
+
+```bash
+chrona deploy [options]
+```
+
+### Options
+- `--cwd <path>`: Working directory.
+- `--output <path>`: Output directory (default: `dist`).
+- `--project <name>`: Project identifier (defaults to directory name).
+- `--bucket <name>`: R2 bucket to upload to (default: `chrona-builds`).
+- `--prod`: Promote deployment to production.
+- `--remote`: Push source and build remotely on the worker fleet.
+- `--no-strict`: Allow deploy to proceed with non-fatal warnings.
+
+---
+
+## chrona ls
+
+List deployment history and active production aliases for the current project.
+
+```bash
+chrona ls [options]
+```
+
+### Options
+- `--cwd <path>`: Working directory.
+- `--project <name>`: Project ID.
+
+---
+
+## chrona rollback
+
+Instantly flip the production alias to a prior retained deployment without re-uploading assets.
+
+```bash
+chrona rollback <token> [options]
+```
+
+### Arguments
+- `<token>`: Deployment ID or prefix from `chrona ls`.

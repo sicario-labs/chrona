@@ -1,0 +1,39 @@
+# Other CI Providers (GitLab, CircleCI, Buildkite)
+
+Running Chrona across non-GitHub CI environments using standard JUnit XML and NDJSON streams.
+
+---
+
+## GitLab CI (`.gitlab-ci.yml`)
+
+```yaml
+chrona_verify:
+  stage: test
+  image: node:20
+  script:
+    - npm ci
+    - npx chrona ci --format junit --output report.xml
+  artifacts:
+    reports:
+      junit: report.xml
+```
+
+---
+
+## CircleCI (`.circleci/config.yml`)
+
+```yaml
+version: 2.1
+jobs:
+  verify-docs:
+    docker:
+      - image: cimg/node:20.0
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          name: Run Chrona
+          command: npx chrona ci --format junit --output test-results/chrona.xml
+      - store_test_results:
+          path: test-results
+```

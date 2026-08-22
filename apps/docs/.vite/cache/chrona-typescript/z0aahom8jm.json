@@ -1,1 +1,0 @@
-[{"id":"props.ts-TypeTableProps","name":"TypeTableProps","description":"","entries":[{"name":"type","description":"","tags":[],"type":"Record<string, TypeNode>","simplifiedType":"Record<string, object>","required":true,"deprecated":false}]}]

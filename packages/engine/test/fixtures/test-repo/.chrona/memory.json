@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "projectName": "test-repo",
+  "createdAt": "2026-08-22T20:10:38.667Z",
+  "snapshots": [
+    {
+      "id": "067d8b5ae2c07277",
+      "commit": "2cc870d",
+      "branch": "main",
+      "timestamp": "2026-08-22T20:10:38.668Z",
+      "summary": {
+        "totalClaims": 0,
+        "claimsVerified": 0,
+        "contradictionsFound": 0,
+        "unverifiedCount": 0,
+        "ambiguousCount": 0
+      },
+      "durationMs": 9
+    },
+    {
+      "id": "6d73c0ae4ac7e612",
+      "commit": "2cc870d",
+      "branch": "main",
+      "timestamp": "2026-08-22T20:10:39.393Z",
+      "summary": {
+        "totalClaims": 0,
+        "claimsVerified": 0,
+        "contradictionsFound": 0,
+        "unverifiedCount": 0,
+        "ambiguousCount": 0
+      },
+      "durationMs": 13
+    },
+    {
+      "id": "a448fa27a93f7565",
+      "commit": "2cc870d",
+      "branch": "main",
+      "timestamp": "2026-08-22T20:10:39.471Z",
+      "summary": {
+        "totalClaims": 0,
+        "claimsVerified": 0,
+        "contradictionsFound": 0,
+        "unverifiedCount": 0,
+        "ambiguousCount": 0
+      },
+      "durationMs": 13
+    }
+  ],
+  "symbols": {}
+}

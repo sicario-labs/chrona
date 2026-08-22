@@ -1,0 +1,32 @@
+{
+  "changeId": "test_change_01",
+  "request": "test migration",
+  "timestamp": "2026-08-22T20:10:30.760Z",
+  "commit": "a1b2c3d",
+  "branch": "main",
+  "summary": {
+    "filesChanged": 12,
+    "testsExecuted": 84,
+    "behavioralProbes": 18,
+    "documentationUpdated": 4
+  },
+  "claims": {
+    "preChange": 120,
+    "invalidated": 0,
+    "reVerified": 120,
+    "newContradictions": 0
+  },
+  "contractsPreserved": [
+    {
+      "id": "C-1",
+      "statement": "session valid",
+      "status": "preserved"
+    }
+  ],
+  "contractsViolated": [],
+  "evidenceCoverage": 0.99,
+  "verifiedStatus": "PASS",
+  "id": "CHRONA-PROOF-8E68EED3-3A14",
+  "hash": "8e68eed33a14b973a325b6465d5acc744ed4348c5dd7182fd94afaa9487e89b1",
+  "signature": "d7449074e9fa378a2c27cf6ab1aafc19227daa087fcd234013910ceccb8c3904"
+}

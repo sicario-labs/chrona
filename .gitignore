@@ -38,6 +38,10 @@ yarn-error.log*
 .env
 .env*.local
 
+# wrangler local dev state (D1/KV/DO persisted data + bundled tmp output)
+.wrangler
+**/.wrangler/
+
 # vercel
 .vercel
 

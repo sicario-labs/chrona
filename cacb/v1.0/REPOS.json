@@ -1,0 +1,21 @@
+[
+  { "name": "radix3", "archetype": "Routing & Trie Data Structures", "source": "test-repos/radix3", "language": "TypeScript" },
+  { "name": "destr", "archetype": "Safe JSON Deserializer", "source": "fresh-benchmark-repos/destr", "language": "TypeScript" },
+  { "name": "ufo", "archetype": "URL Parsing & Manipulation", "source": "fresh-benchmark-repos/ufo", "language": "TypeScript" },
+  { "name": "zustand", "archetype": "State Management & React Hooks", "source": "fresh-benchmark-repos/zustand", "language": "TypeScript" },
+  { "name": "ky", "archetype": "HTTP Client & Fetch Wrapper", "source": "fresh-benchmark-repos/ky", "language": "TypeScript" },
+  { "name": "defu", "archetype": "Deep Object Assignment", "source": "fixtures/defu", "language": "TypeScript" },
+  { "name": "klona", "archetype": "Deep Clone Utilities", "source": "fixtures/klona", "language": "JavaScript" },
+  { "name": "p-limit", "archetype": "Concurrency Management", "source": "fixtures/p-limit", "language": "JavaScript" },
+  { "name": "scule", "archetype": "String Case Manipulation", "source": "fixtures/scule", "language": "TypeScript" },
+  { "name": "nanoid", "archetype": "Cryptographic ID Generation", "source": "fixtures/nanoid", "language": "JavaScript" },
+  { "name": "clsx", "archetype": "DOM Class Formatting", "source": "fixtures/clsx", "language": "JavaScript" },
+  { "name": "mitt", "archetype": "Event Emitter Primitive", "source": "fixtures/mitt", "language": "TypeScript" },
+  { "name": "dotenv", "archetype": "Environment Configuration", "source": "fresh-benchmark-repos/dotenv", "language": "JavaScript" },
+  { "name": "chalk", "archetype": "Terminal Formatting & Styling", "source": "fresh-benchmark-repos/chalk", "language": "TypeScript" },
+  { "name": "ms", "archetype": "Time Conversion Utilities", "source": "fresh-benchmark-repos/ms", "language": "TypeScript" },
+  { "name": "hono", "archetype": "Edge Web Framework", "source": "fresh-benchmark-repos/hono", "language": "TypeScript" },
+  { "name": "fastify", "archetype": "Enterprise Web Server", "source": "fresh-benchmark-repos/fastify", "language": "JavaScript" },
+  { "name": "zod", "archetype": "Schema Validation Engine", "source": "fresh-benchmark-repos/zod", "language": "TypeScript" },
+  { "name": "is", "archetype": "Type Guard & Assertion Library", "source": "fixtures/is", "language": "TypeScript" }
+]

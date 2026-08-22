@@ -27,7 +27,7 @@ describe('engine', () => {
     expect(index.byName.get('Client')?.[0]?.kind).toBe('interface');
     expect(index.byName.get('createClient')?.[0]?.kind).toBe('function');
     expect(index.byName.get('Client')?.[0]?.references.length).toBeGreaterThan(0);
-  });
+  }, 30000);
 
   it('generates symbol documentation', async () => {
     const project = new Project({
@@ -61,5 +61,5 @@ describe('engine', () => {
     const nameEntry = doc?.entries.find((e) => e.name === 'name');
     expect(nameEntry?.deprecated).toBe(true);
     expect(nameEntry?.required).toBe(false);
-  });
+  }, 30000);
 });

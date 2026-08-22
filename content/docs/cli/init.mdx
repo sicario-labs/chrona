@@ -1,0 +1,54 @@
+# chrona init
+
+Initialize a new Chrona documentation workspace and configure pre-commit hooks.
+
+---
+
+## Usage
+
+```bash
+chrona init [options]
+```
+
+## What it does
+
+`chrona init` bootstraps the documentation structure for your project:
+1. Scans the working directory for existing source code (`src/`, `packages/`) and documentation (`content/docs/`, `docs/`).
+2. Configures default task templates, layout components, and aliases.
+3. Generates the default configuration file (`cli.json`).
+4. Optionally installs a Git pre-commit hook (`.git/hooks/pre-commit`) for automatic drift checking on `git commit`.
+
+---
+
+## Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `--cwd <path>` | `string` | Current directory | Working directory for the target repository |
+| `--hook <mode>` | `string` | `none` | Pre-commit hook mode: `none`, `warn`, or `strict` |
+
+---
+
+## Examples
+
+### Standard Initialization
+
+```bash
+chrona init
+```
+
+### Initializing with a Non-Blocking Pre-Commit Hook
+
+```bash
+chrona init --hook warn
+```
+
+When you commit changes via `git commit`, Chrona will run a fast check and warn you if staged code changes break documentation claims.
+
+### Initializing with a Blocking Pre-Commit Hook
+
+```bash
+chrona init --hook strict
+```
+
+Blocks the commit if any documentation contradiction (`DOC-101` through `DOC-201`) is introduced.

@@ -1,0 +1,37 @@
+# Terminology & Glossary
+
+Definitions of core terms used throughout Chrona's verification engine, CLI, and documentation.
+
+---
+
+## Glossary
+
+### AST Ground Truth
+The authoritative syntactic and semantic reality of the codebase extracted directly from source files using compiler parsers (e.g. `oxc-parser`).
+
+### Claim
+A factual assertion made within documentation about software behavior, parameters, return types, or module exports.
+
+### Claim Intermediate Representation (Claim IR)
+The structured, typed intermediate data structure into which raw documentation prose is converted during compilation.
+
+### Documentation Drift
+The gradual divergence between software implementation and its documentation caused by code commits that alter signatures without updating docs.
+
+### Epistemic Graph
+A persistent relational graph connecting AST symbols, documentation claims, executable examples, and Git commits.
+
+### Evidence Chain
+The multi-layered set of proofs (AST line offsets, Git commits, package metadata) backing a verification verdict.
+
+### Provenance
+The traceable lineage of a claim or diagnostic, answering *what, where, when, why, and how sure* Chrona is about an assertion.
+
+### Truth Referee
+The AST analysis module in `@chrona/engine` responsible for matching Claim IR assertions against live codebase AST.
+
+### Verifiable Workspace
+The core abstraction representing the software environment as a unified model of Software, Knowledge, Evidence, and Relationships.
+
+### Verified Context
+A curated slice of documentation, public API signatures, and executable examples guaranteed to match the current AST commit, provided to AI coding agents.
