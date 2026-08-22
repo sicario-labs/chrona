@@ -1,6 +1,6 @@
 {
   "name": "@chrona-engine/cli",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "The Typechecker & Compiler for Documentation (Docs that never go stale)",
   "keywords": [
     "chrona",

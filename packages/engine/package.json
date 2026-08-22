@@ -1,6 +1,6 @@
 {
   "name": "@chrona-engine/engine",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Repository Intelligence Engine for Chrona. Indexes every exported symbol across a project and resolves cross-file references.",
   "keywords": [
     "Docs",

@@ -1,6 +1,6 @@
 {
   "name": "@chrona-engine/api",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Chrona Truth Verification Cloud API & Verification Badges",
   "type": "module",
   "main": "./dist/index.js",
