@@ -1,5 +1,5 @@
-const { createMDX } = require('fumadocs-mdx/config');
+import { createMDX } from 'fumadocs-mdx/config';
 const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = { reactStrictMode: true };
-module.exports = withMDX(config);
+export default withMDX(config);
