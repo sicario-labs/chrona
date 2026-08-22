@@ -1,0 +1,81 @@
+---
+title: Quickstart
+description: Initialize Chrona in your repository and verify your first document.
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+# Quickstart
+
+This guide will walk you through installing Chrona and running your very first AST-grounded documentation verification.
+
+<Steps>
+
+<Step>
+### Install the CLI
+
+Install the Chrona CLI as a dev dependency in your project.
+
+<Tabs items={['npm', 'pnpm', 'yarn']}>
+  <Tab value="npm">
+    ```bash
+    npm install -D @chrona-engine/cli
+    ```
+  </Tab>
+  <Tab value="pnpm">
+    ```bash
+    pnpm add -D @chrona-engine/cli
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    yarn add -D @chrona-engine/cli
+    ```
+  </Tab>
+</Tabs>
+
+</Step>
+
+<Step>
+### Initialize the Workspace
+
+Run the initialization command. This will scaffold a `.chrona/workspace.yaml` configuration file and automatically detect your `tsconfig.json`.
+
+```bash
+npx chrona init
+```
+
+</Step>
+
+<Step>
+### Write a Claim
+
+Create a markdown file (e.g., `content/docs/example.mdx`) and write an AST-bound claim. Chrona parses standard markdown code blocks, but it actively analyzes the syntax to ensure the referenced variables match your actual codebase.
+
+```markdown
+To initialize the router, call `createRouter()` with no arguments:
+
+<!-- chrona-ignore -->
+```ts
+import { createRouter } from './router';
+
+const router = createRouter();
+```
+```
+
+</Step>
+
+<Step>
+### Run Verification
+
+Audit your documentation against the live code:
+
+```bash
+npx chrona check
+```
+
+If `createRouter` doesn't exist, or if its signature suddenly changes in the future to require arguments, this command will immediately fail the build with a **DOC-xxx** compiler diagnostic.
+
+</Step>
+</Steps>

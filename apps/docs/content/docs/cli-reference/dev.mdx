@@ -1,0 +1,18 @@
+---
+title: dev
+description: Start the local documentation runtime.
+---
+
+# `chrona dev`
+
+Starts a local development server for your documentation site.
+
+```bash
+npx chrona dev
+```
+
+## Interactive Real-time Verification
+
+The `dev` server integrates directly with your editor and file system. As you save changes to your `.mdx` files or your TypeScript source files, Chrona will incrementally recompile the AST and verify the claims in real-time.
+
+If you introduce a contradiction, the dev server will instantly display a compiler error in your browser, precisely highlighting the line of markdown that drifted from reality.

@@ -1,0 +1,32 @@
+---
+title: Claim IR
+description: How Chrona extracts verifiable assertions from unstructured text.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Claim Intermediate Representation (IR)
+
+Chrona operates by parsing unstructured English documentation and markdown into a structured **Claim Intermediate Representation (IR)**. This is identical to how a traditional compiler parses source code into an AST.
+
+## The Extraction Process
+
+When you run `chrona check`, the following pipeline executes:
+
+1. **Markdown Parsing:** Chrona parses your `.mdx` and `.md` files into a Markdown AST (using `mdast`).
+2. **Code Block Analysis:** It isolates TypeScript/JavaScript code blocks.
+3. **Claim Generation:** It analyzes the syntax within the code blocks and maps them to physical exported symbols in your repository.
+
+<Callout type="warn">
+Chrona only verifies code blocks that use the `ts`, `tsx`, `js`, or `jsx` language tags. Bash scripts or generic `code` blocks are currently ignored by the verifier.
+</Callout>
+
+## Types of Claims
+
+Chrona currently supports several types of claims:
+
+- **Existence Claims:** Asserting that a module or function exists and can be imported.
+- **Signature Claims:** Asserting that a function accepts specific arguments.
+- **Type Claims:** Asserting that a variable conforms to a specific type contract.
+
+If the underlying codebase changes and violates any of these claims, Chrona emits a compilation diagnostic linking directly to the line in your documentation.

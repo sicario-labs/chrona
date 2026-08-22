@@ -1,0 +1,26 @@
+---
+title: init
+description: Initialize Chrona in your repository.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# `chrona init`
+
+The `init` command sets up a new Chrona workspace inside your repository.
+
+```bash
+npx chrona init
+```
+
+## What it does
+
+When you run this command, Chrona will:
+1. Scan your repository to locate your `tsconfig.json`.
+2. Discover your existing markdown files.
+3. Scaffold a `.chrona/workspace.yaml` configuration file.
+4. Set up the baseline epistemic graph for future verifications.
+
+<Callout type="info">
+You only need to run this command once per repository. The `.chrona` folder should be committed to your version control system.
+</Callout>

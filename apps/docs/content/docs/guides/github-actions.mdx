@@ -1,0 +1,50 @@
+---
+title: GitHub Actions
+description: Enforce documentation truth gates in CI.
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+# CI/CD with GitHub Actions
+
+Chrona is designed to run in Continuous Integration environments to mathematically guarantee that pull requests never introduce documentation drift.
+
+<Steps>
+<Step>
+### Create Workflow File
+
+Create a new file at `.github/workflows/chrona.yml` in your repository:
+
+```yaml
+name: Chrona Verification
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for --diff analysis
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Verify Documentation Truth
+        run: npx chrona ci --diff origin/main
+```
+</Step>
+
+<Step>
+### Review PR Annotations
+
+When a developer submits a PR that changes a function signature without updating the corresponding documentation, the `chrona ci` command will fail the build and automatically inject inline annotations into the GitHub PR Diff view.
+</Step>
+</Steps>

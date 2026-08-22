@@ -12,7 +12,7 @@
     "format": "oxfmt",
     "test": "vitest",
     "types:check": "turbo run types:check --continue",
-    "check": "node packages/cli/dist/index.js check"
+    "check": "node packages/cli/dist/index.js check --cwd apps/docs"
   },
   "devDependencies": {
     "oxfmt": "^0.62.0",

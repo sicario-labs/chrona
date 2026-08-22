@@ -1,0 +1,56 @@
+{
+  "version": "v1",
+  "files": {
+    "content/docs/cli-reference/dev.mdx": {
+      "mtimeMs": 1787440173302.9744,
+      "hash": "eaae16281c10fbcc",
+      "claimsCacheKey": "75b8b5e65d282a5e"
+    },
+    "content/docs/cli-reference/overview.mdx": {
+      "mtimeMs": 1787439952622.5537,
+      "hash": "6782a717505d8113",
+      "claimsCacheKey": "fce801999f4d0399"
+    },
+    "content/docs/concepts/claim-ir.mdx": {
+      "mtimeMs": 1787440189319.4875,
+      "hash": "d3f430ac80d3d0aa",
+      "claimsCacheKey": "dcd38e380c075def"
+    },
+    "content/docs/concepts/provenance.mdx": {
+      "mtimeMs": 1787440198890.3728,
+      "hash": "7de8735fa32a6813",
+      "claimsCacheKey": "2e452df6323dfe33"
+    },
+    "content/docs/cli-reference/init.mdx": {
+      "mtimeMs": 1787440177809.2705,
+      "hash": "ea5b848775c574ec",
+      "claimsCacheKey": "2ca89cd3002d8842"
+    },
+    "content/docs/cli-reference/check.mdx": {
+      "mtimeMs": 1787440168675.3782,
+      "hash": "27c0156f6b44cc6f",
+      "claimsCacheKey": "5bde876bf8bf5d8f"
+    },
+    "content/docs/concepts/epistemic-model.mdx": {
+      "mtimeMs": 1787440210387.7075,
+      "hash": "277f5c7efabb02bc",
+      "claimsCacheKey": "f924a012fca3e568"
+    },
+    "content/docs/getting-started/quickstart.mdx": {
+      "mtimeMs": 1787440163201.0232,
+      "hash": "b7a82370825e0050",
+      "claimsCacheKey": "03bda3476ca9cca3"
+    },
+    "content/docs/guides/github-actions.mdx": {
+      "mtimeMs": 1787440183827.0938,
+      "hash": "4cef1017abab0dce",
+      "claimsCacheKey": "8c6661a221d65ef4"
+    },
+    "content/docs/index.mdx": {
+      "mtimeMs": 1787439905972.4558,
+      "hash": "4990a72c3ba10be7",
+      "claimsCacheKey": "530f0c45876b166f"
+    }
+  },
+  "evidenceMap": {}
+}

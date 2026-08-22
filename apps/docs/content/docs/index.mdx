@@ -1,19 +1,43 @@
 ---
 title: Welcome to Chrona
-description: High-performance documentation compiled by Chrona and verified against repository ground truth.
+description: The Typechecker and Compiler for Documentation. Treat your documentation as verified code.
 ---
 
-# Introduction to Chrona
+import { Cards, Card } from 'fumadocs-ui/components/card';
 
-Welcome to the documentation for **Chrona**.
+# The Typechecker for Documentation
 
-> [!NOTE]
-> This documentation is typechecked against the repository's AST ground truth and continuously verified by Chrona.
+Welcome to **Chrona**. Chrona is not just a documentation generator—it is a strict compiler that treats your documentation as verifiable code.
 
-## Quickstart
+Most documentation decays the moment it is written because it lives completely disconnected from the source code. Chrona solves this by compiling an **Epistemic Model** of your workspace and mathematically verifying your documentation claims against the Abstract Syntax Tree (AST) ground truth.
 
-Run your local Fumadocs documentation server:
+<Cards>
+  <Card
+    title="Getting Started"
+    description="Install Chrona and run your first documentation verification."
+    href="/docs/getting-started/quickstart"
+  />
+  <Card
+    title="The Epistemic Model"
+    description="Learn how Chrona builds a web of truth across your repository."
+    href="/docs/concepts/epistemic-model"
+  />
+  <Card
+    title="Claim IR"
+    description="Understand how markdown is compiled into verifiable assertions."
+    href="/docs/concepts/claim-ir"
+  />
+  <Card
+    title="CI Integration"
+    description="Enforce documentation truth gates in your pull requests."
+    href="/docs/guides/github-actions"
+  />
+</Cards>
 
-```bash
-npx chrona dev
-```
+## Why Chrona?
+
+Documentation should be a reliable contract, not a loose suggestion. By treating English text as a compiler target, Chrona ensures that:
+
+1. **No Phantom APIs:** You can never document a function, property, or option that doesn't actually exist in the code.
+2. **Refactor Safety:** When you rename a function or change a signature in TypeScript, Chrona immediately flags every affected markdown file.
+3. **Continuous Verification:** Running \chrona check\ provides cryptographic proof that your documentation exactly matches code reality.

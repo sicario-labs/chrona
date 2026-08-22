@@ -1,0 +1,9 @@
+{
+  "title": "CLI Reference",
+  "pages": [
+    "overview",
+    "init",
+    "check",
+    "dev"
+  ]
+}

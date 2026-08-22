@@ -1,0 +1,28 @@
+---
+title: check
+description: Audit documentation against live code.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# `chrona check`
+
+The `check` command is the heart of the Chrona compiler. It executes a full AST verification pass over your documentation.
+
+```bash
+npx chrona check [options]
+```
+
+## Options
+
+- `--cwd <path>`: Specify the working directory for the repository.
+- `--diff [ref]`: Only check documentation claims affected by the Git diff (defaults to `HEAD~1`).
+- `--format <format>`: Output format (`pretty`, `json`, `ndjson`). Default is `pretty`.
+
+## Usage in CI
+
+<Callout type="warn">
+For strict Continuous Integration environments, we recommend using `chrona ci` instead, which enforces strict exit codes and generates GitHub annotations.
+</Callout>
+
+Running `chrona check` locally before pushing ensures that your documentation exactly matches the codebase reality.

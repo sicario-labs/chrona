@@ -1,0 +1,29 @@
+---
+title: Provenance
+description: Tracking the exact origin of every documentation failure.
+---
+
+# Provenance
+
+When a documentation claim fails, it's not enough to know *that* it failed—you need to know *why* it failed.
+
+Chrona integrates deeply with Git to track the **Provenance** of every symbol.
+
+## The `explain` Command
+
+If `chrona check` fails in CI, you can locally run the `explain` command to trace the epistemic history of the failure:
+
+```bash
+npx chrona ws --explain createRouter
+```
+
+This command will output a complete Evidence Chain:
+
+```text
+Evidence Chain:
+  ↳ AST: src/router.ts:5 ((): RouterContext<T>)
+  ↳ Git: commit 68f6d87 (main) - "refactor: remove initial routes argument"
+  ↳ Contradiction [DOC-103]: Phantom option `{ routes }` not accepted
+```
+
+By linking the AST reality to the Git history, Chrona tells you exactly which commit broke your documentation, and exactly how the code changed.

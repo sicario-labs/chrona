@@ -1,0 +1,28 @@
+---
+title: The Epistemic Model
+description: How Chrona builds a web of truth across your repository.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# The Epistemic Model
+
+Traditional documentation generators only know about markdown files. They are "dumb" rendering engines. Chrona, on the other hand, builds a complete **Epistemic Model** of your entire software workspace.
+
+## Building the Graph
+
+To verify documentation, Chrona must first understand your code. It does this by:
+
+1. **AST Indexing:** Chrona parses every TypeScript and JavaScript file in your workspace using `oxc-parser`.
+2. **Symbol Resolution:** It resolves all imports, exports, and aliases, building a massive cross-file graph of every symbol in your project.
+3. **Documentation Mapping:** It overlays your markdown files onto this graph, drawing edges between English documentation and physical code symbols.
+
+<Callout type="info">
+Because Chrona uses the Rust-based `oxc-parser`, the initial AST indexing phase takes milliseconds, even on massive monorepos.
+</Callout>
+
+## Epistemic Truth
+
+Once the model is built, Chrona evaluates the **Epistemic Truth** of your workspace. 
+
+If a documentation node points to a code symbol that has been deleted, the graph becomes invalid. Chrona will immediately throw a `DOC-xxx` error, refusing to compile the documentation until the truth is restored.
