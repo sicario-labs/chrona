@@ -11,15 +11,15 @@
     "fumadocs-core": "latest",
     "fumadocs-ui": "latest",
     "fumadocs-mdx": "latest",
-    "next": "14.2.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@chrona-engine/cli": "workspace:*",
     "@types/node": "^20.0.0",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "typescript": "^5.4.0",
     "tailwindcss": "^3.4.0",
     "postcss": "^8.4.0",
