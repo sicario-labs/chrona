@@ -17,6 +17,10 @@ on:
   pull_request:
     branches: [main, master, dev]
 
+permissions:
+  pull-requests: write
+  issues: write
+
 jobs:
   verify-truth:
     name: Chrona Truth Referee
