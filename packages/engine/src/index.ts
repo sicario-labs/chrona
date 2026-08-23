@@ -53,4 +53,5 @@ export * from './ir';
 export * from './workspace/staleness';
 export * from './workspace/living-reality-watcher';
 export * from './upgrade';
-export * from './arbiter';
+export * from './arbiter';export * from './workspace/graph';
+export * from './workspace/graph-builder';
