@@ -1,4 +1,4 @@
-﻿import * as http from 'node:http';
+import * as http from 'node:http';
 import { generateBadgeSvg } from './badge/generator';
 import { checkQuota, type TierPlan } from './pricing';
 import { DocumentationVerifier, type VerificationResult } from '@chrona-engine/engine';
@@ -55,8 +55,14 @@ export class ChronaApiServer {
          });
       });
 
-      this.githubApp.webhooks.on('pull_request.synchronize', async ({ octokit, payload }) => {
+            this.githubApp.webhooks.on('pull_request.synchronize', async ({ octokit, payload }) => {
          console.log(`Received PR synchronized event for #${payload.pull_request.number}`);
+         await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+           owner: payload.repository.owner.login,
+           repo: payload.repository.name,
+           issue_number: payload.pull_request.number,
+           body: `🔄 **Chrona Bot**: I see your new commit! Re-verifying documentation claims...`
+         });
       });
 
       this.webhookMiddleware = createNodeMiddleware(this.githubApp.webhooks, { path: '/api/webhook' });
@@ -251,5 +257,7 @@ export class ChronaApiServer {
     return this.storage;
   }
 }
+
+
 
 
