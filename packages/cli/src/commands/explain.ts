@@ -51,13 +51,13 @@ export async function runChronaExplain(
   console.log(picocolors.bold('\nDocumentation References:'));
   console.log(`  Total References: ${explanation.documentation.totalReferences}`);
   for (const v of explanation.documentation.verified.slice(0, 10)) {
-    console.log(`  ${picocolors.green('✓')} ${v.file}:${v.line}`);
+    console.log(`  ${picocolors.green('\u2713')} ${v.file}:${v.line}`);
   }
   if (explanation.documentation.verified.length > 10) {
     console.log(picocolors.dim(`  ... and ${explanation.documentation.verified.length - 10} more verified references`));
   }
   for (const c of explanation.documentation.contradictions) {
-    console.log(`  ${picocolors.red('✗')} ${c.file}:${c.line} → [${c.code}] ${c.message}`);
+    console.log(`  ${picocolors.red('\u2716')} ${c.file}:${c.line} ↳ [${c.code}] ${c.message}`);
   }
 
   console.log(picocolors.bold('\nEpistemic Verdict:'));
@@ -71,7 +71,14 @@ export async function runChronaExplain(
 
   console.log(picocolors.bold('\nEvidence Chain:'));
   for (const ev of explanation.evidenceChain) {
-    console.log(`  • ${picocolors.dim(ev)}`);
+    console.log(`  \u21B3 ${picocolors.dim(ev)}`);
+  }
+
+  if (explanation.blastRadius && explanation.blastRadius.length > 0) {
+    console.log(picocolors.bold('\nLikely affected documentation:'));
+    for (const f of explanation.blastRadius) {
+      console.log(`  ${picocolors.dim(f)}`);
+    }
   }
   console.log();
 }

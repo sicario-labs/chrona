@@ -1,3 +1,5 @@
+import { ChronaGraph } from './graph';
+import { buildChronaGraph } from './graph-builder';
 import fs from 'node:fs';
 import path from 'node:path';
 import { x } from 'tinyexec';
@@ -27,6 +29,7 @@ export class ChronaWorkspace {
   readonly relationships: WorkspaceRelationship[] = [];
   readonly integrity: WorkspaceIntegrity;
   readonly memory?: MemoryStore;
+  public readonly graph: ChronaGraph;
 
   constructor(
     manifest: WorkspaceManifest,
@@ -44,6 +47,7 @@ export class ChronaWorkspace {
     this.relationships = relationships;
     this.integrity = integrity;
     this.memory = memory;
+    this.graph = buildChronaGraph(this.manifest, this.software, this.knowledge, this.integrity);
   }
 
   /**
@@ -414,42 +418,56 @@ export class ChronaWorkspace {
       explanation += ` No documentation references currently found for this symbol.`;
     }
 
+    let lastCommitInfo = `commit ${this.manifest.commit} (${this.manifest.branch})`;
+    try {
+      const { execSync } = require('node:child_process');
+      const gitLog = execSync(`git log -n 1 --format="%h (%an) - %s" -- "${fileLoc}"`, { encoding: 'utf-8', stdio: 'pipe' }).trim();
+      if (gitLog) {
+         lastCommitInfo = `commit ${gitLog}`;
+      }
+    } catch {}
+
     const evidenceChain: string[] = [
       `AST: ${fileLoc}:${sym.line} (${sym.signature})`,
-      `Git: commit ${this.manifest.commit} (${this.manifest.branch})`,
-      `Claims: ${matchingClaims.length} claim(s) extracted from documentation`,
+      `Git: ${lastCommitInfo}`
     ];
 
-    const status: 'VERIFIED' | 'CONTRADICTED' | 'UNVERIFIED' | 'AMBIGUOUS' = hasDrift
-      ? 'CONTRADICTED'
-      : verifiedClaims.length > 0
-      ? 'VERIFIED'
-      : 'UNVERIFIED';
+    if (hasDrift) {
+       evidenceChain.push(`Contradiction [${contradictions[0].code}]: ${contradictions[0].message}`);
+    } else if (verifiedClaims.length > 0) {
+       evidenceChain.push(`Verification: Symbol matches all ${verifiedClaims.length} documentation claims`);
+    } else {
+       evidenceChain.push(`Warning: No verifiable claims exist for this symbol`);
+    }
+
+    const blastRadiusFiles = Array.from(new Set(matchingClaims.map(c => c.source?.file).filter(Boolean))) as string[];
 
     return {
       symbol: sym.name,
       implementation: {
-        file: sym.file,
-        line: sym.line,
+        file: fileLoc,
+        line: sym.line ?? 1,
         signature: sym.signature,
         returnType: sym.returnType,
       },
       documentation: {
         totalReferences: totalRefs,
         verified: verifiedClaims,
-        contradictions,
+        contradictions: contradictions,
+        unverified: [],
       },
       recentHistory: {
         commit: this.manifest.commit,
         branch: this.manifest.branch,
-        lastVerifiedAt: this.integrity.lastVerifiedAt,
+        lastVerifiedAt: new Date().toISOString(),
       },
       verdict: {
         confidence,
-        status,
+        status: hasDrift ? 'CONTRADICTED' : verifiedClaims.length > 0 ? 'VERIFIED' : 'UNVERIFIED',
         explanation,
       },
       evidenceChain,
+      blastRadius: blastRadiusFiles,
     };
   }
 }

@@ -425,7 +425,9 @@ function createClaim(
   line: number,
   text: string,
   subject: string,
-  metadata?: Record<string, unknown>
+  metadata?: Record<string, unknown>,
+  startOffset?: number,
+  endOffset?: number
 ): Claim {
   const normalizedFile = file.replace(/\\/g, '/');
   const id = `${normalizedFile}#L${line}:${type}:${subject}`;
@@ -436,6 +438,8 @@ function createClaim(
       file: normalizedFile,
       line,
       text: text.slice(0, 300),
+      startOffset,
+      endOffset,
     },
     subject,
     metadata,
@@ -735,3 +739,4 @@ function skipUntilSeparator(text: string, start: number): number {
   }
   return text.length;
 }
+
