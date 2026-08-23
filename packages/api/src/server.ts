@@ -2,6 +2,8 @@ import * as http from 'node:http';
 import { generateBadgeSvg } from './badge/generator';
 import { checkQuota, type TierPlan } from './pricing';
 import { DocumentationVerifier, type VerificationResult } from '@chrona-engine/engine';
+import { App } from '@octokit/app';
+import { createNodeMiddleware } from '@octokit/webhooks';
 
 export interface ProjectRecord {
   org: string;
@@ -15,6 +17,9 @@ export interface ProjectRecord {
 export interface ApiServerOptions {
   port?: number;
   storage?: Map<string, ProjectRecord>;
+  githubAppId?: string;
+  githubPrivateKey?: string;
+  githubWebhookSecret?: string;
 }
 
 /**
@@ -24,12 +29,51 @@ export class ChronaApiServer {
   private server: http.Server;
   private storage: Map<string, ProjectRecord>;
   private port: number;
+  private githubApp?: App;
+  private webhookMiddleware?: any;
 
   constructor(options: ApiServerOptions = {}) {
     this.port = options.port || 3000;
     this.storage = options.storage || new Map();
 
+    if (options.githubAppId && options.githubPrivateKey && options.githubWebhookSecret) {
+      this.githubApp = new App({
+        appId: options.githubAppId,
+        privateKey: options.githubPrivateKey,
+        webhooks: {
+          secret: options.githubWebhookSecret
+        }
+      });
+
+      this.githubApp.webhooks.on('pull_request.opened', async ({ octokit, payload }) => {
+         console.log(`Received PR opened event for #${payload.pull_request.number}`);
+         await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+           owner: payload.repository.owner.login,
+           repo: payload.repository.name,
+           issue_number: payload.pull_request.number,
+           body: `ðŸ‘‹ **Chrona Truth Referee** has acknowledged this pull request!\n\n_I will monitor your documentation claims for drift._`
+         });
+      });
+
+            this.githubApp.webhooks.on('pull_request.synchronize', async ({ octokit, payload }) => {
+         console.log(`Received PR synchronized event for #${payload.pull_request.number}`);
+         await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+           owner: payload.repository.owner.login,
+           repo: payload.repository.name,
+           issue_number: payload.pull_request.number,
+           body: `🔄 **Chrona Bot**: I see your new commit! Re-verifying documentation claims...`
+         });
+      });
+
+      this.webhookMiddleware = createNodeMiddleware(this.githubApp.webhooks, { path: '/api/webhook' });
+    }
+
     this.server = http.createServer(async (req, res) => {
+      // Intercept webhooks
+      if (this.webhookMiddleware && req.url?.startsWith('/api/webhook')) {
+         return this.webhookMiddleware(req, res);
+      }
+
       try {
         await this.handleRequest(req, res);
       } catch (err) {
@@ -38,7 +82,7 @@ export class ChronaApiServer {
         res.end(
           JSON.stringify({
             error: 'Internal Server Error',
-            message: err instanceof Error ? err.message : String(err),
+            message: err instanceof Error ? err.message : 'Unknown error',
           })
         );
       }
@@ -213,3 +257,7 @@ export class ChronaApiServer {
     return this.storage;
   }
 }
+
+
+
+

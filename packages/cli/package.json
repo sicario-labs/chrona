@@ -42,6 +42,7 @@
     "types:check": "tsc --noEmit"
   },
   "dependencies": {
+    "@actions/github": "^9.1.1",
     "@chrona-engine/engine": "workspace:*",
     "@clack/prompts": "^1.7.0",
     "commander": "^15.0.0",

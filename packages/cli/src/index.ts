@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { runChronaTrace } from './commands/trace';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Command } from 'commander';
@@ -29,6 +30,7 @@ import { runChronaBench } from '@/commands/bench';
 import { runChronaDeploy } from '@/commands/deploy';
 import { runChronaLs } from '@/commands/ls';
 import { runChronaRollback } from '@/commands/rollback';
+import { runChronaRepair } from '@/commands/repair';
 import {
   runChronaEnvSet,
   runChronaEnvList,
@@ -36,7 +38,6 @@ import {
   runChronaEnvUnset,
 } from '@/commands/env';
 import { runChronaInstallHook, type HookMode } from '@/commands/install-hook';
-import { runChronaRepair } from './commands/repair';
 import { runChronaUpgrade } from './commands/upgrade';
 import { runChronaWatch } from './commands/watch';
 import { runChronaDaemon } from './commands/daemon';
@@ -109,14 +110,6 @@ program
     await initChronaAgentWorkflow({ cwd: options.cwd, hook: options.hook, force: options.force });
   });
 
-program
-  .command('dev')
-  .description('Start local Vite documentation runtime with real-time Code Verification and AI endpoints')
-  .option('--cwd <path>', 'Working directory for the repository')
-  .option('--port <number>', 'Port for Vite dev server', (val) => parseInt(val, 10), 5174)
-  .action(async (options: { cwd?: string; port?: number }) => {
-    await runChronaDev({ cwd: options.cwd, port: options.port });
-  });
 
 program
   .command('build')
@@ -211,7 +204,7 @@ program
   .command('check')
   .description('Audit documentation against live code with DOC-xxx compiler diagnostics')
   .option('--cwd <path>', 'Working directory for the repository')
-  .option('--diff [ref]', 'Only check documentation claims affected by git diff (default: HEAD~1)')
+  .option('--changed [ref]', 'Only check documentation claims affected by git diff (default: HEAD~1)')
   .option('--since <ref>', 'Alias for --diff <ref>')
   .option('--format <format>', 'Output format: pretty, json, ndjson', 'pretty')
   .option('--stream', 'Stream incremental verification events as NDJSON')
@@ -219,7 +212,7 @@ program
   .action(async (options: { cwd?: string; diff?: string | boolean; since?: string; format?: 'pretty' | 'json' | 'ndjson'; stream?: boolean; json?: boolean }) => {
     await runChronaCheck({
       cwd: options.cwd,
-      diff: options.diff,
+      diff: options.changed,
       since: options.since,
       format: options.format,
       stream: options.stream,
@@ -227,12 +220,20 @@ program
     });
   });
 
+
+
+program
+  .command('dev')
+  .description('Run Chrona in watch mode for incremental verification')
+  .option('--cwd <path>', 'Working directory')
+  .action((options) => runChronaDev(options));
+
 program
   .command('ci')
   .description('Audit documentation truth gate in CI pipelines with strict exit codes and GitHub annotations')
   .option('--cwd <path>', 'Working directory for the repository')
   .option('--fail-on <severity>', 'Failure threshold: error (default) or warn', 'error')
-  .option('--diff [ref]', 'Only check documentation claims affected by git diff (default: HEAD~1)')
+  .option('--changed [ref]', 'Only check documentation claims affected by git diff (default: HEAD~1)')
   .option('--since <ref>', 'Alias for --diff <ref>')
   .option('--format <format>', 'Output format: pretty, json, ndjson, junit, github')
   .option('--output <path>', 'Write report to output file')
@@ -240,7 +241,7 @@ program
     await runChronaCi({
       cwd: options.cwd,
       failOn: options.failOn,
-      diff: options.diff,
+      diff: options.changed,
       since: options.since,
       format: options.format,
       output: options.output,
@@ -326,6 +327,17 @@ program
       includeSourceSlices: options.sourceSlices,
     });
   });
+
+
+program
+  .command('trace')
+  .description('Graph traversal: What is connected to what? Trace claims, symbols, documents, and commits.')
+  .argument('[target]', 'Symbol, file, or claim to trace')
+  .option('--orphans', 'Find code symbols with no documentation claims')
+  .option('--phantoms', 'Find documentation claims that reference non-existent symbols')
+  .option('--unverified', 'Find documentation claims that are unverified')
+  .option('--cwd <path>', 'Working directory')
+  .action(runChronaTrace);
 
 program
   .command('explain')
@@ -624,3 +636,10 @@ program
   });
 
 program.parse(process.argv);
+
+
+
+
+
+
+

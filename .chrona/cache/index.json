@@ -327,9 +327,9 @@
       "claimsCacheKey": "b7823860804e40da"
     },
     "docs/real-world-benchmark.md": {
-      "mtimeMs": 1787091900121.2202,
-      "hash": "0430d87af3948230",
-      "claimsCacheKey": "f5bfa7f1ecd121a2"
+      "mtimeMs": 1787094161117.7961,
+      "hash": "f5c08d4dd130f497",
+      "claimsCacheKey": "541772b9094b9818"
     },
     "docs/adr/0011-billing-bachs.md": {
       "mtimeMs": 1786916039196.515,
@@ -380,6 +380,16 @@
       "mtimeMs": 1786695189654.0872,
       "hash": "71d9dba4b23fed85",
       "claimsCacheKey": "6ab33a900c056853"
+    },
+    "docs/pilot-handbook.md": {
+      "mtimeMs": 1787094401332.787,
+      "hash": "cfe100ebd7cbd6f9",
+      "claimsCacheKey": "66593c0c9b89e3e1"
+    },
+    "docs/publishing-guide.md": {
+      "mtimeMs": 1787095586972.9883,
+      "hash": "90e256f3467bfae9",
+      "claimsCacheKey": "ff8fdce1839a7d57"
     }
   },
   "evidenceMap": {}

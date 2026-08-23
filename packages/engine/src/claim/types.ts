@@ -38,6 +38,8 @@ export interface ClaimSource {
   file: string;
   line: number;
   column?: number;
+  startOffset?: number;
+  endOffset?: number;
   text: string;
 }
 
@@ -125,3 +127,4 @@ export interface VerificationResult {
     verificationTimeMs: number;
   };
 }
+

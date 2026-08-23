@@ -86,6 +86,48 @@
         "ambiguousCount": 0
       },
       "durationMs": 545
+    },
+    {
+      "id": "f1b4936d3eba85bf",
+      "commit": "9732e38",
+      "branch": "main",
+      "timestamp": "2026-08-22T23:32:32.248Z",
+      "summary": {
+        "totalClaims": 31,
+        "claimsVerified": 16,
+        "contradictionsFound": 2,
+        "unverifiedCount": 13,
+        "ambiguousCount": 0
+      },
+      "durationMs": 1119
+    },
+    {
+      "id": "e6d5cf85531fb719",
+      "commit": "9732e38",
+      "branch": "main",
+      "timestamp": "2026-08-22T23:33:27.530Z",
+      "summary": {
+        "totalClaims": 31,
+        "claimsVerified": 16,
+        "contradictionsFound": 2,
+        "unverifiedCount": 13,
+        "ambiguousCount": 0
+      },
+      "durationMs": 770
+    },
+    {
+      "id": "c5349826d7ba7b58",
+      "commit": "9732e38",
+      "branch": "main",
+      "timestamp": "2026-08-22T23:33:43.556Z",
+      "summary": {
+        "totalClaims": 31,
+        "claimsVerified": 16,
+        "contradictionsFound": 2,
+        "unverifiedCount": 13,
+        "ambiguousCount": 0
+      },
+      "durationMs": 691
     }
   ],
   "symbols": {
@@ -1793,8 +1835,15 @@
     "DiagnosticCode": {
       "symbol": "DiagnosticCode",
       "file": "",
-      "currentSignature": "type DiagnosticCode = | 'DOC-101' // MISSING_SYMBOL / MISSING_EXPORT\n  | 'DOC-102' // SIGNATURE_MISMATCH\n  | 'DOC-103' // PARAMETER_MISMATCH / MISSING_PARAMETER\n  | 'DOC-104' // CONTRADICTED_CLAIM\n  | 'DOC-107' // TYPE_MISMATCH\n  | 'DOC-201' // BROKEN_EXAMPLE / RECIPE_EXECUTION_FAILURE\n  | 'DOC-202' // RECIPE_REGRESSION\n  | 'DOC-301' // BROKEN_LINK / BROKEN_EXAMPLE\n  | 'DOC-401' // DEPRECATED_WITHOUT_NOTICE\n  | 'DOC-501'",
-      "history": [],
+      "currentSignature": "type DiagnosticCode = | 'DOC-101' // MISSING_SYMBOL / MISSING_EXPORT\n  | 'DOC-102' // SIGNATURE_MISMATCH\n  | 'DOC-103' // PARAMETER_MISMATCH / MISSING_PARAMETER\n  | 'DOC-104' // CONTRADICTED_CLAIM\n  | 'DOC-107' // TYPE_MISMATCH\n  | 'DOC-201' // BROKEN_EXAMPLE / RECIPE_EXECUTION_FAILURE\n  | 'DOC-202' // RECIPE_REGRESSION\n  | 'DOC-301' // CROSS_DOC_CONTRADICTION\n  | 'DOC-401' // DEPRECATED_WITHOUT_NOTICE\n  | 'DOC-501'",
+      "history": [
+        {
+          "signature": "type DiagnosticCode = | 'DOC-101' // MISSING_SYMBOL / MISSING_EXPORT\n  | 'DOC-102' // SIGNATURE_MISMATCH\n  | 'DOC-103' // PARAMETER_MISMATCH / MISSING_PARAMETER\n  | 'DOC-104' // CONTRADICTED_CLAIM\n  | 'DOC-107' // TYPE_MISMATCH\n  | 'DOC-201' // BROKEN_EXAMPLE / RECIPE_EXECUTION_FAILURE\n  | 'DOC-202' // RECIPE_REGRESSION\n  | 'DOC-301' // BROKEN_LINK / BROKEN_EXAMPLE\n  | 'DOC-401' // DEPRECATED_WITHOUT_NOTICE\n  | 'DOC-501'",
+          "commit": "9732e38",
+          "timestamp": "2026-08-22T23:32:32.249Z",
+          "breaking": false
+        }
+      ],
       "driftEvents": []
     },
     "CompilerDiagnostic": {
@@ -1814,12 +1863,18 @@
     "EvidenceGraph": {
       "symbol": "EvidenceGraph",
       "file": "",
-      "currentSignature": "class EvidenceGraph",
+      "currentSignature": "interface EvidenceGraph",
       "history": [
         {
           "signature": "interface EvidenceGraph",
           "commit": "2cc870d",
           "timestamp": "2026-08-20T06:33:42.725Z",
+          "breaking": false
+        },
+        {
+          "signature": "class EvidenceGraph",
+          "commit": "9732e38",
+          "timestamp": "2026-08-22T23:32:32.249Z",
           "breaking": false
         }
       ],
@@ -3056,6 +3111,503 @@
       "currentSignature": "class WorkspaceProjector",
       "history": [],
       "driftEvents": []
+    },
+    "SemanticDiff": {
+      "symbol": "SemanticDiff",
+      "file": "packages/engine/src/upgrade/differential.ts",
+      "currentSignature": "interface SemanticDiff",
+      "history": [],
+      "driftEvents": []
+    },
+    "SemanticDifferentialEngine": {
+      "symbol": "SemanticDifferentialEngine",
+      "file": "packages/engine/src/upgrade/differential.ts",
+      "currentSignature": "class SemanticDifferentialEngine",
+      "history": [],
+      "driftEvents": []
+    },
+    "MigrationWorkOrder": {
+      "symbol": "MigrationWorkOrder",
+      "file": "packages/engine/src/upgrade/usage-mapper.ts",
+      "currentSignature": "interface MigrationWorkOrder",
+      "history": [],
+      "driftEvents": []
+    },
+    "LocalUsageMapper": {
+      "symbol": "LocalUsageMapper",
+      "file": "packages/engine/src/upgrade/usage-mapper.ts",
+      "currentSignature": "class LocalUsageMapper",
+      "history": [],
+      "driftEvents": []
+    },
+    "ExternalPackageReality": {
+      "symbol": "ExternalPackageReality",
+      "file": "packages/engine/src/registry/resolver.ts",
+      "currentSignature": "interface ExternalPackageReality",
+      "history": [],
+      "driftEvents": []
+    },
+    "ExternalRealityResolver": {
+      "symbol": "ExternalRealityResolver",
+      "file": "packages/engine/src/registry/resolver.ts",
+      "currentSignature": "class ExternalRealityResolver",
+      "history": [],
+      "driftEvents": []
+    },
+    "SignerOptions": {
+      "symbol": "SignerOptions",
+      "file": "packages/engine/src/registry/trust/signer.ts",
+      "currentSignature": "interface SignerOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactSigner": {
+      "symbol": "ArtifactSigner",
+      "file": "packages/engine/src/registry/trust/signer.ts",
+      "currentSignature": "class ArtifactSigner",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactEcosystem": {
+      "symbol": "ArtifactEcosystem",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "type ArtifactEcosystem = 'npm' | 'pypi' | 'crates' | 'git' | 'internal'",
+      "history": [],
+      "driftEvents": []
+    },
+    "EvidenceCapability": {
+      "symbol": "EvidenceCapability",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "type EvidenceCapability = 'DISTRIBUTION' | 'SOURCE' | 'BEHAVIOR'",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactLifecycleState": {
+      "symbol": "ArtifactLifecycleState",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "type ArtifactLifecycleState = | 'published'\n  | 'active'\n  | 'superseded'\n  | 'revoked'\n  | 'expired'",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactIdentity": {
+      "symbol": "ArtifactIdentity",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface ArtifactIdentity",
+      "history": [],
+      "driftEvents": []
+    },
+    "CapabilityManifest": {
+      "symbol": "CapabilityManifest",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface CapabilityManifest",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactEvidenceBody": {
+      "symbol": "ArtifactEvidenceBody",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface ArtifactEvidenceBody",
+      "history": [],
+      "driftEvents": []
+    },
+    "CompilerAttestation": {
+      "symbol": "CompilerAttestation",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface CompilerAttestation",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactProvenance": {
+      "symbol": "ArtifactProvenance",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface ArtifactProvenance",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaArtifactEnvelope": {
+      "symbol": "ChronaArtifactEnvelope",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface ChronaArtifactEnvelope",
+      "history": [],
+      "driftEvents": []
+    },
+    "TrustVerdictCode": {
+      "symbol": "TrustVerdictCode",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "type TrustVerdictCode = | 'TRUSTED'\n  | 'DIGEST_MISMATCH'\n  | 'INVALID_SIGNATURE'\n  | 'EXPIRED_ARTIFACT'\n  | 'REVOKED_ARTIFACT'\n  | 'REVOKED_SIGNER_KEY'\n  | 'CAPABILITY_FRAUD'\n  | 'UNTRUSTED_SIGNER'\n  | 'SCHEMA_VIOLATION'",
+      "history": [],
+      "driftEvents": []
+    },
+    "CheckStatus": {
+      "symbol": "CheckStatus",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "type CheckStatus = 'PASS' | 'FAIL' | 'SKIPPED'",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactVerificationChecks": {
+      "symbol": "ArtifactVerificationChecks",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface ArtifactVerificationChecks",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactVerificationReport": {
+      "symbol": "ArtifactVerificationReport",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface ArtifactVerificationReport",
+      "history": [],
+      "driftEvents": []
+    },
+    "TrustVerificationResult": {
+      "symbol": "TrustVerificationResult",
+      "file": "packages/engine/src/registry/trust/types.ts",
+      "currentSignature": "interface TrustVerificationResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "ArtifactTrustVerifier": {
+      "symbol": "ArtifactTrustVerifier",
+      "file": "packages/engine/src/registry/trust/verifier.ts",
+      "currentSignature": "class ArtifactTrustVerifier",
+      "history": [],
+      "driftEvents": []
+    },
+    "ExtractedImportsExports": {
+      "symbol": "ExtractedImportsExports",
+      "file": "packages/engine/src/adapters/types.ts",
+      "currentSignature": "interface ExtractedImportsExports",
+      "history": [],
+      "driftEvents": []
+    },
+    "IRLanguage": {
+      "symbol": "IRLanguage",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "type IRLanguage = 'typescript' | 'javascript' | 'python' | 'rust' | 'go' | 'generic'",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRParam": {
+      "symbol": "ChronaIRParam",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRParam",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRProperty": {
+      "symbol": "ChronaIRProperty",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRProperty",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRSymbol": {
+      "symbol": "ChronaIRSymbol",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRSymbol",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRRelationship": {
+      "symbol": "ChronaIRRelationship",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRRelationship",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRContract": {
+      "symbol": "ChronaIRContract",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRContract",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRModule": {
+      "symbol": "ChronaIRModule",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRModule",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaIRSnapshot": {
+      "symbol": "ChronaIRSnapshot",
+      "file": "packages/engine/src/ir/types.ts",
+      "currentSignature": "interface ChronaIRSnapshot",
+      "history": [],
+      "driftEvents": []
+    },
+    "FileRecord": {
+      "symbol": "FileRecord",
+      "file": "packages/engine/src/sqlite/reality-store.ts",
+      "currentSignature": "interface FileRecord",
+      "history": [],
+      "driftEvents": []
+    },
+    "SyncStats": {
+      "symbol": "SyncStats",
+      "file": "packages/engine/src/sqlite/reality-store.ts",
+      "currentSignature": "interface SyncStats",
+      "history": [],
+      "driftEvents": []
+    },
+    "RealityStore": {
+      "symbol": "RealityStore",
+      "file": "packages/engine/src/sqlite/reality-store.ts",
+      "currentSignature": "class RealityStore",
+      "history": [],
+      "driftEvents": []
+    },
+    "LivingRealityEvents": {
+      "symbol": "LivingRealityEvents",
+      "file": "packages/engine/src/workspace/living-reality-watcher.ts",
+      "currentSignature": "interface LivingRealityEvents",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaLivingRealityWatcher": {
+      "symbol": "ChronaLivingRealityWatcher",
+      "file": "packages/engine/src/workspace/living-reality-watcher.ts",
+      "currentSignature": "class ChronaLivingRealityWatcher extends EventEmitter",
+      "history": [],
+      "driftEvents": []
+    },
+    "StalenessSeverity": {
+      "symbol": "StalenessSeverity",
+      "file": "packages/engine/src/workspace/staleness.ts",
+      "currentSignature": "type StalenessSeverity = 'NONE' | 'LOW' | 'HIGH' | 'CRITICAL'",
+      "history": [],
+      "driftEvents": []
+    },
+    "StalenessScope": {
+      "symbol": "StalenessScope",
+      "file": "packages/engine/src/workspace/staleness.ts",
+      "currentSignature": "type StalenessScope = 'UNRELATED' | 'TARGET' | 'DEPENDENCY' | 'CONTRACT' | 'GLOBAL'",
+      "history": [],
+      "driftEvents": []
+    },
+    "StalenessReason": {
+      "symbol": "StalenessReason",
+      "file": "packages/engine/src/workspace/staleness.ts",
+      "currentSignature": "type StalenessReason = | 'UP_TO_DATE'\n  | 'TARGET_FILE_MUTATED'\n  | 'DEPENDENCY_CHANGED'\n  | 'CONTRACT_INVALIDATED'\n  | 'EVIDENCE_INVALIDATED'\n  | 'UNTOUCHED_CONCURRENT_DRIFT'",
+      "history": [],
+      "driftEvents": []
+    },
+    "ContextStalenessReport": {
+      "symbol": "ContextStalenessReport",
+      "file": "packages/engine/src/workspace/staleness.ts",
+      "currentSignature": "interface ContextStalenessReport",
+      "history": [],
+      "driftEvents": []
+    },
+    "StaleContextError": {
+      "symbol": "StaleContextError",
+      "file": "packages/engine/src/workspace/staleness.ts",
+      "currentSignature": "class StaleContextError extends Error",
+      "history": [],
+      "driftEvents": []
+    },
+    "ContextStalenessDetector": {
+      "symbol": "ContextStalenessDetector",
+      "file": "packages/engine/src/workspace/staleness.ts",
+      "currentSignature": "class ContextStalenessDetector",
+      "history": [],
+      "driftEvents": []
+    },
+    "RunUpgradeOptions": {
+      "symbol": "RunUpgradeOptions",
+      "file": "packages/cli/src/commands/upgrade.ts",
+      "currentSignature": "interface RunUpgradeOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaUpgrade": {
+      "symbol": "runChronaUpgrade",
+      "file": "packages/cli/src/commands/upgrade.ts",
+      "currentSignature": "(options: RunUpgradeOptions): Promise<UpgradeWorkOrder | null>",
+      "history": [],
+      "driftEvents": []
+    },
+    "PackageRealityDiffer": {
+      "symbol": "PackageRealityDiffer",
+      "file": "packages/engine/src/upgrade/differ.ts",
+      "currentSignature": "class PackageRealityDiffer",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaUpgradeEngine": {
+      "symbol": "ChronaUpgradeEngine",
+      "file": "packages/engine/src/upgrade/engine.ts",
+      "currentSignature": "class ChronaUpgradeEngine",
+      "history": [],
+      "driftEvents": []
+    },
+    "UpgradeCallSiteScanner": {
+      "symbol": "UpgradeCallSiteScanner",
+      "file": "packages/engine/src/upgrade/scanner.ts",
+      "currentSignature": "class UpgradeCallSiteScanner",
+      "history": [],
+      "driftEvents": []
+    },
+    "MutatedSymbolDiff": {
+      "symbol": "MutatedSymbolDiff",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface MutatedSymbolDiff",
+      "history": [],
+      "driftEvents": []
+    },
+    "MutatedContractDiff": {
+      "symbol": "MutatedContractDiff",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface MutatedContractDiff",
+      "history": [],
+      "driftEvents": []
+    },
+    "PackageRealityDiff": {
+      "symbol": "PackageRealityDiff",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface PackageRealityDiff",
+      "history": [],
+      "driftEvents": []
+    },
+    "UpgradeCallSite": {
+      "symbol": "UpgradeCallSite",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface UpgradeCallSite",
+      "history": [],
+      "driftEvents": []
+    },
+    "UpgradeWorkOrder": {
+      "symbol": "UpgradeWorkOrder",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface UpgradeWorkOrder",
+      "history": [],
+      "driftEvents": []
+    },
+    "UpgradeOptions": {
+      "symbol": "UpgradeOptions",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface UpgradeOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "UpgradeResult": {
+      "symbol": "UpgradeResult",
+      "file": "packages/engine/src/upgrade/types.ts",
+      "currentSignature": "interface UpgradeResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "DaemonOptions": {
+      "symbol": "DaemonOptions",
+      "file": "packages/cli/src/commands/daemon.ts",
+      "currentSignature": "interface DaemonOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaDaemon": {
+      "symbol": "runChronaDaemon",
+      "file": "packages/cli/src/commands/daemon.ts",
+      "currentSignature": "(options: DaemonOptions = {}): Promise<http.Server>",
+      "history": [],
+      "driftEvents": []
+    },
+    "WatchCommandOptions": {
+      "symbol": "WatchCommandOptions",
+      "file": "packages/cli/src/commands/watch.ts",
+      "currentSignature": "interface WatchCommandOptions",
+      "history": [],
+      "driftEvents": []
+    },
+    "runChronaWatch": {
+      "symbol": "runChronaWatch",
+      "file": "packages/cli/src/commands/watch.ts",
+      "currentSignature": "(options: WatchCommandOptions = {}): Promise<void>",
+      "history": [],
+      "driftEvents": []
+    },
+    "LeaseConflictType": {
+      "symbol": "LeaseConflictType",
+      "file": "packages/engine/src/arbiter/types.ts",
+      "currentSignature": "type LeaseConflictType = 'DIRECT_TARGET' | 'BOUNDARY_COLLISION' | 'CONTRACT_INTERSECTION'",
+      "history": [],
+      "driftEvents": []
+    },
+    "ConflictResolution": {
+      "symbol": "ConflictResolution",
+      "file": "packages/engine/src/arbiter/types.ts",
+      "currentSignature": "type ConflictResolution = 'BLOCK' | 'QUEUE' | 'FORK_BRANCH' | 'PROCEED_WITH_WARNING'",
+      "history": [],
+      "driftEvents": []
+    },
+    "LeaseConflict": {
+      "symbol": "LeaseConflict",
+      "file": "packages/engine/src/arbiter/types.ts",
+      "currentSignature": "interface LeaseConflict",
+      "history": [],
+      "driftEvents": []
+    },
+    "AgentLease": {
+      "symbol": "AgentLease",
+      "file": "packages/engine/src/arbiter/types.ts",
+      "currentSignature": "interface AgentLease",
+      "history": [],
+      "driftEvents": []
+    },
+    "LeaseAcquisitionResult": {
+      "symbol": "LeaseAcquisitionResult",
+      "file": "packages/engine/src/arbiter/types.ts",
+      "currentSignature": "interface LeaseAcquisitionResult",
+      "history": [],
+      "driftEvents": []
+    },
+    "SwarmSyncDelta": {
+      "symbol": "SwarmSyncDelta",
+      "file": "packages/engine/src/arbiter/types.ts",
+      "currentSignature": "interface SwarmSyncDelta",
+      "history": [],
+      "driftEvents": []
+    },
+    "ChronaSwarmArbiter": {
+      "symbol": "ChronaSwarmArbiter",
+      "file": "packages/engine/src/arbiter/arbiter.ts",
+      "currentSignature": "class ChronaSwarmArbiter extends EventEmitter",
+      "history": [],
+      "driftEvents": []
+    },
+    "runCrossDocContradictionRule": {
+      "symbol": "runCrossDocContradictionRule",
+      "file": "packages/engine/src/rules/doc-301.ts",
+      "currentSignature": "(claimResults: ClaimResult[], diagnostics: CompilerDiagnostic[]): void",
+      "history": [],
+      "driftEvents": []
+    },
+    "import { GoAdapter } from '@chrona/adapters-go'": {
+      "symbol": "import { GoAdapter } from '@chrona/adapters-go'",
+      "file": "unknown",
+      "currentSignature": "unknown",
+      "history": [],
+      "driftEvents": [
+        {
+          "claimFile": "docs/yc-sprint-plan.md",
+          "claimLine": 480,
+          "code": "DOC-101",
+          "detectedAt": "2026-08-22T23:32:32.249Z"
+        }
+      ]
+    },
+    "```ts\n// Input: MDX content\n// Output: Claim[]\n\n// \"createUser({ name, email })\" becomes:\n{\n  type: 'parameter',\n  source: { file: 'docs/auth.mdx', line: 42, text: 'createUser({ name, email })' },\n  subject: 'createUser',\n  evidence: [],\n  status: 'unverified'\n}\n```": {
+      "symbol": "```ts\n// Input: MDX content\n// Output: Claim[]\n\n// \"createUser({ name, email })\" becomes:\n{\n  type: 'parameter',\n  source: { file: 'docs/auth.mdx', line: 42, text: 'createUser({ name, email })' },\n  subject: 'createUser',\n  evidence: [],\n  status: 'unverified'\n}\n```",
+      "file": "unknown",
+      "currentSignature": "unknown",
+      "history": [],
+      "driftEvents": [
+        {
+          "claimFile": "docs/yc-sprint-plan.md",
+          "claimLine": 276,
+          "code": "DOC-201",
+          "detectedAt": "2026-08-22T23:32:32.249Z"
+        }
+      ]
     }
   }
 }

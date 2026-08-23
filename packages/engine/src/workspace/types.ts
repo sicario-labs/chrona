@@ -122,6 +122,7 @@ export interface WorkspaceExplanation {
     explanation: string;
   };
   evidenceChain: string[];
+  blastRadius?: string[];
 }
 
 export interface WorkspaceOverview {
@@ -157,3 +158,4 @@ export interface WorkspaceOverview {
     lastVerifiedAt: string;
   };
 }
+
